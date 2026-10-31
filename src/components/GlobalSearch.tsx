@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { globalSearch, type SearchFilters as Filters } from "@/lib/global-search";
 import { SearchFilters } from "@/components/SearchFilters";
 import { getAssociation } from "@/lib/animals";
@@ -44,7 +45,7 @@ export function GlobalSearch() {
     }} />
     <SearchFilters filters={filters} onShow={(show) => setOpen(!show)} onChange={(next) => { setFilters(next); setSelected(0); }} />
     {visible && <div id={id} role="listbox" aria-label="Resultados da pesquisa" className="absolute left-0 top-14 z-50 max-h-96 w-full overflow-y-auto rounded-lg border border-border bg-popover p-2 text-popover-foreground shadow-soft">
-      {items.length === 0 ? <p role="status" className="p-3 text-sm">{q ? `Sem resultados para ‘${q}’` : "Sem resultados para estes filtros."}</p> : items.map((item, i) => <div key={`${item.kind}-${item.id}`}>
+      {items.length === 0 ? <div className="p-3"><p role="status" className="text-sm">{q ? `Sem resultados para ‘${q}’` : "Sem resultados para estes filtros."}</p><Button variant="link" className="mt-2 px-0" onClick={() => { setQ(""); setFilters({}); setOpen(false); navigate({ to: "/animais" }); }}>Ver todos os animais</Button></div> : items.map((item, i) => <div key={`${item.kind}-${item.id}`}>
         {(i === 0 || items[i - 1]?.group !== item.group) && <p className="eyebrow px-3 pb-2 pt-3">{item.group}</p>}
         <div role="option" id={`${id}-${i}`} aria-selected={selected === i} onPointerMove={() => setSelected(i)} onMouseDown={(e) => e.preventDefault()} onClick={() => choose(i)} className={`flex cursor-pointer items-center gap-3 rounded-md p-2 ${selected === i ? "bg-secondary" : ""}`}>
           <img src={item.photo} alt="" loading="lazy" className="h-11 w-11 shrink-0 rounded-md object-cover" /><div className="min-w-0"><p className="truncate text-sm font-medium">{item.name}</p><p className="text-xs text-muted-foreground">{item.meta}</p></div>

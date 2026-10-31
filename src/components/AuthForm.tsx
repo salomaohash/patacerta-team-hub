@@ -4,7 +4,7 @@ import { signIn, type Role } from "@/lib/state/session";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const input = "w-full rounded-lg border border-input bg-card px-4 py-3 text-sm outline-none focus:border-accent-deep";
+const input = "w-full rounded-full border border-input bg-card px-4 py-3 text-sm outline-none focus:border-accent-deep";
 
 export function AuthForm({ mode }: { mode: "login" | "register" }) {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
                 type="button"
                 onClick={() => setRole(v)}
                 aria-pressed={role === v}
-                className={`h-auto whitespace-normal rounded-lg border px-4 py-3 text-left text-sm transition-colors ${role === v ? "border-accent-deep bg-secondary" : "border-input bg-card"}`}
+                className={`h-auto whitespace-normal rounded-full border px-4 py-3 text-left text-sm transition-colors ${role === v ? "border-accent-deep bg-secondary" : "border-input bg-card"}`}
               >
                 {l}
               </Button>

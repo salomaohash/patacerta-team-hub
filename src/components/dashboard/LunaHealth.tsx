@@ -8,7 +8,7 @@ export function HealthBadge() {
 }
 
 export function HealthSummary({ onOpen }: { onOpen: () => void }) {
-  return <div className="flex h-full flex-col rounded-lg bg-card p-6 shadow-soft">
+  return <div className="flex h-full flex-col rounded-lg bg-card p-6">
     <div className="flex flex-wrap items-center justify-between gap-2"><h2 className="flex items-center gap-2 text-lg"><Stethoscope size={18} className="text-accent-deep" /> Saúde da Luna</h2><HealthBadge /></div>
     <p className="mt-3 text-2xl font-serif">Em dia</p>
     <dl className="mt-4 space-y-3 text-sm">
@@ -22,7 +22,7 @@ export function HealthSummary({ onOpen }: { onOpen: () => void }) {
 
 export function HealthRecord({ expanded = false }: { expanded?: boolean }) {
   return <div className={expanded ? "space-y-3" : "grid gap-4 lg:grid-cols-2"}>
-    {lunaRecord.map((section, index) => <details key={section.title} open={expanded || index === 0} className="group rounded-lg bg-card shadow-soft open:pb-6">
+    {lunaRecord.map((section, index) => <details key={section.title} open={expanded || index === 0} className="group rounded-lg bg-card open:pb-6">
       <summary className="cursor-pointer p-6 font-medium text-sm marker:text-accent-deep">{section.title}<span className="ml-2 text-xs font-normal text-muted-foreground">Registos de exemplo</span></summary>
       <dl className="divide-y divide-border px-6 text-sm">
         {section.entries.map(([label, value]) => <div key={label} className="grid gap-2 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] sm:gap-4"><dt className="text-muted-foreground">{label}</dt><dd className="break-words">{value}</dd></div>)}

@@ -135,7 +135,7 @@ function LunaCard({ onOpen }: { onOpen: () => void }) {
           <div className="mt-3 flex flex-wrap gap-2">{["Calma", "Carinhosa", "Ideal para apartamento"].map((tag) => <span key={tag} className="rounded-full bg-secondary px-2 py-2 text-xs">{tag}</span>)}</div>
           <Button variant="link" onClick={onOpen} className="mt-2 h-auto px-0">Ver perfil completo</Button>
         </div>
-        <div className="rounded-lg bg-primary px-4 py-3 text-center text-primary-foreground">
+        <div className="rounded-full bg-primary px-4 py-3 text-center text-primary-foreground">
           <p className="text-2xl font-semibold leading-none">92%</p>
           <p className="mt-2 text-xs opacity-90">Compatibilidade</p>
         </div>
@@ -157,7 +157,7 @@ function PlaceCards({ list, onSelect }: { list: Place[]; onSelect: (p: Place) =>
           <p className="mt-2 text-sm text-muted-foreground">{p.distance}</p>
           <Button variant="ghost"
             onClick={() => onSelect(p)}
-            className="mt-4 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+            className="mt-4 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
             Ver detalhes
           </Button>
@@ -209,7 +209,7 @@ export function Dashboard() {
         {/* Barra lateral (desktop) */}
         <aside className="sticky top-0 hidden h-screen w-52 shrink-0 flex-col gap-2 border-r border-border bg-card p-4 lg:flex">
           <div className="mb-6 flex items-center gap-2 px-2 pt-2 font-serif text-lg">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
               <PawPrint className="h-4 w-4" />
             </span>
             PataCerta
@@ -315,7 +315,7 @@ export function Dashboard() {
                         <h2 className="text-2xl">Luna</h2>
                         <p className="text-sm text-muted-foreground">Cão sem raça definida de porte pequeno, 2 anos</p>
                       </div>
-                      <div className="rounded-lg bg-primary px-4 py-3 text-center text-primary-foreground">
+                      <div className="rounded-full bg-primary px-4 py-3 text-center text-primary-foreground">
                         <p className="text-2xl font-semibold leading-none">92%</p>
                         <p className="mt-2 text-xs opacity-90">Compatibilidade</p>
                       </div>
@@ -440,7 +440,7 @@ export function Dashboard() {
                 </dl>
                 <Button variant="ghost"
                   onClick={() => setEditNote(true)}
-                  className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
                 >
                   <Pencil className="h-4 w-4" /> Editar perfil
                 </Button>

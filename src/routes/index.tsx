@@ -46,7 +46,6 @@ const activeGoods = dims.filter((d) => d.score >= 0.75).slice(0, 2);
 const activeHard = [...dims].sort((a, b) => a.score - b.score).find((d) => d.score < 0.75);
 
 const d = (i: number) => ({ "--i": i }) as CSSProperties;
-const btn = "inline-flex items-center gap-2 rounded-full px-6 py-4 text-[15px] shadow-soft transition-colors";
 
 function Index() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -65,13 +64,13 @@ function Index() {
         <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 py-12 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-12">
           <div className="space-y-6">
             <p className="eyebrow flex items-center gap-3 text-accent-deep"><span aria-hidden="true" className="h-px w-8 bg-accent-deep" />Adoção consciente</p>
-            <h1 className="font-sans text-[38px] font-black leading-[1.08] tracking-normal md:text-[52px]"><span className="block">O animal que</span><span className="block">realmente</span><span className="block text-accent-deep">combina contigo.</span></h1>
+            <h1 className="font-serif text-[38px] font-medium leading-[1.08] tracking-normal md:text-[52px]"><span className="block">O animal que</span><span className="block">realmente</span><span className="block text-accent-deep">combina contigo.</span></h1>
             <p className="max-w-[46ch] text-[18px] leading-relaxed text-muted-foreground">
               Responde a um questionário sobre a tua rotina. Para cada animal, vê o que encaixa e os desafios a considerar.
             </p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-3">
               <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-4 text-base font-semibold shadow-soft"><Link to="/quiz">
-                Descobrir a tua compatibilidade 
+                Encontra o teu parceiro
               </Link></Button>
               <Button asChild variant="link" className="h-auto px-0 text-base font-normal"><Link to="/animais">Explorar animais </Link></Button>
             </div>
@@ -171,21 +170,6 @@ function Index() {
                 </li>
               )}
             </ul>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* CTA final */}
-      <section>
-        <Reveal className="mx-auto max-w-3xl px-6 py-12 text-center">
-          <h2 data-r className="text-[34px] md:text-[48px]">Que animal combina contigo?</h2>
-          <p data-r style={d(1)} className="mx-auto mt-6 max-w-[52ch] text-muted-foreground">
-            Três minutos de questionário. Uma lista de animais que combinam, de facto, contigo.
-          </p>
-          <div data-r style={d(2)} className="mt-12">
-            <Link to="/quiz" className={`${btn} bg-primary text-primary-foreground hover:bg-accent-deep`}>
-              Descobrir a tua compatibilidade 
-            </Link>
           </div>
         </Reveal>
       </section>

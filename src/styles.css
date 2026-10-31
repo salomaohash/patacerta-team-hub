@@ -69,7 +69,7 @@
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.5rem;
   --background: oklch(0.982 0.006 84);
   --foreground: oklch(0.255 0.014 150);
   --card: oklch(1 0 0);
@@ -107,9 +107,9 @@
   --sidebar-accent-foreground: oklch(0.255 0.014 150);
   --sidebar-border: oklch(0.255 0.014 150 / 10%);
   --sidebar-ring: oklch(0.6 0.045 135);
-  --shadow-soft: 0 12px 40px -18px oklch(0.255 0.014 150 / 18%);
+  --shadow-soft: 0 12px 24px -12px oklch(0.255 0.014 150 / 10%);
   --home-opening-surface: oklch(0.955 0.017 135);
-  --shadow-raised: 0 18px 44px -16px oklch(0.255 0.014 150 / 25%);
+  --shadow-raised: 0 16px 24px -12px oklch(0.255 0.014 150 / 12%);
   --ambient-cool: radial-gradient(ellipse at 80% 30%, color-mix(in oklab, var(--accent-deep) 10%, transparent), transparent 70%);
   --ambient-warm: radial-gradient(ellipse at 70% 60%, color-mix(in oklab, var(--accent-warm) 14%, transparent), transparent 75%);
   --section-texture: radial-gradient(circle, color-mix(in oklab, var(--foreground) 4%, transparent) 0.5px, transparent 1px);
@@ -128,12 +128,12 @@
 }
 
 @layer base {
-  h1, h2, h3, h4 { font-family: var(--font-sans); letter-spacing: 0; font-weight: 800; }
+  h1, h2, h3, h4 { font-family: var(--font-serif); letter-spacing: 0; font-weight: 500; }
   body { font-family: var(--font-sans); font-size: 16.5px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
 }
 
 @utility eyebrow {
-  font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+  font-family: var(--font-serif); font-size: 14px; letter-spacing: 0; text-transform: none; font-weight: 500;
   color: var(--color-muted-foreground);
 }
 
@@ -195,6 +195,12 @@
 .home-ambient-warm::before { background-image: var(--ambient-warm); }
 @keyframes ambient-breathe { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
 .section-texture { background-image: var(--section-texture); background-size: 6px 6px; }
-.home-step { box-shadow: var(--shadow-soft); transition: transform 300ms ease, box-shadow 300ms ease; }
-.home-step:hover { transform: translateY(-2px); box-shadow: var(--shadow-raised); }
+.home-step { box-shadow: none; }
 @media (prefers-reduced-motion: reduce) { .home-ambient::before { animation: none; } .home-step, .home-step:hover { transform: none; transition: none; } }
+
+@layer base {
+  a, button, input, select, summary, [role="option"], img {
+    transition-duration: 250ms;
+    transition-timing-function: ease-out;
+  }
+}
