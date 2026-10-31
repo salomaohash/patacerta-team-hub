@@ -37,7 +37,7 @@ export function SiteHeader() {
               <Link to="/favoritos" className={linkCls} activeProps={activeCls}>
                 Favoritos
               </Link>
-              <Link to="/painel" className={linkCls} activeProps={activeCls}>
+              <Link to="/dashboard" className={linkCls} activeProps={activeCls}>
                 Painel
               </Link>
             </>
@@ -50,7 +50,7 @@ export function SiteHeader() {
               <DropdownMenuContent align="end" className="max-w-[calc(100vw-24px)] rounded-lg border-border">
                 <DropdownMenuLabel className="max-w-64 break-words">{user.nome}<span className="mt-2 block text-sm font-normal text-muted-foreground">{user.email}</span></DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild><Link to="/painel">Painel</Link></DropdownMenuItem>
+                <DropdownMenuItem asChild><Link to="/dashboard">Painel</Link></DropdownMenuItem>
                 {user.papel === "associacao" && <DropdownMenuItem asChild><Link to="/dashboard">Área da instituição</Link></DropdownMenuItem>}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onSelect={() => { signOut(); navigate({ to: "/" }); }}>Terminar sessão</DropdownMenuItem>

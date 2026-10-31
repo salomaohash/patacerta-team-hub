@@ -17,6 +17,6 @@ describe("local session", () => {
   it("returns to the original protected destination, never an external address", () => {
     expect(sessionDestination("/dashboard")).toBe("/dashboard");
     expect(sessionDestination("/favoritos")).toBe("/favoritos");
-    expect(sessionDestination("https://example.com")).toBe("/painel");
+    expect(sessionDestination("https://example.com")).toBe("/dashboard");
   });
 });
