@@ -16,7 +16,6 @@ export function MatchCard({ a, m }: { a: Animal; m: MatchResult }) {
     <article className="overflow-hidden rounded-2xl border border-border bg-card md:grid md:grid-cols-[280px_1fr]">
       <Link to="/animais/$id" params={{ id: a.id }} className="relative block self-start">
         <img src={a.photo} alt={a.name} loading="lazy" width={816} height={816} className="aspect-square w-full object-cover" />
-        <span className="eyebrow absolute left-3 top-3 rounded-full bg-card/90 px-3 py-1">Demonstração</span>
         <FavoriteButton id={a.id} className="absolute bottom-3 right-3" />
       </Link>
       <div className="p-6 md:p-8">
