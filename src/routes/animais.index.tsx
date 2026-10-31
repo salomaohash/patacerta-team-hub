@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PawPrint } from "lucide-react";
 import { animals } from "@/lib/animals";
 
-type Search = { especie?: string; porte?: string; energia?: string };
+type Search = { especie?: string | undefined; porte?: string | undefined; energia?: string | undefined };
 
 export const Route = createFileRoute("/animais/")({
   validateSearch: (s: Record<string, unknown>): Search => {

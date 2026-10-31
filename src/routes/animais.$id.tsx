@@ -23,7 +23,7 @@ export const Route = createFileRoute("/animais/$id")({
     };
   },
   component: Detail,
-  errorComponent: ({ error }) => <div role="alert" className="p-10">{error.message}</div>,
+  errorComponent: ({ error }) => <div role="alert" className="p-10">{error instanceof Error ? error.message : String(error)}</div>,
   notFoundComponent: () => (
     <div className="p-10">
       Animal não encontrado. <Link to="/animais" className="underline">Ver catálogo</Link>
