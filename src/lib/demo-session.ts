@@ -26,6 +26,11 @@ function subscribe(cb: () => void) {
   };
 }
 
+export function signOutDemo() {
+  demoUser = null;
+  listeners.forEach((l) => l());
+}
+
 export function useDemoUser(): DemoUser | null {
   return useSyncExternalStore(subscribe, () => demoUser, () => null);
 }

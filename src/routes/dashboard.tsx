@@ -1,4 +1,5 @@
-import { createFileRoute, Navigate } from "@tanstack/react-router";
+import { createFileRoute, Navigate, useNavigate } from "@tanstack/react-router";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
 import {
   LayoutDashboard, PawPrint, FileText, MapPin, User, Heart, ClipboardCheck,
@@ -12,8 +13,8 @@ import { GooglePlacesMap } from "@/components/dashboard/GooglePlacesMap";
 import { todayCare, toggleCare } from "@/lib/luna-record";
 import { formatDistance, haversineKm, type GeoPosition } from "@/lib/geo";
 import lunaPhoto from "@/assets/pets/luna.jpg";
-import { useDemoUser } from "@/lib/demo-session";
-import { useSession } from "@/lib/state/session";
+import { signOutDemo, useDemoUser } from "@/lib/demo-session";
+import { signIn, signOut, useSession } from "@/lib/state/session";
 import { RequireSession } from "@/components/RequireSession";
 import { InstitutionDashboard } from "@/components/dashboard/InstitutionDashboard";
 import {
@@ -270,12 +271,27 @@ function Dashboard() {
           {/* Cabeçalho da secção */}
           <header className="flex items-center justify-between gap-4">
             <h1 className="text-2xl sm:text-3xl">{sectionTitles[active]}</h1>
-            {demoUser.name && <div className="flex items-center gap-3">
-              <span className="max-w-40 break-words text-sm text-muted-foreground sm:max-w-64">{demoUser.name}</span>
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-                <User className="h-4 w-4" aria-hidden />
-              </span>
-            </div>}
+            {demoUser.name && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button type="button" aria-label="Abrir menu do utilizador" className="flex shrink-0 items-center gap-3 rounded-full outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                    <span className="max-w-40 break-words text-sm text-muted-foreground sm:max-w-64">{demoUser.name}</span>
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                      <User className="h-4 w-4" aria-hidden />
+                    </span>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel className="max-w-64 break-words">{demoUser.name}</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => setActive("overview")}>Painel</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setActive("requests")}>Pedidos de adoção</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setActive("profile")}>Perfil</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => { signOut(); signOutDemo(); navigate({ to: "/" }); }}>Terminar sessão</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </header>
 
           {active === "overview" && (
