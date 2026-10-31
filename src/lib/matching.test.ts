@@ -26,3 +26,16 @@ describe("matching", () => {
     expect(computeMatch(poor, a).dimensions.openness.score).toBe(0);
   });
 });
+
+import { verdict, keyFriction } from "./matching";
+describe("verdict thresholds", () => {
+  it("0.75 and above is Excelente", () => expect(verdict(0.75)).toBe("Excelente"));
+  it("0.55 to below 0.75 is Compatível", () => {
+    expect(verdict(0.55)).toBe("Compatível");
+    expect(verdict(0.74)).toBe("Compatível");
+  });
+  it("below 0.55 is Atenção", () => expect(verdict(0.54)).toBe("Atenção"));
+  it("every animal has an honest friction", () => {
+    for (const a of animals) expect(keyFriction(a).length).toBeGreaterThan(20);
+  });
+});

@@ -1,10 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
-import { animals } from "@/lib/animals";
-import { computeMatch, type QuizAnswers } from "@/lib/matching";
+import type { QuizAnswers } from "@/lib/matching";
 import { loadQuiz, saveQuiz } from "@/lib/state/quiz";
-import { AnimalCard } from "@/components/AnimalCard";
 
 export const Route = createFileRoute("/quiz")({
   head: () => ({
@@ -17,6 +15,7 @@ export const Route = createFileRoute("/quiz")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
+  validateSearch: (s: Record<string, unknown>): { refazer?: boolean } => (s["refazer"] ? { refazer: true } : {}),
   component: Quiz,
 });
 
@@ -35,14 +34,12 @@ const questions: { key: keyof QuizAnswers; q: string; options: string[] }[] = [
 function Quiz() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Partial<QuizAnswers>>({});
-  const [done, setDone] = useState<QuizAnswers | null>(null);
+  const navigate = useNavigate();
+  const { refazer } = Route.useSearch();
 
   useEffect(() => {
-    const saved = loadQuiz();
-    if (saved) setDone(saved);
-  }, []);
-
-  if (done) return <Results answers={done} onRestart={() => { setDone(null); setAnswers({}); setStep(0); }} />;
+    if (!refazer && loadQuiz()) navigate({ to: "/resultados", replace: true });
+  }, [refazer, navigate]);
 
   const cur = questions[step]!;
   const choose = (i: number) => {
@@ -51,7 +48,7 @@ function Quiz() {
     if (step < questions.length - 1) setStep(step + 1);
     else {
       saveQuiz(next as QuizAnswers);
-      setDone(next as QuizAnswers);
+      navigate({ to: "/resultados" });
     }
   };
 
@@ -81,32 +78,6 @@ function Quiz() {
             </button>
           ))}
         </div>
-      </div>
-    </main>
-  );
-}
-
-function Results({ answers, onRestart }: { answers: QuizAnswers; onRestart: () => void }) {
-  const ranked = animals
-    .filter((a) => a.status === "active")
-    .map((a) => ({ a, m: computeMatch(answers, a) }))
-    .sort((x, y) => y.m.score - x.m.score)
-    .slice(0, 6);
-  return (
-    <main className="mx-auto max-w-6xl px-6 py-16">
-      <p className="eyebrow">Os teus resultados</p>
-      <h1 className="mt-4 text-4xl">Os animais mais compatíveis contigo</h1>
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {ranked.map(({ a, m }) => (
-          <div key={a.id}>
-            <AnimalCard a={a} />
-            <p className="mt-3 text-sm"><span className="font-serif text-2xl text-accent-deep">{m.score}%</span> compatível</p>
-          </div>
-        ))}
-      </div>
-      <div className="mt-12 flex gap-4">
-        <button onClick={onRestart} className="rounded-full border border-border px-6 py-3 text-sm hover:bg-secondary">Repetir questionário</button>
-        <Link to="/animais" className="rounded-full bg-primary px-6 py-3 text-sm text-primary-foreground">Ver todos os animais</Link>
       </div>
     </main>
   );
