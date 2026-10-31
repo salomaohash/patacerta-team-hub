@@ -4,10 +4,10 @@ import { filterAnimals } from "./catalog";
 describe("Inesquecíveis", () => {
   it("filters situacao=esquecidos to active senior and special-needs animals", () => {
     expect(filterAnimals({ situacao: "esquecidos" }).map((a) => a.id)).toEqual([
-      "zeca", "tobias", "nala", "mimi", "kika", "mel",
+      "zeca", "tobias", "nala", "mimi", "kika", "mel", "tono", "nesga", "pezinho", "amalia", "rosinha",
     ]);
   });
   it("combines the Inesquecíveis selection with species", () => {
-    expect(filterAnimals({ situacao: "esquecidos", especie: "gato" }).map((a) => a.id)).toEqual(["mimi", "kika", "mel"]);
+    expect(filterAnimals({ situacao: "esquecidos", especie: "gato" }).map((a) => a.id)).toEqual(["mimi", "kika", "mel", "amalia", "rosinha"]);
   });
 });
