@@ -23,14 +23,14 @@ export function SiteHeader() {
         <GlobalSearch />
         <Button variant="ghost" size="icon" aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen} aria-controls="main-navigation" className="col-start-3 row-start-1 shrink-0 justify-self-end lg:hidden" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X /> : <Menu />}</Button>
         <nav id="main-navigation" aria-label="Menu principal" onClick={() => setMenuOpen(false)} className={`${menuOpen ? "grid" : "hidden"} col-span-3 min-w-0 grid-cols-2 items-center gap-3 border-t border-border pt-3 lg:flex lg:col-span-1 lg:col-start-3 lg:row-start-1 lg:shrink-0 lg:justify-self-end lg:gap-7 lg:border-0 lg:pt-0`}>
-          <Link to="/acerca" className={linkCls} activeProps={activeCls}>
-            Acerca
-          </Link>
           <Link to="/animais" className={linkCls} activeProps={activeCls}>
             Adoção
           </Link>
           <Link to="/animais" search={{ estado: "desaparecido" }} className={linkCls}>
             Perdidos
+          </Link>
+          <Link to="/acerca" className={linkCls} activeProps={activeCls}>
+            Acerca
           </Link>
           {user && (
             <>
