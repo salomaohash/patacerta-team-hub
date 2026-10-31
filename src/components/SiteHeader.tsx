@@ -9,13 +9,16 @@ export function SiteHeader() {
   const navigate = useNavigate();
   return (
     <header className="border-b border-border bg-background">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-5">
         <Link to="/" className="font-serif text-xl tracking-tight">
           PataCerta
         </Link>
-        <nav className="flex items-center gap-4 sm:gap-6">
+        <nav aria-label="Menu principal" className="flex flex-wrap items-center gap-4 sm:gap-6">
           <Link to="/animais" className={linkCls} activeProps={activeCls}>
             Animais
+          </Link>
+          <Link to="/acerca" className={linkCls} activeProps={activeCls}>
+            Acerca
           </Link>
           {user && (
             <>
