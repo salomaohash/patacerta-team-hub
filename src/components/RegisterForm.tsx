@@ -25,7 +25,7 @@ export function RegisterForm() {
     setError(invalid ? { message: invalid.message } : null);
     if (invalid) return;
     signIn({ nome: nome.trim(), email: email.trim().toLowerCase(), papel });
-    navigate({ to: sessionDestination(search.returnTo) });
+    navigate({ to: sessionDestination(search.returnTo ?? (isOrg ? "/dashboard" : "/painel")) });
   }
 
   const inputClass = "h-12 w-full rounded-xl border border-input bg-background px-4 text-sm text-foreground outline-none transition-colors focus:border-accent-deep focus:ring-1 focus:ring-ring";

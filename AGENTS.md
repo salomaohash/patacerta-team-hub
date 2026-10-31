@@ -18,6 +18,7 @@
 - Derive homepage statistics in a browser-safe module from existing demo sources; animate counts only after mount to preserve SSR.
 - Use a notice-specific photo description helper for list and detail alt text; keep source provenance in media attribution rather than notice alt text.
 - Keep /painel and /dashboard as distinct adopter and catalog-management views; derive counts from existing local sources and preserve legacy session aliases while storing only the canonical Portuguese session fields so existing favorites remain compatible.
+- Keep institution workspace and animal contact drafts browser-only and account-scoped; never seed catalog ownership or applications, and never imply local messages are delivered to other accounts.
 - Use one shared header logo asset and derive the favicon from its symbol so site identity stays consistent.
 - Keep visual hierarchy and motion in global tokens and shared controls so page-specific styling cannot diverge.
 - Keep the six-question adoption profile, validation, species preference and scoring in a browser-safe pure module; preserve legacy quiz answers while excluding unasked dimensions from new scores so all result surfaces agree without invented household facts.

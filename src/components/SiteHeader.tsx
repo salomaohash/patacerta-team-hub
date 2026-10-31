@@ -51,7 +51,7 @@ export function SiteHeader() {
                 <DropdownMenuLabel className="max-w-64 break-words">{user.nome}<span className="mt-2 block text-sm font-normal text-muted-foreground">{user.email}</span></DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild><Link to="/painel">Painel</Link></DropdownMenuItem>
-                {user.papel === "associacao" && <DropdownMenuItem asChild><Link to="/dashboard">Dashboard</Link></DropdownMenuItem>}
+                {user.papel === "associacao" && <DropdownMenuItem asChild><Link to="/dashboard">Área da instituição</Link></DropdownMenuItem>}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onSelect={() => { signOut(); navigate({ to: "/" }); }}>Terminar sessão</DropdownMenuItem>
               </DropdownMenuContent>

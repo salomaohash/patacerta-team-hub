@@ -12,6 +12,9 @@ import { GooglePlacesMap } from "@/components/dashboard/GooglePlacesMap";
 import { todayCare, toggleCare } from "@/lib/luna-record";
 import lunaPhoto from "@/assets/pets/luna.jpg";
 import { useDemoUser } from "@/lib/demo-session";
+import { useSession } from "@/lib/state/session";
+import { RequireSession } from "@/components/RequireSession";
+import { InstitutionDashboard } from "@/components/dashboard/InstitutionDashboard";
 import {
   Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle,
 } from "@/components/ui/dialog";
@@ -19,18 +22,23 @@ import {
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "A tua adoção — PataCerta" },
-      { name: "description", content: "O teu match, o pedido de adoção e locais pet-friendly num só lugar." },
-      { property: "og:title", content: "A tua adoção — PataCerta" },
-      { property: "og:description", content: "O teu match, o pedido de adoção e locais pet-friendly num só lugar." },
+      { title: "Painel e instituição, PataCerta" },
+      { name: "description", content: "Painel pessoal e gestão local de animais, candidaturas, eventos e perfil da instituição na PataCerta." },
+      { property: "og:title", content: "Painel e instituição, PataCerta" },
+      { property: "og:description", content: "Painel pessoal e gestão local de animais, candidaturas, eventos e perfil da instituição na PataCerta." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
   }),
   validateSearch: (s: Record<string, unknown>): { secao?: "pet" | "application" } =>
     s["secao"] === "pet" || s["secao"] === "application" ? { secao: s["secao"] } : {},
-  component: Dashboard,
+  component: DashboardEntry,
 });
+
+function DashboardEntry() {
+  const user = useSession();
+  return <RequireSession>{user?.papel === "associacao" ? <InstitutionDashboard /> : <Dashboard />}</RequireSession>;
+}
 
 type SectionId = "overview" | "pet" | "application" | "places" | "profile";
 
@@ -183,7 +191,9 @@ function PlaceCards({ list, onSelect }: { list: Place[]; onSelect: (p: Place) =>
 }
 
 function Dashboard() {
-  const demoUser = useDemoUser();
+  const legacyUser = useDemoUser();
+  const user = useSession();
+  const demoUser = user ? { name: user.nome, initials: user.nome.slice(0, 1).toUpperCase() } : legacyUser;
   const { secao } = Route.useSearch();
   const [active, setActive] = useState<SectionId>(secao ?? "overview");
   const [place, setPlace] = useState<Place | null>(null);
