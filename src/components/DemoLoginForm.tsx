@@ -3,17 +3,18 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, PawPrint } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DemoVideoCarousel } from "@/components/DemoVideoCarousel";
-import { signInDemo } from "@/lib/demo-session";
+import { signInDemo, type Papel } from "@/lib/demo-session";
 
 export function DemoLoginForm() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [papel, setPapel] = useState<Papel>("adotante");
 
   function enterDemo(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    signInDemo(name);
+    signInDemo(name, papel);
     setEmail("");
     setPassword("");
     void navigate({ to: "/dashboard" });
@@ -46,6 +47,16 @@ export function DemoLoginForm() {
               <label htmlFor="demo-password" className="text-sm font-medium">Palavra-passe</label>
               <input id="demo-password" name="password" type="password" autoComplete="new-password" className={inputClass} value={password} onChange={(event) => setPassword(event.target.value)} />
             </div>
+            <fieldset>
+              <legend className="mb-2 text-sm font-medium">Quem entra?</legend>
+              <div className="grid grid-cols-2 gap-3">
+                {([["adotante", "Utilizadores normais"], ["associacao", "Organizações"]] as const).map(([value, label]) => (
+                  <Button key={value} type="button" variant="outline" aria-pressed={papel === value} onClick={() => setPapel(value)} className={`h-12 rounded-xl border border-input text-sm ${papel === value ? "border-accent-deep bg-secondary" : "bg-background"}`}>
+                    {label}
+                  </Button>
+                ))}
+              </div>
+            </fieldset>
             <Button type="submit" variant="login" className="mt-2 h-13 w-full rounded-full text-base">Entrar <ArrowRight /></Button>
             <Button type="button" variant="outline" className="h-12 w-full rounded-full text-sm">
               <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5" fill="currentColor"><path d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.38a4.6 4.6 0 0 1-2 3.02 6.1 6.1 0 0 1-9.36-5.08 6.1 6.1 0 0 1 9.76-4.85l2.89-2.89A10 10 0 1 0 12 22c5.77 0 9.6-4.06 9.6-9.77Z" /></svg>
