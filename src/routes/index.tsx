@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, type CSSProperties } from "react";
-import { Accessibility, ArrowRight, ClipboardList, HeartHandshake, Leaf, Mail, Stethoscope } from "lucide-react";
-import { getAnimal, getAssociation, type Animal } from "@/lib/animals";
+import { ArrowRight, ClipboardList, HeartHandshake, Mail, Stethoscope } from "lucide-react";
+import { getAnimal, getAssociation } from "@/lib/animals";
 import { computeMatch, type QuizAnswers } from "@/lib/matching";
-import { AnimalCard } from "@/components/AnimalCard";
 import { MatchRing } from "@/components/MatchRing";
 import { Reveal } from "@/components/Reveal";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -34,9 +33,6 @@ const STEPS = [
   { icon: Mail, title: "Contacto", text: "Fala diretamente com a associação responsável e inicia o processo de adoção." },
 ];
 
-const pick = (ids: string[]) => ids.map(getAnimal).filter((a): a is Animal => !!a);
-const FEATURED = pick(["luna", "zeca", "simba", "nala"]);
-
 // Exemplos reais do motor de compatibilidade, sem números inventados.
 const HERO_CASE: QuizAnswers = { hoursAway: 0, housing: 1, dailyTime: 2, activity: 1, kids: 1, pets: 0, experience: 2, routine: 0, openness: 1 };
 const heroAnimal = getAnimal("tobias")!;
@@ -48,8 +44,6 @@ const activeMatch = computeMatch(ACTIVE_CASE, activeAnimal);
 const dims = Object.values(activeMatch.dimensions);
 const activeGoods = dims.filter((d) => d.score >= 0.75).slice(0, 2);
 const activeHard = [...dims].sort((a, b) => a.score - b.score).find((d) => d.score < 0.75);
-
-const senior = getAnimal("mimi")!;
 
 const d = (i: number) => ({ "--i": i }) as CSSProperties;
 const btn = "inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[15px] shadow-soft transition-colors";
@@ -144,26 +138,6 @@ function Index() {
         </Reveal>
       </section>
 
-      {/* Em destaque */}
-      <section className="home-featured section-texture bg-secondary">
-        <Reveal className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-          <div data-r className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-            <div className="space-y-6">
-              <p className="eyebrow">Em destaque</p>
-              <h2 className="text-[34px] md:text-[44px]">À espera de uma casa.</h2>
-            </div>
-            <Link to="/animais" className="text-[15px] underline-offset-4 hover:underline">Ver todos os animais</Link>
-          </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            {FEATURED.map((a, i) => (
-              <div key={a.id} data-r style={d(i + 1)}>
-                <AnimalCard a={a} />
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
       {/* Compatibilidade explicada */}
       <section className="home-ambient">
         <Reveal className="mx-auto grid max-w-6xl items-center gap-16 px-6 py-16 md:grid-cols-2 md:py-24">
@@ -198,42 +172,6 @@ function Index() {
                 </li>
               )}
             </ul>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* Os Esquecidos */}
-      <section className="home-ambient home-ambient-warm section-texture bg-muted">
-        <Reveal className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-[1fr_1.1fr] md:items-center md:py-24">
-          <div data-r className="space-y-3">
-            <img src={senior.photo} alt={`${senior.name}, gata sénior`} loading="lazy" width={800} height={1008} className="aspect-[4/5] w-full rounded-[28px] object-cover md:aspect-[5/6]" />
-            <p className="text-[13px] text-muted-foreground">
-              {senior.name}, {senior.ageYears} anos, de {getAssociation(senior.associationId)?.name} — uma das que esperam há mais tempo.
-            </p>
-          </div>
-          <div data-r style={d(1)} className="space-y-6">
-            <p className="eyebrow text-accent-warm">Os Inesquecíveis</p>
-            <h2 className="text-[34px] md:text-[48px]">Alguns animais esperam mais tempo. Não por serem menos.</h2>
-            <p className="max-w-[52ch] text-muted-foreground">
-              Seniores, animais com deficiência ou necessidades especiais. Apresentamo-los com dignidade e realismo: o que precisam, o que implica cuidar deles e o apoio que a associação oferece.
-            </p>
-            <div className="flex flex-wrap gap-3 text-sm">
-              {[
-                [Leaf, "Sénior"],
-                [Stethoscope, "Necessidades especiais"],
-                [Accessibility, "Deficiência"],
-              ].map(([Icon, label]) => {
-                const I = Icon as typeof Leaf;
-                return (
-                  <span key={label as string} className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1">
-                    <I size={14} /> {label as string}
-                  </span>
-                );
-              })}
-            </div>
-            <Link to="/animais" search={{ situacao: "esquecidos" }} className={`${btn} mt-2 bg-accent-warm text-primary-foreground hover:opacity-90`}>
-              Conhecer os Inesquecíveis <ArrowRight size={18} />
-            </Link>
           </div>
         </Reveal>
       </section>
