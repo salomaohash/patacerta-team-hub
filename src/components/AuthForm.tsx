@@ -18,7 +18,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
     if (!/^\S+@\S+\.\S+$/.test(email)) return setError("Indica um email válido.");
     if (password.length < 6) return setError("A palavra-passe precisa de pelo menos 6 caracteres.");
     if (isReg && !name.trim()) return setError("Indica o teu nome.");
-    signIn({ name: isReg ? name.trim() : email.split("@")[0], email: email.toLowerCase(), role });
+    signIn({ name: isReg ? name.trim() : (email.split("@")[0] ?? email), email: email.toLowerCase(), role });
     navigate({ to: "/painel" });
   }
 
