@@ -13,11 +13,10 @@ const SLIDES = [
   { src: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Pro_dog_walker_-_Tokyo_-_2024_Nov_1.webm", poster: dogWalkingPoster, caption: "Começa hoje a tua jornada.", alt: "Passeio com cão ao ar livre" },
 ];
 
-const INTERVAL_MS = 6000;
+const INTERVAL_MS = 5000;
 
 export function DemoVideoCarousel() {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [failed, setFailed] = useState<boolean[]>([false, false, false, false]);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
@@ -33,16 +32,15 @@ export function DemoVideoCarousel() {
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
-      if (i === index && !paused) v.play().catch(() => {});
+      if (i === index) v.play().catch(() => {});
       else v.pause();
     });
-  }, [index, paused]);
+  }, [index]);
 
   useEffect(() => {
-    if (paused) return;
     const t = setInterval(() => setIndex((i) => (i + 1) % SLIDES.length), INTERVAL_MS);
     return () => clearInterval(t);
-  }, [paused]);
+  }, []);
 
   const go = (dir: number) => setIndex((i) => (i + dir + SLIDES.length) % SLIDES.length);
 
