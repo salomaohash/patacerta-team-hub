@@ -32,6 +32,11 @@ import photo30 from "@/assets/commons/photo-30.jpg.asset.json";
 import photo31 from "@/assets/commons/photo-31.jpg.asset.json";
 import photo32 from "@/assets/commons/photo-32.jpg.asset.json";
 import photo33 from "@/assets/commons/photo-33.jpg.asset.json";
+import photo34 from "@/assets/commons/photo-34.jpg.asset.json";
+import photo35 from "@/assets/commons/photo-35.jpg.asset.json";
+import photo36 from "@/assets/commons/photo-36.jpg.asset.json";
+import photo37 from "@/assets/commons/photo-37.jpg.asset.json";
+import photo38 from "@/assets/commons/photo-38.jpg.asset.json";
 export const media = {
   p0: { url: photo0.url, ...{"alt": "Cão rafeiro jovem de pelo castanho ao ar livre", "source": "https://commons.wikimedia.org/wiki/File:Young_mixed-breed_dog_(aka).jpg", "artist": "André Karwath aka Aka", "license": "CC BY-SA 2.5", "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"} },
   p1: { url: photo1.url, ...{"alt": "Cão rafeiro em Ljubljana", "source": "https://commons.wikimedia.org/wiki/File:Ljubljana_peso.jpg", "artist": "SpeedyGonsales", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"} },
@@ -67,5 +72,10 @@ export const media = {
   p31: { url: photo31.url, ...{"alt": "Cães de rua na Guatemala", "source": "https://commons.wikimedia.org/wiki/File:Street_Dogs_Guatemala.jpg", "artist": "rikkis_refuge from Orange, VA, USA", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0"} },
   p32: { url: photo32.url, ...{"alt": "Gato de rua em Perissa, Santorini", "source": "https://commons.wikimedia.org/wiki/File:Stray_cat_-_Perissa_-_Santorini_-_Greece.jpg", "artist": "Norbert Nagel", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"} },
   p33: { url: photo33.url, ...{"alt": "Gato de rua junto ao templo Wat Hua Lamphong", "source": "https://commons.wikimedia.org/wiki/File:Bangkok_Thailand_Stray-cat-in-Wat-Hua-Lamphong-01.jpg", "artist": "Photo by CEphoto, Uwe Aranas or alternatively © CEphoto, Uwe Aranas", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
+  p34: { url: photo34.url, ...{"alt": "Gato de rua em Plovdiv, fotografia 1", "source": "https://commons.wikimedia.org/wiki/File:Stray_cat_in_Plovdiv_01.jpg", "artist": "Андрей Романенко", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
+  p35: { url: photo35.url, ...{"alt": "Gato de rua em Plovdiv, fotografia 2", "source": "https://commons.wikimedia.org/wiki/File:Stray_cat_in_Plovdiv_02.jpg", "artist": "Андрей Романенко", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
+  p36: { url: photo36.url, ...{"alt": "Cães com três patas no piquenique de São Francisco, vista 1", "source": "https://commons.wikimedia.org/wiki/File:San_Francisco_Three_Legged_Dog_Picnic_2026_15.jpg", "artist": "Jesse Kornblum", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
+  p37: { url: photo37.url, ...{"alt": "Cães com três patas no piquenique de São Francisco, vista 2", "source": "https://commons.wikimedia.org/wiki/File:San_Francisco_Three_Legged_Dog_Picnic_2026_20.jpg", "artist": "Jesse Kornblum", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
+  p38: { url: photo38.url, ...{"alt": "Cães com três patas no piquenique de São Francisco, vista 3", "source": "https://commons.wikimedia.org/wiki/File:San_Francisco_Three_Legged_Dog_Picnic_2026_40.jpg", "artist": "Jesse Kornblum", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
 };
 export function photoInfo(url: string) { return Object.values(media).find((p) => p.url === url); }
