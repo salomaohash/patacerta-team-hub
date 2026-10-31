@@ -45,6 +45,9 @@
   --color-border: var(--border);
   --color-accent-deep: var(--accent-deep);
   --color-accent-warm: var(--accent-warm);
+  --color-login: var(--login);
+  --color-login-hover: var(--login-hover);
+  --color-login-foreground: var(--login-foreground);
   --color-notice-missing: var(--notice-missing);
   --color-notice-found: var(--notice-found);
   --color-notice-foreground: var(--notice-foreground);
@@ -86,6 +89,9 @@
   --accent-foreground: oklch(0.255 0.014 150);
   --accent-deep: oklch(0.5 0.04 135);
   --accent-warm: oklch(0.72 0.035 65);
+  --login: oklch(0.87 0.16 92);
+  --login-hover: oklch(0.82 0.16 92);
+  --login-foreground: oklch(0.255 0.014 150);
   --notice-missing: oklch(0.55 0.12 55);
   --notice-found: oklch(0.5 0.09 150);
   --notice-foreground: oklch(1 0 0);

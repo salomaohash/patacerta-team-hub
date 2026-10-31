@@ -13,19 +13,19 @@ export const lunaRecord = [
     ["Compatibilidade", "Adequada para apartamento e para famílias tranquilas"],
   ] },
   { title: "Vacinação", entries: [
-    ["Vacina múltipla", "15 de novembro de 2025, Administrada"],
-    ["Vacina da raiva", "15 de novembro de 2025, Administrada"],
-    ["Reforço anual", "15 de novembro de 2026, Agendada"],
+    ["Vacina múltipla", "15 de novembro de 2025 — Administrada"],
+    ["Vacina da raiva", "15 de novembro de 2025 — Administrada"],
+    ["Reforço anual", "15 de novembro de 2026 — Agendada"],
   ] },
   { title: "Desparasitação e prevenção", entries: [
-    ["Desparasitação interna", "15 de outubro de 2026, Concluída"],
-    ["Desparasitação externa", "15 de outubro de 2026, Concluída"],
+    ["Desparasitação interna", "15 de outubro de 2026 — Concluída"],
+    ["Desparasitação externa", "15 de outubro de 2026 — Concluída"],
     ["Próxima administração", "15 de novembro de 2026"],
   ] },
   { title: "Consultas e intervenções", entries: [
-    ["Consulta geral", "15 de outubro de 2026, Sem alterações"],
-    ["Esterilização", "20 de agosto de 2025, Recuperação concluída"],
-    ["Check-up dentário", "15 de outubro de 2026, Sem alterações"],
+    ["Consulta geral", "15 de outubro de 2026 — Sem alterações"],
+    ["Esterilização", "20 de agosto de 2025 — Recuperação concluída"],
+    ["Check-up dentário", "15 de outubro de 2026 — Sem alterações"],
     ["Próxima consulta anual", "15 de novembro de 2026"],
   ] },
   { title: "Cuidados e necessidades", entries: [
@@ -38,8 +38,8 @@ export const lunaRecord = [
 
 export const todayCare = [
   { id: "morning-food", label: "Ração da manhã", time: "08:00" },
-  { id: "morning-walk", label: "Passeio da manhã, 20 a 30 minutos", time: "09:00" },
-  { id: "evening-walk", label: "Passeio da tarde, 20 a 30 minutos", time: "18:00" },
+  { id: "morning-walk", label: "Passeio da manhã · 20–30 min", time: "09:00" },
+  { id: "evening-walk", label: "Passeio da tarde · 20–30 min", time: "18:00" },
   { id: "evening-food", label: "Ração da noite", time: "19:00" },
 ];
 
