@@ -1,14 +1,13 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { z } from "zod";
-import type { Database } from "@/integrations/supabase/types";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { missingForPublication } from "./dashboard";
 export const publicPets = createServerFn({ method: "GET" }).handler(async () => {
   const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
   const url = process.env["SUPABASE_URL"];
   if (!key || !url) throw new Error("Ligação indisponível.");
-  const client = createClient<Database>(url, key, {
+  const client = createClient(url, key, {
     auth: { persistSession: false },
     global: {
       fetch: (input, init) => {
@@ -33,7 +32,7 @@ export const publicPets = createServerFn({ method: "GET" }).handler(async () => 
 export const workspace = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const c = context.supabase;
+    const c = context.supabase as unknown as SupabaseClient;
     const [institutions, pets, applications, events, checkins, visiblePets, calendar] =
       await Promise.all([
         c.from("institutions").select("*").eq("owner_id", context.userId),
@@ -151,7 +150,7 @@ const actionSchema = z.discriminatedUnion("action", [
     institutionId: z.string().uuid().nullable(),
     isDemo: z.boolean(),
     message: z.string().trim().min(10).max(3000),
-    answers: z.record(z.number()).nullable(),
+    answers: z.record(z.string(), z.number()).nullable(),
     consent: z.literal(true),
   }),
   z.object({
@@ -193,7 +192,7 @@ export const saveWorkspace = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => actionSchema.parse(input))
   .handler(async ({ data, context }) => {
-    const c = context.supabase;
+    const c = context.supabase as unknown as SupabaseClient;
     let result;
     if (data.action === "institution")
       result = await c

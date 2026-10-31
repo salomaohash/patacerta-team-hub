@@ -4,7 +4,7 @@ import { useSyncExternalStore } from "react";
 export type Role = "adopter" | "association";
 export type Papel = "adotante" | "associacao";
 export interface SessionData { nome: string; email: string; papel: Papel }
-export interface DemoUser extends SessionData { name: string; role: Role }
+export interface DemoUser extends SessionData { name: string; role: Role; id?: string; isDemo?: boolean }
 type LegacyUser = { name: string; email: string; role: Role };
 const KEY = "patacerta.session";
 const listeners = new Set<() => void>();

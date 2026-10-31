@@ -1,7 +1,7 @@
 import type { Animal } from "./animals";
 import { computeMatch, type Dimension, type QuizAnswers } from "./matching";
 
-export const ANSWER_LABELS: Record<keyof QuizAnswers, string[]> = {
+export const ANSWER_LABELS: Record<Exclude<keyof QuizAnswers, "adoptionProfile">, string[]> = {
   hoursAway: ["Menos de 4h", "4–8h", "Mais de 8h"],
   housing: ["Apartamento pequeno", "Apartamento espaçoso", "Casa com exterior"],
   dailyTime: ["Menos de 30 min", "30 min a 1h", "Mais de 1h"],

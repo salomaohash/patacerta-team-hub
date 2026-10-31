@@ -18,10 +18,19 @@ export type Species = "cão" | "gato";
 export type Size = "pequeno" | "médio" | "grande";
 export type Energy = "baixa" | "média" | "alta";
 
+export interface InstitutionContact {
+  contact: string;
+  email: string;
+  phone: string;
+  website: string;
+  social: string;
+}
+
 export interface Association {
   id: string;
   name: string;
   city: string;
+  contact?: InstitutionContact;
 }
 
 export const associations: Association[] = [
@@ -49,6 +58,10 @@ export interface Animal {
   size: Size;
   energy: Energy;
   associationId: string;
+  institutionId?: string;
+  associationName?: string;
+  institutionContact?: InstitutionContact;
+  unknownFields?: string[];
   contact?: { kind: "owner" | "organization"; name: string; city?: string; email?: string; phone?: string };
   goodWithKids: boolean;
   goodWithPets: boolean;
@@ -59,7 +72,7 @@ export interface Animal {
   photos: string[];
   litterId?: string;
   status: "active" | "adopted";
-  isDemo: true;
+  isDemo: boolean;
   listedAt?: string;
   forgotten?: ForgottenInfo;
 }
