@@ -61,24 +61,23 @@ function Index() {
   return (
     <div className="bg-background text-foreground">
       {/* Hero */}
-      <section className="grain relative overflow-hidden">
-        <div aria-hidden className="glow-breathe pointer-events-none absolute -top-1/3 left-1/4 h-[620px] w-[620px] rounded-full" />
-        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-16 px-6 py-20 md:grid-cols-[1.25fr_1fr] md:py-32">
-          <div className="space-y-8">
-            <p className="eyebrow text-accent-deep">Adoção consciente</p>
-            <h1 className="text-[44px] font-light leading-[1.05] md:text-[68px]">O animal que realmente combina contigo.</h1>
-            <p className="max-w-[52ch] text-[17px] text-muted-foreground">
+      <section className="home-opening grain relative overflow-hidden border-b border-border">
+        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-6 py-10 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-14">
+          <div className="space-y-6">
+            <p className="eyebrow flex items-center gap-3 text-accent-deep"><span aria-hidden="true" className="h-px w-8 bg-accent-deep" />Adoção consciente</p>
+            <h1 className="max-w-[18ch] font-sans text-[38px] font-semibold leading-[1.14] tracking-normal md:text-[52px]">O animal que realmente <span className="text-accent-deep">combina contigo.</span></h1>
+            <p className="max-w-[46ch] text-[18px] leading-relaxed text-muted-foreground">
               Responde a um questionário cuidadoso e vê, para cada animal, uma compatibilidade explicada — o que encaixa e o que poderá ser um desafio.
             </p>
-            <div className="flex flex-col gap-6 pt-2 sm:flex-row sm:items-center">
-              <Link to="/quiz" className={`${btn} bg-primary text-primary-foreground hover:bg-accent-deep`}>
-                Descobrir a tua compatibilidade <ArrowRight size={18} />
-              </Link>
-              <Link to="/animais" className="text-[15px] underline-offset-4 hover:underline">Explorar animais</Link>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-3">
+              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-3.5 text-base font-semibold shadow-soft"><Link to="/quiz">
+                Descobrir a tua compatibilidade <ArrowRight size={18} className="shrink-0" />
+              </Link></Button>
+              <Button asChild variant="link" className="h-auto px-0 text-base font-normal"><Link to="/animais">Explorar animais <ArrowRight size={16} /></Link></Button>
             </div>
           </div>
-          <div className="relative mt-6 md:mt-0">
-            <div className="overflow-hidden rounded-[28px] shadow-soft">
+          <div className="relative mx-auto mt-2 w-full max-w-[420px] pb-5 md:mt-0">
+            <div className="overflow-hidden rounded-[24px] shadow-soft">
               <video
                 ref={videoRef}
                 className="aspect-[4/5] w-full object-cover motion-reduce:hidden"
@@ -93,7 +92,7 @@ function Index() {
               />
               <img src={heroPoster} alt="Cão a brincar no relvado" width={800} height={1008} className="hidden aspect-[4/5] w-full object-cover motion-reduce:block" />
             </div>
-            <div className="absolute -bottom-8 -left-10 hidden items-center gap-4 rounded-2xl bg-card p-4 pr-6 shadow-soft sm:flex">
+            <div className="absolute bottom-0 left-3 flex items-center gap-4 rounded-2xl border border-border bg-card p-4 pr-6 shadow-soft md:-left-5">
               <MatchRing value={heroMatch.score} size={60} label="Compatibilidade indicativa" />
               <div>
                 <p className="font-serif text-[19px] leading-tight">{heroAnimal.name}</p>
