@@ -10,12 +10,36 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EntrarRouteImport } from './routes/entrar'
+import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as PainelRouteImport } from './routes/painel'
+import { Route as RegistarRouteImport } from './routes/registar'
 import { Route as AnimaisIndexRouteImport } from './routes/animais.index'
 import { Route as AnimaisIdRouteImport } from './routes/animais.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EntrarRoute = EntrarRouteImport.update({
+  id: '/entrar',
+  path: '/entrar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritosRoute = FavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainelRoute = PainelRouteImport.update({
+  id: '/painel',
+  path: '/painel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistarRoute = RegistarRouteImport.update({
+  id: '/registar',
+  path: '/registar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnimaisIndexRoute = AnimaisIndexRouteImport.update({
@@ -31,30 +55,68 @@ const AnimaisIdRoute = AnimaisIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/entrar': typeof EntrarRoute
+  '/favoritos': typeof FavoritosRoute
+  '/painel': typeof PainelRoute
+  '/registar': typeof RegistarRoute
   '/animais/$id': typeof AnimaisIdRoute
   '/animais/': typeof AnimaisIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/entrar': typeof EntrarRoute
+  '/favoritos': typeof FavoritosRoute
+  '/painel': typeof PainelRoute
+  '/registar': typeof RegistarRoute
   '/animais/$id': typeof AnimaisIdRoute
   '/animais': typeof AnimaisIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/entrar': typeof EntrarRoute
+  '/favoritos': typeof FavoritosRoute
+  '/painel': typeof PainelRoute
+  '/registar': typeof RegistarRoute
   '/animais/$id': typeof AnimaisIdRoute
   '/animais/': typeof AnimaisIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/animais/$id' | '/animais/'
+  fullPaths:
+    | '/'
+    | '/entrar'
+    | '/favoritos'
+    | '/painel'
+    | '/registar'
+    | '/animais/$id'
+    | '/animais/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/animais/$id' | '/animais'
-  id: '__root__' | '/' | '/animais/$id' | '/animais/'
+  to:
+    | '/'
+    | '/entrar'
+    | '/favoritos'
+    | '/painel'
+    | '/registar'
+    | '/animais/$id'
+    | '/animais'
+  id:
+    | '__root__'
+    | '/'
+    | '/entrar'
+    | '/favoritos'
+    | '/painel'
+    | '/registar'
+    | '/animais/$id'
+    | '/animais/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EntrarRoute: typeof EntrarRoute
+  FavoritosRoute: typeof FavoritosRoute
+  PainelRoute: typeof PainelRoute
+  RegistarRoute: typeof RegistarRoute
   AnimaisIdRoute: typeof AnimaisIdRoute
   AnimaisIndexRoute: typeof AnimaisIndexRoute
 }
@@ -66,6 +128,34 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/entrar': {
+      id: '/entrar'
+      path: '/entrar'
+      fullPath: '/entrar'
+      preLoaderRoute: typeof EntrarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favoritos': {
+      id: '/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painel': {
+      id: '/painel'
+      path: '/painel'
+      fullPath: '/painel'
+      preLoaderRoute: typeof PainelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registar': {
+      id: '/registar'
+      path: '/registar'
+      fullPath: '/registar'
+      preLoaderRoute: typeof RegistarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/animais/': {
@@ -87,6 +177,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EntrarRoute: EntrarRoute,
+  FavoritosRoute: FavoritosRoute,
+  PainelRoute: PainelRoute,
+  RegistarRoute: RegistarRoute,
   AnimaisIdRoute: AnimaisIdRoute,
   AnimaisIndexRoute: AnimaisIndexRoute,
 }
