@@ -5,11 +5,10 @@ import { animals } from "@/lib/animals";
 type Search = { especie?: string; porte?: string; energia?: string };
 
 export const Route = createFileRoute("/animais/")({
-  validateSearch: (s: Record<string, unknown>): Search => ({
-    especie: typeof s.especie === "string" ? s.especie : undefined,
-    porte: typeof s.porte === "string" ? s.porte : undefined,
-    energia: typeof s.energia === "string" ? s.energia : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): Search => {
+    const pick = (k: string) => (typeof s[k] === "string" ? (s[k] as string) : undefined);
+    return { especie: pick("especie"), porte: pick("porte"), energia: pick("energia") };
+  },
   head: () => ({
     meta: [
       { title: "Animais para adoção — PataCerta" },
