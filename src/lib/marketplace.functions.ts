@@ -1,7 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { z } from "zod";
-import type { Database } from "@/integrations/supabase/types";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { missingForProductPublication, type ProductData } from "./marketplace";
 
@@ -9,7 +8,7 @@ function publicClient() {
   const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
   const url = process.env["SUPABASE_URL"];
   if (!key || !url) throw new Error("Ligação indisponível.");
-  return createClient<Database>(url, key, {
+  return createClient(url, key, {
     auth: { persistSession: false },
     global: {
       fetch: (input, init) => {
@@ -37,7 +36,7 @@ export const publicProducts = createServerFn({ method: "GET" }).handler(async ()
 export const marketplaceWorkspace = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const c = context.supabase;
+    const c = context.supabase as unknown as SupabaseClient;
     const [companies, products, reports] = await Promise.all([
       c.from("companies").select("*").eq("owner_id", context.userId),
       c.from("marketplace_products").select("*").eq("owner_id", context.userId),
@@ -114,7 +113,7 @@ export const saveMarketplace = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => actionSchema.parse(input))
   .handler(async ({ data, context }) => {
-    const c = context.supabase;
+    const c = context.supabase as unknown as SupabaseClient;
     let result;
     if (data.action === "company")
       result = await c
