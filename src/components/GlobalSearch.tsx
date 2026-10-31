@@ -35,7 +35,7 @@ export function GlobalSearch() {
     if (item.kind === "animal") navigate({ to: "/animais/$id", params: { id: item.id } });
     else navigate({ to: "/avisos/$id", params: { id: item.id } });
   }
-  return <div ref={container} className="relative col-span-2 row-start-2 w-full min-w-0 lg:row-start-1 lg:col-start-2 lg:col-span-1 lg:w-full lg:max-w-2xl lg:justify-self-center">
+  return <div ref={container} className="relative col-span-3 row-start-2 w-full min-w-0 lg:row-start-1 lg:col-start-2 lg:col-span-1">
     <Search size={18} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
     <Input role="combobox" aria-label="Pesquisa global" aria-autocomplete="list" aria-expanded={visible} aria-controls={visible ? id : undefined} aria-activedescendant={visible && items[selected] ? `${id}-${selected}` : undefined} value={q} placeholder="Procurar por nome, raça ou localização…" className="h-12 rounded-full pl-11 pr-12 text-[15px] md:h-[52px] md:text-base" onFocus={() => setOpen(true)} onChange={(e) => { setQ(e.target.value); setSelected(0); setOpen(true); }} onKeyDown={(e) => {
       if (e.key === "Escape") { setOpen(false); e.preventDefault(); }
