@@ -64,7 +64,7 @@ export function OrgLiveActivity() {
 
   useEffect(() => {
     let cancelled = false;
-    supabase
+    ;(supabase as unknown as SupabaseClient)
       .from("demo_activity_events")
       .select("id, kind, actor_name, animal_name, match_pct, batch, seq, occurred_at")
       .order("occurred_at", { ascending: false })

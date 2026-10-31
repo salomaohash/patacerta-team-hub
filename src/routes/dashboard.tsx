@@ -195,6 +195,7 @@ function PlaceCards({ list, onSelect }: { list: Place[]; onSelect: (p: Place) =>
 }
 
 function Dashboard() {
+  const navigate = useNavigate();
   const legacyUser = useDemoUser();
   const user = useSession();
   const demoUser = user ? { name: user.nome, initials: user.nome.slice(0, 1).toUpperCase() } : legacyUser;

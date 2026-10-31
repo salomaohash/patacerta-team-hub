@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { z } from "zod";
 export const assistInstitution = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
@@ -12,7 +13,7 @@ export const assistInstitution = createServerFn({ method: "POST" })
       .parse(input),
   )
   .handler(async ({ data, context }) => {
-    const { data: institutions, error } = await context.supabase
+    const { data: institutions, error } = await (context.supabase as unknown as SupabaseClient)
       .from("institutions")
       .select("id")
       .eq("owner_id", context.userId)
