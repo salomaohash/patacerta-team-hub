@@ -32,7 +32,7 @@ export function institutionDemo(today = new Date()): Awaited<ReturnType<typeof w
   ];
   return {
     userId: owner,
-    institutions: [{ id: institution, owner_id: owner, name: "Instituição de demonstração", city: "Demonstração", contact: "", faq: "", description: "Demonstração · associação fictícia para explorar o painel.", email: "", phone: "", website: "", social: "", verified: false, created_at: date }],
+    institutions: [{ id: institution, owner_id: owner, name: "Patudos do Porto (demo)", city: "Porto", contact: "", faq: "", description: "Associação fictícia de demonstração para explorares o painel: animais, candidaturas, calendário e acompanhamento pós-adoção.", email: "", phone: "", website: "", social: "", verified: false, created_at: date }],
     pets: animals.map((a, i) => ({
       id: a.id, owner_id: owner, institution_id: institution,
       profile: { name: a.name, photo: a.photo, description: a.description, dataSource: "Demonstração" },

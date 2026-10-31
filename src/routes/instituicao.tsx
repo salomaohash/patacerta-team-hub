@@ -106,7 +106,7 @@ function Dashboard() {
   const navigate = useNavigate({ from: "/instituicao" });
   const fetchWorkspace = useServerFn(workspace);
   const [realData, setData] = useState<Data | null>(null);
-  const data = isDemo ? demoData : realData;
+  const data = isDemo || !realData ? demoData : realData;
   const [error, setError] = useState("");
   const reload = useCallback(() => {
     if (!user?.id || user.isDemo) return;
