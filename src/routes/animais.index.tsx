@@ -73,7 +73,6 @@ function Catalog() {
         {adoption ? animals.map((a) => <AnimalCard key={a.id} a={a} />) : posts.map((n) => <NoticeCard key={n.id} notice={n} />)}
       </div>
       {count === 0 && <div className="py-16 text-center"><h2 className="text-2xl">Nenhum resultado por agora.</h2><p className="mt-3 text-muted-foreground">Tenta outro nome ou uma zona diferente.</p><Button variant="link" onClick={clear}>Limpar filtros</Button></div>}
-      {!adoption && <p className="mt-10 border-t border-border pt-6 text-sm text-muted-foreground">Avisos e contactos de demonstração. As fotografias são exemplos; os endereços example.com não recebem pedidos reais.</p>}
     </main>
     <SiteFooter />
   </>;

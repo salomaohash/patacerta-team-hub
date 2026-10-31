@@ -13,7 +13,7 @@ export interface Notice {
   contactoEmail: string;
 }
 export const notices: Notice[] = [
-  { id: "lola-serralves", tipo: "desaparecido", nomeAnimal: "Lola", especie: "cão", foto: media.p28.url, zona: "Porto", dataDocumento: "2026-10-30", descricaoCurta: "Vista pela última vez junto ao Parque de Serralves, de coleira azul. É tranquila, mas poderá estar assustada.", contactoEmail: "lola@example.com" },
+  { id: "lola-serralves", tipo: "desaparecido", nomeAnimal: "Lola", especie: "cão", foto: media.p2.url, zona: "Porto", dataDocumento: "2026-10-30", descricaoCurta: "Vista pela última vez junto ao Parque de Serralves. Afastou-se durante o passeio e poderá estar escondida num jardim próximo. Se a vires, mantém a distância e indica o local e a hora.", contactoEmail: "lola@example.com" },
   { id: "bento-braga", tipo: "desaparecido", nomeAnimal: "Bento", especie: "cão", foto: media.p29.url, zona: "Braga", dataDocumento: "2026-10-28", descricaoCurta: "Visto junto ao Parque da Ponte. Tem uma mancha clara no peito e responde ao nome Bento. Não o persigas se estiver assustado.", contactoEmail: "bento@example.com" },
   { id: "mia-lisboa", tipo: "desaparecido", nomeAnimal: "Mia", especie: "gato", foto: media.p33.url, zona: "Lisboa", dataDocumento: "2026-10-29", descricaoCurta: "Saiu de casa em Alvalade. Poderá estar escondida numa garagem ou jardim próximo. Não tinha coleira.", contactoEmail: "mia@example.com" },
   { id: "tito-coimbra", tipo: "desaparecido", nomeAnimal: "Tito", especie: "gato", foto: media.p32.url, zona: "Coimbra", dataDocumento: "2026-10-27", descricaoCurta: "Visto pela última vez perto do Jardim da Sereia. É jovem e curioso. A família procura informações sobre a sua localização.", contactoEmail: "tito@example.com" },
@@ -26,6 +26,7 @@ export const notices: Notice[] = [
 ];
 export const getNotice = (id: string) => notices.find((notice) => notice.id === id);
 export const noticeName = (notice: Notice) => notice.nomeAnimal ?? (notice.especie === "cão" ? "Cão encontrado" : "Gato encontrado");
+export const noticePhotoAlt = (notice: Notice) => `${notice.especie === "cão" ? "Cão" : "Gato"} na fotografia de identificação do aviso${notice.nomeAnimal ? ` de ${notice.nomeAnimal}` : ""}`;
 export function filterNotices(type: string, q = "", zone = "", species = "") {
   return notices.filter((n) => n.tipo === type && (!zone || n.zona === zone) && (!species || n.especie === species) && normalize(`${n.nomeAnimal ?? ""} ${n.especie} ${n.zona} ${n.descricaoCurta}`).includes(normalize(q))).sort((a, b) => b.dataDocumento.localeCompare(a.dataDocumento));
 }

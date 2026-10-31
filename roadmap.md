@@ -1,4 +1,7 @@
 # Tarefas
+- [x] Corrigir fotografia e texto da Lola, descrições alternativas e nota da listagem.
+- [x] Acrescentar faixa animada de parceiros fictícios e transparência no Acerca.
+- [x] Verificar pesquisa de avisos nas páginas e movimento reduzido.
 - [x] Expandir para 28 animais e 10 avisos com fotografias reais e galerias.
 - [x] Substituir Animais no menu por pesquisa global acessível e ligar catálogo no rodapé.
 - [x] Trocar filtros por chips e filtrar avisos por espécie e zona.

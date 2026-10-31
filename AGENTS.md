@@ -14,3 +14,5 @@
 - Keep lost/found demo notices in a browser-safe data module and hydrate saved questionnaire answers only after mount; notice contacts must remain non-deliverable example addresses.
 - Keep global search in a browser-safe pure module and the shared header search control; adoption and notice results must use the same demo sources as the catalog.
 - Use the shared Embla carousel for animal galleries and a media registry for photo descriptions and attribution; preserve the primary photo field for cards.
+- Keep partner marquee content in its own component and animation in global CSS; hide the duplicate from accessibility and show the entire original list under reduced motion.
+- Use a notice-specific photo description helper for list and detail alt text; keep source provenance in media attribution rather than notice alt text.

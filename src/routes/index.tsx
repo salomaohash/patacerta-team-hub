@@ -7,6 +7,7 @@ import { AnimalCard } from "@/components/AnimalCard";
 import { MatchRing } from "@/components/MatchRing";
 import { Reveal } from "@/components/Reveal";
 import { SiteFooter } from "@/components/SiteFooter";
+import { PartnerMarquee } from "@/components/PartnerMarquee";
 import { Button } from "@/components/ui/button";
 import { notices } from "@/lib/notices";
 import heroPoster from "@/assets/hero-dog-poster.jpg";
@@ -131,6 +132,8 @@ function Index() {
           </ol>
         </Reveal>
       </section>
+
+      <PartnerMarquee />
 
       <section className="border-t border-border bg-muted">
         <Reveal className="mx-auto flex max-w-6xl flex-col justify-between gap-8 px-6 py-12 md:flex-row md:items-center md:py-16">
