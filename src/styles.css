@@ -176,6 +176,10 @@
 
 @keyframes quiz-in { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
 .quiz-step { animation: quiz-in 350ms ease-out; }
+.quiz-progress { appearance: none; background: var(--secondary); color: var(--accent-deep); }
+.quiz-progress::-webkit-progress-bar { background: var(--secondary); }
+.quiz-progress::-webkit-progress-value { background: var(--accent-deep); transition: width 250ms ease-out; }
+.quiz-progress::-moz-progress-bar { background: var(--accent-deep); }
 @media (prefers-reduced-motion: reduce) { .quiz-step { animation: none; } }
 
 .reveal-group [data-r] { opacity: 0; transform: translateY(12px); transition: opacity 600ms ease, transform 600ms ease; transition-delay: calc(var(--i, 0) * 150ms); }

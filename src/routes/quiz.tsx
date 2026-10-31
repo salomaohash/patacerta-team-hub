@@ -1,16 +1,20 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowLeft } from "lucide-react";
-import type { QuizAnswers } from "@/lib/matching";
+import { ArrowLeft, Award, Building2, Cat, Check, Clock, Dog, Footprints, Heart, Home, Hourglass, Moon, PawPrint, RotateCcw, Sprout, Sun, Users, Zap } from "lucide-react";
+import { computeMatch, type QuizAnswers } from "@/lib/matching";
 import { loadQuiz, saveQuiz } from "@/lib/state/quiz";
+import { adoptionQuestions, isAdoptionProfile, matchesAdoptionSpecies, toQuizAnswers } from "@/lib/adoption-quiz";
+import { animals } from "@/lib/animals";
+import { Button } from "@/components/ui/button";
+import { MatchRing } from "@/components/MatchRing";
 
 export const Route = createFileRoute("/quiz")({
   head: () => ({
     meta: [
-      { title: "Questionário de compatibilidade com animais · PataCerta" },
-      { name: "description", content: "Nove perguntas sobre a tua rotina para encontrar os animais mais compatíveis contigo." },
+      { title: "Questionário de adoção, PataCerta" },
+      { name: "description", content: "Seis perguntas sobre a tua casa, rotina e preferências para encontrar animais compatíveis contigo." },
       { property: "og:title", content: "Questionário de compatibilidade, PataCerta" },
-      { property: "og:description", content: "Descobre a tua compatibilidade em nove perguntas." },
+      { property: "og:description", content: "Descobre a tua compatibilidade em seis perguntas." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -19,65 +23,102 @@ export const Route = createFileRoute("/quiz")({
   component: Quiz,
 });
 
-const questions: { key: keyof QuizAnswers; q: string; options: string[] }[] = [
-  { key: "hoursAway", q: "Quantas horas por dia passas fora de casa?", options: ["Menos de 4h", "4 a 8 horas", "Mais de 8h"] },
-  { key: "housing", q: "Onde vives?", options: ["Apartamento pequeno", "Apartamento espaçoso", "Casa com espaço exterior"] },
-  { key: "dailyTime", q: "Quanto tempo por dia consegues dedicar a um animal?", options: ["Menos de 30 min", "30 min a 1h", "Mais de 1h"] },
-  { key: "activity", q: "Como descreves o teu nível de atividade?", options: ["Calmo, prefiro estar em casa", "Moderado, passeios regulares", "Ativo, exercício todos os dias"] },
-  { key: "kids", q: "Tens crianças em casa?", options: ["Sim", "Não", "Está nos planos"] },
-  { key: "pets", q: "Tens outros animais?", options: ["Não", "Cão", "Gato", "Cão e gato"] },
-  { key: "experience", q: "Que experiência tens com animais?", options: ["Nenhuma", "Alguma", "Muita"] },
-  { key: "routine", q: "A tua rotina é estável?", options: ["Muito estável", "Razoavelmente estável", "Imprevisível"] },
-  { key: "openness", q: "Estarias disponível para adotar um animal sénior ou com necessidades especiais?", options: ["Sim", "Talvez, se souber o que esperar", "Não"] },
+const icons = [
+  [Building2, Home, Users], [Hourglass, Clock, Sun], [Moon, Footprints, Zap],
+  [Sprout, Heart, Award], [Dog, Cat, PawPrint], [Moon, Footprints, Cat, Users],
 ];
 
 function Quiz() {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Partial<QuizAnswers>>({});
-  const navigate = useNavigate();
+  const [answers, setAnswers] = useState<(number | undefined)[]>(Array(6).fill(undefined));
+  const [phase, setPhase] = useState<"quiz" | "thinking" | "result">("quiz");
+  const [saved, setSaved] = useState<QuizAnswers | null>(null);
   const { refazer } = Route.useSearch();
 
   useEffect(() => {
-    if (!refazer && loadQuiz()) navigate({ to: "/resultados", replace: true });
-  }, [refazer, navigate]);
+    if (refazer) return;
+    const previous = loadQuiz();
+    if (previous?.adoptionProfile) setAnswers([...previous.adoptionProfile]);
+  }, [refazer]);
 
-  const cur = questions[step]!;
-  const choose = (i: number) => {
-    const next = { ...answers, [cur.key]: i } as Partial<QuizAnswers>;
-    setAnswers(next);
-    if (step < questions.length - 1) setStep(step + 1);
-    else {
-      saveQuiz(next as QuizAnswers);
-      navigate({ to: "/resultados" });
+  useEffect(() => {
+    if (phase !== "thinking") return;
+    const timer = setTimeout(() => setPhase("result"), 1000);
+    return () => clearTimeout(timer);
+  }, [phase]);
+
+  const cur = adoptionQuestions[step];
+  if (!cur) return null;
+  const selected = answers[step];
+  const next = () => {
+    if (selected === undefined) return;
+    if (step < adoptionQuestions.length - 1) setStep(step + 1);
+    else if (isAdoptionProfile(answers)) {
+      const complete = toQuizAnswers(answers);
+      saveQuiz(complete);
+      setSaved(complete);
+      setPhase("thinking");
     }
   };
+  const restart = () => {
+    setAnswers(Array(6).fill(undefined));
+    setStep(0);
+    setPhase("quiz");
+    setSaved(null);
+  };
+
+  if (phase === "thinking") return (
+    <main className="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center px-6 py-12 text-center" role="status">
+      <PawPrint size={48} className="text-accent-deep motion-safe:animate-pulse" />
+      <h1 className="mt-6 text-2xl md:text-3xl">A analisar as tuas respostas…</h1>
+      <p className="mt-3 text-muted-foreground">A comparar as tuas preferências com os animais disponíveis.</p>
+    </main>
+  );
+
+  if (phase === "result" && saved) {
+    const ranked = animals.filter((a) => a.status === "active" && matchesAdoptionSpecies(saved, a))
+      .map((a) => ({ a, m: computeMatch(saved, a) })).sort((a, b) => b.m.score - a.m.score);
+    const best = ranked[0];
+    if (!best) return <main className="mx-auto max-w-2xl px-6 py-12"><h1 className="text-3xl">Não encontrámos animais com estas preferências</h1><Button onClick={restart} className="mt-6">Alterar preferências</Button></main>;
+    const reasons = Object.values(best.m.dimensions).filter((d) => d.score >= 0.75).slice(0, 3);
+    return (
+      <main className="quiz-step mx-auto max-w-2xl px-4 py-12 sm:px-6">
+        <p className="eyebrow text-center">O teu resultado</p>
+        <h1 className="mt-3 text-center text-3xl leading-tight md:text-4xl">Um companheiro compatível contigo</h1>
+        <div className="mt-6 flex flex-col gap-6 border-b border-border pb-6 sm:flex-row sm:items-center">
+          <img src={best.a.photo} alt={`Fotografia de ${best.a.name}`} className="aspect-square w-full rounded-lg object-cover sm:w-40" />
+          <div className="min-w-0 flex-1"><h2 className="text-3xl">{best.a.name}</h2><p className="mt-2 text-sm text-muted-foreground">{best.a.species}, {best.a.breed}, porte {best.a.size}</p><p className="mt-3 text-sm">{best.a.description}</p></div>
+          <div className="flex shrink-0 flex-col items-center gap-2"><MatchRing value={best.m.score} size={88} label="Compatibilidade indicativa" /><span className="text-xs text-muted-foreground">Compatibilidade indicativa</span></div>
+        </div>
+        <section className="py-6"><h3 className="text-xl">Porque combina contigo</h3><ul className="mt-3 space-y-3">{reasons.map((r) => <li key={r.reason} className="flex items-start gap-3 text-sm"><Check size={18} className="shrink-0 text-accent-deep" />{r.reason}</li>)}</ul>{reasons.length === 0 && <p className="mt-3 text-sm text-muted-foreground">Consulta as necessidades deste animal antes de iniciares a adoção.</p>}</section>
+        <div className="grid gap-3 sm:grid-cols-2">{ranked.slice(1, 3).map(({ a, m }) => <Link key={a.id} to="/animais/$id" params={{ id: a.id }} className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:bg-secondary"><img src={a.photo} alt={`Fotografia de ${a.name}`} className="h-16 w-16 rounded-lg object-cover" /><div className="min-w-0 flex-1"><p className="font-semibold">{a.name}</p><p className="text-xs text-muted-foreground">{a.species}, {a.breed}</p></div><span className="text-sm font-semibold text-accent-deep">{m.score}%</span></Link>)}</div>
+        <p className="mt-6 text-center text-xs leading-relaxed text-muted-foreground">Este resultado é uma sugestão baseada em seis respostas. Horários, crianças, outros animais e necessidades especiais devem ser confirmados com a associação antes da adoção.</p>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row"><Button asChild className="h-12 flex-1"><Link to="/animais/$id" params={{ id: best.a.id }}>Conhecer {best.a.name}</Link></Button><Button variant="outline" onClick={restart} className="h-12 flex-1"><RotateCcw />Refazer questionário</Button></div>
+        <Button asChild variant="link" className="mt-3 h-auto w-full whitespace-normal"><Link to="/resultados">Ver todos os resultados</Link></Button>
+      </main>
+    );
+  }
 
   return (
-    <main className="mx-auto flex min-h-[calc(100vh-80px)] max-w-2xl flex-col px-6 py-12">
-      <div className="h-0.5 w-full overflow-hidden rounded-full bg-secondary">
-        <div className="h-full bg-accent-deep transition-all duration-[250ms] ease-out" style={{ width: `${((step + 1) / questions.length) * 100}%` }} />
-      </div>
-      <div className="mt-6 flex items-center justify-between">
-        <p className="eyebrow">Passo {step + 1} de {questions.length}</p>
-        {step > 0 && (
-          <button onClick={() => setStep(step - 1)} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-            <ArrowLeft size={14} /> Anterior
-          </button>
-        )}
-      </div>
-      <div key={step} className="quiz-step mt-12 flex-1">
+    <main className="mx-auto flex min-h-[70vh] max-w-2xl flex-col px-4 py-6 sm:px-6 sm:py-12">
+      <div>{step === 0 ? <Button asChild variant="outline"><Link to="/"><ArrowLeft />Voltar</Link></Button> : <Button variant="outline" onClick={() => setStep(step - 1)}><ArrowLeft />Voltar</Button>}</div>
+      <progress max={6} value={step + 1} aria-label="Progresso do questionário" className="quiz-progress mt-6 h-1 w-full overflow-hidden rounded-full" />
+      <div className="mt-4 flex justify-center gap-3" aria-hidden="true">{adoptionQuestions.map((_, i) => <span key={i} className={`h-2 w-2 rounded-full ${i <= step ? "bg-accent-deep" : "bg-border"}`} />)}</div>
+      <p className="eyebrow mt-6">Pergunta {step + 1} de {adoptionQuestions.length}</p>
+      <div key={step} className="quiz-step mt-6 flex-1">
         <h1 className="text-3xl leading-tight md:text-4xl">{cur.q}</h1>
-        <div className="mt-12 space-y-3">
-          {cur.options.map((o, i) => (
-            <button
-              key={o}
-              onClick={() => choose(i)}
-              className={`w-full rounded-lg border px-6 py-4 text-left transition-colors hover:border-accent-deep hover:bg-secondary ${answers[cur.key] === i ? "border-accent-deep bg-secondary" : "border-border bg-card"}`}
-            >
-              {o}
-            </button>
-          ))}
+        <p className="mt-3 text-sm text-muted-foreground">{cur.hint}</p>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2" role="group" aria-label={cur.q}>
+          {cur.options.map((o, i) => {
+            const Icon = icons[step]?.[i] ?? PawPrint;
+            const active = selected === i;
+            return <Button variant="outline" key={o} aria-pressed={active} onClick={() => setAnswers((prev) => prev.map((v, index) => index === step ? i : v))}
+              className={`h-auto min-h-20 w-full justify-start whitespace-normal rounded-lg px-4 py-4 text-left hover:border-accent-deep hover:bg-secondary ${active ? "border-accent-deep bg-secondary" : "border-border bg-card"}`}>
+              <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${active ? "bg-accent-deep text-primary-foreground" : "bg-secondary text-accent-deep"}`}><Icon /></span><span className="min-w-0 flex-1">{o}</span>{active && <Check className="text-accent-deep" />}
+            </Button>;
+          })}
         </div>
+        <div className="mt-6 flex justify-end"><Button size="lg" onClick={next} disabled={selected === undefined}>Continuar</Button></div>
       </div>
     </main>
   );
