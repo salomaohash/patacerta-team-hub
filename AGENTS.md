@@ -11,3 +11,4 @@
 
 - Keep scroll-reveal behavior and the home/about footer in shared components so both pages maintain identical motion and navigation.
 - Keep catalog selection rules in a browser-safe pure module so URL filters and their tests use the same logic without backend access.
+- Keep lost/found demo notices in a browser-safe data module and hydrate saved questionnaire answers only after mount; notice contacts must remain non-deliverable example addresses.

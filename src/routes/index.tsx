@@ -7,6 +7,8 @@ import { AnimalCard } from "@/components/AnimalCard";
 import { MatchRing } from "@/components/MatchRing";
 import { Reveal } from "@/components/Reveal";
 import { SiteFooter } from "@/components/SiteFooter";
+import { Button } from "@/components/ui/button";
+import { notices } from "@/lib/notices";
 import heroPoster from "@/assets/hero-dog-poster.jpg";
 import heroLoop from "@/assets/hero-dog-loop.mp4.asset.json";
 
@@ -130,6 +132,13 @@ function Index() {
         </Reveal>
       </section>
 
+      <section className="border-t border-border bg-muted">
+        <Reveal className="mx-auto flex max-w-6xl flex-col justify-between gap-8 px-6 py-12 md:flex-row md:items-center md:py-16">
+          <div data-r className="max-w-2xl"><p className="eyebrow">Perdidos e Encontrados</p><h2 className="mt-5 text-[32px] leading-tight md:text-[40px]">Perdi o meu animal. Ajudamos a encontrá-lo.</h2><p className="mt-5 text-[15px] text-muted-foreground">Uma comunidade atenta começa com uma localização e um aviso partilhado. Consulta as zonas de busca e os animais encontrados.</p><p className="mt-4 text-sm text-accent-deep">{notices.filter((n) => n.tipo === "desaparecido").length} avisos ativos agora · demonstração</p></div>
+          <div data-r className="flex shrink-0 flex-col gap-3"><Button asChild className="font-normal"><Link to="/animais" search={{ estado: "desaparecido" }}>Ver desaparecidos <ArrowRight /></Link></Button><Button asChild variant="outline" className="font-normal"><Link to="/animais" search={{ estado: "encontrado" }}>Ver encontrados <ArrowRight /></Link></Button></div>
+        </Reveal>
+      </section>
+
       {/* Em destaque */}
       <section className="bg-secondary">
         <Reveal className="mx-auto max-w-7xl px-6 py-16 md:py-24">
@@ -198,7 +207,7 @@ function Index() {
             </p>
           </div>
           <div data-r style={d(1)} className="space-y-6">
-            <p className="eyebrow text-accent-warm">Os Esquecidos</p>
+            <p className="eyebrow text-accent-warm">Os Inesquecíveis</p>
             <h2 className="text-[34px] md:text-[48px]">Alguns animais esperam mais tempo. Não por serem menos.</h2>
             <p className="max-w-[52ch] text-muted-foreground">
               Seniores, animais com deficiência ou necessidades especiais. Apresentamo-los com dignidade e realismo: o que precisam, o que implica cuidar deles e o apoio que a associação oferece.
@@ -217,8 +226,8 @@ function Index() {
                 );
               })}
             </div>
-            <Link to="/animais" className={`${btn} mt-2 bg-accent-warm text-primary-foreground hover:opacity-90`}>
-              Conhecer Os Esquecidos <ArrowRight size={18} />
+            <Link to="/animais" search={{ situacao: "esquecidos" }} className={`${btn} mt-2 bg-accent-warm text-primary-foreground hover:opacity-90`}>
+              Conhecer os Inesquecíveis <ArrowRight size={18} />
             </Link>
           </div>
         </Reveal>

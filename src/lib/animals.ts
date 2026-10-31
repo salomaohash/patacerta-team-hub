@@ -55,6 +55,7 @@ export interface Animal {
   photo: string;
   status: "active" | "adopted";
   isDemo: true;
+  listedAt?: string;
   forgotten?: ForgottenInfo;
 }
 
@@ -80,6 +81,9 @@ export const animals: Animal[] = [
     forgotten: { kind: "Necessidades médicas", needs: "Doença renal crónica.", homeAdaptations: "Ração renal e água fresca sempre disponível; medicação diária.", monthlyCost: 80, resources: "Seguimento veterinário e análises periódicas apoiadas pela associação.", idealFamily: "Alguém organizado, disponível para medicação diária." } },
   { id: "biscoito", name: "Biscoito", species: "gato", breed: "Europeu comum", ageYears: 1, size: "pequeno", energy: "alta", associationId: "porto", goodWithKids: true, goodWithPets: true, apartmentOk: true, careComplexity: "baixa", photo: biscoito, status: "active", isDemo: true, description: "A Biscoito é jovem e cheia de energia. Adora brincar." },
 ];
+
+// Datas editoriais de exemplo; não são datas reais de entrada numa associação.
+animals.forEach((animal, i) => { animal.listedAt = `2026-10-${String(15 + i).padStart(2, "0")}`; });
 
 export const getAnimal = (id: string) => animals.find((a) => a.id === id);
 export const getAssociation = (id: string) => associations.find((a) => a.id === id);

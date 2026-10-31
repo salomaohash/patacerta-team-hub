@@ -20,6 +20,9 @@ export function SiteHeader() {
           <Link to="/acerca" className={linkCls} activeProps={activeCls}>
             Acerca
           </Link>
+          <Link to="/animais" search={{ estado: "desaparecido" }} className={linkCls}>
+            Perdidos
+          </Link>
           {user && (
             <>
               <Link to="/favoritos" className={linkCls} activeProps={activeCls}>
