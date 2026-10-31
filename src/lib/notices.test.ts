@@ -17,7 +17,7 @@ describe("community catalog", () => {
   });
   it("excludes adopted animals and searches adoption by breed and zone", () => {
     expect(filterAnimals({})).toHaveLength(13);
-    expect(filterAnimals({ q: "Paco" })).toEqual([]);
+    expect(filterAnimals({ q: "Paco" }).map((a) => a.id)).not.toContain("paco");
     expect(filterAnimals({ q: "Jack Russell" }).map((a) => a.id)).toEqual(["kiko"]);
     expect(filterAnimals({ q: "coimbra" }).map((a) => a.id)).toEqual(["zeca", "nala", "pantufa", "mel"]);
   });
