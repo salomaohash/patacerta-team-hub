@@ -76,9 +76,12 @@ function Index() {
           <a href="/" className="font-serif text-xl tracking-tight">
             PataCerta
           </a>
-          <button className="rounded-full border border-border px-5 py-2 text-sm transition-colors hover:bg-secondary">
-            Entrar
-          </button>
+          <div className="flex items-center gap-4">
+            <a href="/animais" className="text-sm hover:text-accent-deep">Animais</a>
+            <button className="rounded-full border border-border px-5 py-2 text-sm transition-colors hover:bg-secondary">
+              Entrar
+            </button>
+          </div>
         </div>
       </header>
 
