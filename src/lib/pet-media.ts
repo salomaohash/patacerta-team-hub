@@ -22,6 +22,16 @@ import photo20 from "@/assets/commons/photo-20.jpg.asset.json";
 import photo21 from "@/assets/commons/photo-21.jpg.asset.json";
 import photo22 from "@/assets/commons/photo-22.jpg.asset.json";
 import photo23 from "@/assets/commons/photo-23.jpg.asset.json";
+import photo24 from "@/assets/commons/photo-24.jpg.asset.json";
+import photo25 from "@/assets/commons/photo-25.jpg.asset.json";
+import photo26 from "@/assets/commons/photo-26.jpg.asset.json";
+import photo27 from "@/assets/commons/photo-27.jpg.asset.json";
+import photo28 from "@/assets/commons/photo-28.jpg.asset.json";
+import photo29 from "@/assets/commons/photo-29.jpg.asset.json";
+import photo30 from "@/assets/commons/photo-30.jpg.asset.json";
+import photo31 from "@/assets/commons/photo-31.jpg.asset.json";
+import photo32 from "@/assets/commons/photo-32.jpg.asset.json";
+import photo33 from "@/assets/commons/photo-33.jpg.asset.json";
 export const media = {
   p0: { url: photo0.url, ...{"alt": "Cão rafeiro jovem de pelo castanho ao ar livre", "source": "https://commons.wikimedia.org/wiki/File:Young_mixed-breed_dog_(aka).jpg", "artist": "André Karwath aka Aka", "license": "CC BY-SA 2.5", "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"} },
   p1: { url: photo1.url, ...{"alt": "Cão rafeiro em Ljubljana", "source": "https://commons.wikimedia.org/wiki/File:Ljubljana_peso.jpg", "artist": "SpeedyGonsales", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"} },
@@ -47,5 +57,15 @@ export const media = {
   p21: { url: photo21.url, ...{"alt": "Gato cego num espaço exterior", "source": "https://commons.wikimedia.org/wiki/File:A_blind_cat_-_geograph.org.uk_-_1324638.jpg", "artist": "Neville Goodman", "license": "CC BY-SA 2.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"} },
   p22: { url: photo22.url, ...{"alt": "Gato a dormir de barriga para cima", "source": "https://commons.wikimedia.org/wiki/File:Sleeping_cat_on_her_back.jpg", "artist": "Umberto Salvagnin", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0"} },
   p23: { url: photo23.url, ...{"alt": "Gato a descansar numa cadeira de vime", "source": "https://commons.wikimedia.org/wiki/File:Supine_cat_sleeping_on_the_back_on_a_bamboo_and_wicker_armchair_in_Don_Det_Laos.jpg", "artist": "Basile Morin", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
+  p24: { url: photo24.url, ...{"alt": "Gatinho de seis semanas", "source": "https://commons.wikimedia.org/wiki/File:Six_weeks_old_cat_(aka).jpg", "artist": "André Karwath aka Aka", "license": "CC BY-SA 2.5", "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"} },
+  p25: { url: photo25.url, ...{"alt": "Gatinho de Bengala", "source": "https://commons.wikimedia.org/wiki/File:BEN_Bengalian_kitten_(4492540155).jpg", "artist": "Nickolas Titkov from Moscow, Russian Federation", "license": "CC BY-SA 2.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"} },
+  p26: { url: photo26.url, ...{"alt": "Gatinho Oriental de pelo curto", "source": "https://commons.wikimedia.org/wiki/File:Oriental_shorthair_kitten.jpg", "artist": "Felinlove", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
+  p27: { url: photo27.url, ...{"alt": "Gatinho Oriental tigrado", "source": "https://commons.wikimedia.org/wiki/File:Black-ticked-tabby-oriental-shorthair-kitten.jpg", "artist": "Felinlove", "license": "CC BY 4.0", "licenseUrl": "https://creativecommons.org/licenses/by/4.0"} },
+  p28: { url: photo28.url, ...{"alt": "Cão de rua fotografado ao ar livre", "source": "https://commons.wikimedia.org/wiki/File:Street_Dog_38.jpg", "artist": "Slyronit", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
+  p29: { url: photo29.url, ...{"alt": "Cão de rua junto a uma zona residencial", "source": "https://commons.wikimedia.org/wiki/File:Street_Dog_45.jpg", "artist": "Slyronit", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
+  p30: { url: photo30.url, ...{"alt": "Cão de rua num espaço público", "source": "https://commons.wikimedia.org/wiki/File:Street_Dog_34.jpg", "artist": "Slyronit", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
+  p31: { url: photo31.url, ...{"alt": "Cães de rua na Guatemala", "source": "https://commons.wikimedia.org/wiki/File:Street_Dogs_Guatemala.jpg", "artist": "rikkis_refuge from Orange, VA, USA", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0"} },
+  p32: { url: photo32.url, ...{"alt": "Gato de rua em Perissa, Santorini", "source": "https://commons.wikimedia.org/wiki/File:Stray_cat_-_Perissa_-_Santorini_-_Greece.jpg", "artist": "Norbert Nagel", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"} },
+  p33: { url: photo33.url, ...{"alt": "Gato de rua junto ao templo Wat Hua Lamphong", "source": "https://commons.wikimedia.org/wiki/File:Bangkok_Thailand_Stray-cat-in-Wat-Hua-Lamphong-01.jpg", "artist": "Photo by CEphoto, Uwe Aranas or alternatively © CEphoto, Uwe Aranas", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"} },
 };
 export function photoInfo(url: string) { return Object.values(media).find((p) => p.url === url); }
