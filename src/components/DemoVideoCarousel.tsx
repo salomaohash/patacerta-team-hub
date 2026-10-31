@@ -1,16 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import dogsPlayingPoster from "@/assets/pets/biscoito.jpg";
-import catRelaxingPoster from "@/assets/pets/simba.jpg";
-import shelterAffectionPoster from "@/assets/pets/mel.jpg";
-import dogWalkingPoster from "@/assets/pets/tobias.jpg";
+import dogsPlaying from "@/assets/demo-login/dogs-playing.mp4";
+import catRelaxing from "@/assets/demo-login/cat-relaxing.mp4";
+import shelterAffection from "@/assets/demo-login/shelter-affection.mp4";
+import dogWalking from "@/assets/demo-login/dog-walking.mp4";
+import dogsPlayingPoster from "@/assets/demo-login/dogs-playing.jpg";
+import catRelaxingPoster from "@/assets/demo-login/cat-relaxing.jpg";
+import shelterAffectionPoster from "@/assets/demo-login/shelter-affection.jpg";
+import dogWalkingPoster from "@/assets/demo-login/dog-walking.jpg";
 
 const SLIDES = [
-  { src: "https://upload.wikimedia.org/wikipedia/commons/5/54/Goldendoodle_and_Black_Lab_puppies_playing_in_slow_motion.webm", poster: dogsPlayingPoster, caption: "Cada animal tem uma história.", alt: "Cães a brincar em câmara lenta" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cat_drinking.webm", poster: catRelaxingPoster, caption: "A adoção muda duas vidas.", alt: "Gato a beber água" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/0/04/Goldendoodle_and_Black_Lab_puppies_play_fighting_in_slow_motion.webm", poster: shelterAffectionPoster, caption: "Encontra um companheiro à tua medida.", alt: "Cães a brincar juntos" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Pro_dog_walker_-_Tokyo_-_2024_Nov_1.webm", poster: dogWalkingPoster, caption: "Começa hoje a tua jornada.", alt: "Passeio com cão ao ar livre" },
+  { src: dogsPlaying, poster: dogsPlayingPoster, caption: "Cada animal tem uma história.", alt: "Dois cães a brincar num jardim" },
+  { src: catRelaxing, poster: catRelaxingPoster, caption: "A adoção muda duas vidas.", alt: "Gato a descansar junto a uma janela" },
+  { src: shelterAffection, poster: shelterAffectionPoster, caption: "Encontra um companheiro à tua medida.", alt: "Um cão de associação a receber carinho" },
+  { src: dogWalking, poster: dogWalkingPoster, caption: "Começa hoje a tua jornada.", alt: "Passeio com cão ao ar livre" },
 ];
 
 const INTERVAL_MS = 5000;
