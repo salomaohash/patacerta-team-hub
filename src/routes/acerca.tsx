@@ -9,7 +9,7 @@ import zeca from "@/assets/pets/zeca.jpg";
 
 export const Route = createFileRoute("/acerca")({
   head: () => ({ meta: [
-    { title: "Acerca de nós, PataCerta" },
+    { title: "Sobre a PataCerta · Adoção e avisos de animais" },
     { name: "description", content: "A história da PataCerta: adoção informada, reabilitação e expectativas reais. Conhece os nossos valores e as perguntas frequentes." },
     { property: "og:title", content: "Acerca de nós, PataCerta" },
     { property: "og:description", content: "Compaixão com expectativas reais. A nossa história, os animais reabilitados e respostas às tuas perguntas." },

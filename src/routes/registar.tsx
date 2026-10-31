@@ -4,7 +4,7 @@ import { AuthForm } from "@/components/AuthForm";
 export const Route = createFileRoute("/registar")({
   head: () => ({
     meta: [
-      { title: "Registar, PataCerta" },
+      { title: "Criar conta · PataCerta" },
       { name: "description", content: "Cria conta para adotar ou para representar uma associação na PataCerta." },
       { property: "og:title", content: "Registar, PataCerta" },
       { property: "og:description", content: "Cria a tua conta PataCerta." },

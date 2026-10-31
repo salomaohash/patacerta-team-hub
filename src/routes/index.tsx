@@ -16,10 +16,10 @@ import heroLoop from "@/assets/hero-dog-loop.mp4.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PataCerta, O animal que realmente combina contigo" },
-      { name: "description", content: "Adoção consciente em Portugal: compatibilidade explicada para cada animal." },
-      { property: "og:title", content: "PataCerta, O animal que realmente combina contigo" },
-      { property: "og:description", content: "Adoção consciente em Portugal: compatibilidade explicada para cada animal." },
+      { title: "PataCerta · Adota cães e gatos e encontra animais perdidos em Portugal" },
+      { name: "description", content: "Adota cães e gatos com compatibilidade explicada e publica avisos gratuitos de animais desaparecidos ou encontrados em Portugal." },
+      { property: "og:title", content: "PataCerta · Adota cães e gatos e encontra animais perdidos em Portugal" },
+      { property: "og:description", content: "Adota cães e gatos com compatibilidade explicada e publica avisos gratuitos de animais desaparecidos ou encontrados em Portugal." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

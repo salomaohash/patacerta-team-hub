@@ -15,7 +15,7 @@ export const Route = createFileRoute("/animais/")({
     return { especie: pick("especie"), porte: pick("porte"), energia: pick("energia"), situacao: pick("situacao"), estado: pick("estado"), q: pick("q"), zona: pick("zona"), ordem: pick("ordem") };
   },
   head: () => ({ meta: [
-    { title: "Animais e avisos da comunidade, PataCerta" },
+    { title: "Animais para adoção e avisos de perdidos · PataCerta" },
     { name: "description", content: "Encontra animais para adoção e consulta avisos de animais desaparecidos e encontrados em Portugal." },
     { property: "og:title", content: "Animais e avisos da comunidade, PataCerta" },
     { property: "og:description", content: "Adoção consciente e Perdidos e encontrados: pesquisa por nome, zona ou raça." },

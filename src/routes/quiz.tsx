@@ -7,7 +7,7 @@ import { loadQuiz, saveQuiz } from "@/lib/state/quiz";
 export const Route = createFileRoute("/quiz")({
   head: () => ({
     meta: [
-      { title: "Questionário de compatibilidade, PataCerta" },
+      { title: "Questionário de compatibilidade com animais · PataCerta" },
       { name: "description", content: "Nove perguntas sobre a tua rotina para encontrar os animais mais compatíveis contigo." },
       { property: "og:title", content: "Questionário de compatibilidade, PataCerta" },
       { property: "og:description", content: "Descobre a tua compatibilidade em nove perguntas." },

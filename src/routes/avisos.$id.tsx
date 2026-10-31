@@ -14,7 +14,7 @@ export const Route = createFileRoute("/avisos/$id")({
     return notice;
   },
   head: ({ loaderData }) => {
-    const title = loaderData ? `${noticeName(loaderData)} em ${loaderData.zona}, PataCerta` : "Aviso indisponível, PataCerta";
+    const title = loaderData ? `${noticeName(loaderData)} em ${loaderData.zona} · PataCerta` : "Aviso indisponível · PataCerta";
     const description = loaderData?.descricaoCurta ?? "Este aviso não está disponível. Consulta os avisos de animais desaparecidos e encontrados.";
     return { meta: [{ title }, { name: "description", content: description }, { property: "og:title", content: title }, { property: "og:description", content: description }, { property: "og:type", content: "article" }, { name: "twitter:card", content: "summary_large_image" }] };
   },

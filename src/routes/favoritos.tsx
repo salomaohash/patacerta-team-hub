@@ -7,7 +7,7 @@ import { getAnimal, type Animal } from "@/lib/animals";
 export const Route = createFileRoute("/favoritos")({
   head: () => ({
     meta: [
-      { title: "Favoritos, PataCerta" },
+      { title: "Favoritos · PataCerta" },
       { name: "description", content: "Os animais que guardaste na PataCerta." },
       { property: "og:title", content: "Favoritos, PataCerta" },
       { property: "og:description", content: "Os animais que guardaste." },

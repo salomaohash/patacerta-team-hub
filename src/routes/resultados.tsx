@@ -9,7 +9,7 @@ import { MatchCard } from "@/components/MatchCard";
 export const Route = createFileRoute("/resultados")({
   head: () => ({
     meta: [
-      { title: "Os teus resultados, PataCerta" },
+      { title: "Animais compatíveis contigo · PataCerta" },
       { name: "description", content: "Os animais mais compatíveis contigo, com a compatibilidade explicada." },
       { property: "og:title", content: "Os teus resultados, PataCerta" },
       { property: "og:description", content: "Compatibilidade explicada para cada animal." },
