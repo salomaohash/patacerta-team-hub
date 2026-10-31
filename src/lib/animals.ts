@@ -59,7 +59,7 @@ export interface Animal {
   energy: Energy;
   associationId: string;
   institutionId?: string;
-  associationName?: string;
+  associationName?: string | undefined;
   institutionContact?: InstitutionContact;
   unknownFields?: string[];
   contact?: { kind: "owner" | "organization"; name: string; city?: string; email?: string; phone?: string };
