@@ -114,3 +114,32 @@ export function computeMatch(q: QuizAnswers, a: Animal): MatchResult {
   const max = Object.values(WEIGHTS).reduce((s, w) => s + w, 0);
   return { score: Math.round((total / max) * 100), dimensions: dims };
 }
+
+export const DIMENSION_LABELS: Record<Dimension, string> = {
+  schedule: "Horário de trabalho",
+  housing: "Habitação e espaço",
+  time: "Tempo disponível",
+  activity: "Energia e atividade",
+  household: "Crianças e outros animais",
+  experience: "Experiência necessária",
+  openness: "Necessidades especiais",
+};
+
+export type Verdict = "Excelente" | "Compatível" | "Atenção";
+export function verdict(score: number): Verdict {
+  if (score >= 0.75) return "Excelente";
+  if (score >= 0.55) return "Compatível";
+  return "Atenção";
+}
+
+/** A fricção honesta mais importante, a partir dos atributos reais do animal (nunca factos médicos inventados). */
+export function keyFriction(a: Animal): string {
+  if (a.forgotten) return `${a.forgotten.needs} ${a.forgotten.homeAdaptations}`;
+  if (a.energy === "alta") return `${a.name} tem muita energia: precisa de exercício e brincadeira todos os dias, não apenas ao fim de semana.`;
+  if (!a.goodWithPets) return `${a.name} não se dá bem com outros animais — precisa de ser o único da casa.`;
+  if (!a.goodWithKids) return `${a.name} não está habituado a crianças; uma casa tranquila e só com adultos é o mais indicado.`;
+  if (a.careComplexity !== "baixa") return `Os cuidados de ${a.name} pedem alguma experiência e acompanhamento regular.`;
+  if (!a.apartmentOk) return `${a.name} precisa de espaço exterior; um apartamento não é adequado.`;
+  if (a.species === "gato") return `Mesmo independente, ${a.name} precisa de rotina, brincadeira diária e um espaço seguro, com janelas protegidas.`;
+  return `${a.name} vai precisar de passeios diários e de tempo de adaptação nas primeiras semanas — é normal haver alguma ansiedade ao início.`;
+}
