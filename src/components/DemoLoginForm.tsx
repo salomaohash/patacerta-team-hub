@@ -1,0 +1,66 @@
+import { useState, type FormEvent } from "react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { ArrowLeft, ArrowRight, PawPrint } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { DemoVideoCarousel } from "@/components/DemoVideoCarousel";
+import { signInDemo } from "@/lib/demo-session";
+
+export function DemoLoginForm() {
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function enterDemo(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    signInDemo(name);
+    setEmail("");
+    setPassword("");
+    void navigate({ to: "/dashboard" });
+  }
+
+  const inputClass = "h-12 w-full rounded-xl border border-input bg-background px-4 text-sm text-foreground outline-none transition-colors focus:border-accent-deep focus:ring-1 focus:ring-ring";
+
+  return (
+    <main className="grid min-h-dvh w-full bg-background lg:grid-cols-[45%_55%]">
+        <section className="login-surface grain order-2 flex min-w-0 flex-col px-6 py-6 sm:px-10 lg:order-1 lg:px-10 lg:py-8 xl:px-16">
+          <Link to="/" className="relative z-10 flex w-fit items-center gap-2.5 font-serif text-2xl">
+            <PawPrint className="h-6 w-6 text-accent-deep" /> PataCerta
+          </Link>
+          <div className="relative z-10 flex flex-1 items-center justify-center py-8 lg:py-10">
+          <div className="w-full max-w-md space-y-7">
+          <div className="space-y-3">
+            <h1 className="text-3xl leading-tight sm:text-4xl">Bem-vindo de volta</h1>
+            <p className="text-sm text-muted-foreground">Entra para acompanhares a tua jornada de adoção.</p>
+          </div>
+          <form noValidate autoComplete="off" onSubmit={enterDemo} className="space-y-4">
+            <div className="space-y-1.5">
+              <label htmlFor="demo-name" className="text-sm font-medium">Nome</label>
+              <input id="demo-name" name="name" className={inputClass} value={name} onChange={(event) => setName(event.target.value)} />
+            </div>
+            <div className="space-y-1.5">
+              <label htmlFor="demo-email" className="text-sm font-medium">Email</label>
+              <input id="demo-email" name="email" type="email" className={inputClass} value={email} onChange={(event) => setEmail(event.target.value)} />
+            </div>
+            <div className="space-y-1.5">
+              <label htmlFor="demo-password" className="text-sm font-medium">Palavra-passe</label>
+              <input id="demo-password" name="password" type="password" autoComplete="new-password" className={inputClass} value={password} onChange={(event) => setPassword(event.target.value)} />
+            </div>
+            <Button type="submit" variant="login" className="mt-2 h-13 w-full rounded-full text-base">Entrar <ArrowRight /></Button>
+            <Button type="button" variant="outline" className="h-12 w-full rounded-full text-sm">
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5" fill="currentColor"><path d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.38a4.6 4.6 0 0 1-2 3.02 6.1 6.1 0 0 1-9.36-5.08 6.1 6.1 0 0 1 9.76-4.85l2.89-2.89A10 10 0 1 0 12 22c5.77 0 9.6-4.06 9.6-9.77Z" /></svg>
+              Continuar com Google
+            </Button>
+          </form>
+          <Button asChild variant="link" className="h-auto justify-start self-start px-0 text-muted-foreground">
+            <Link to="/"><ArrowLeft /> Voltar à página inicial</Link>
+          </Button>
+          </div>
+        </div>
+        </section>
+        <div className="relative order-1 h-[280px] min-w-0 sm:h-[340px] lg:order-2 lg:h-auto lg:min-h-dvh">
+          <DemoVideoCarousel />
+        </div>
+    </main>
+  );
+}

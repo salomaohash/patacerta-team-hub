@@ -59,8 +59,8 @@ export function GooglePlacesMap<T extends MapPlace>({ list, onSelect }: { list: 
     }).catch(() => { if (active) setError(true); });
     return () => { active = false; listeners.forEach((listener) => listener.remove()); markers.forEach((marker) => marker.setMap(null)); };
   }, [key, list]);
-  return <div className="relative h-80 overflow-hidden rounded-lg border border-border bg-secondary sm:h-[460px]">
-    <div ref={container} className="h-full w-full" aria-label="Google Maps, locais em Lisboa" />
+  return <div className="relative h-80 overflow-hidden rounded-2xl border border-border bg-secondary sm:h-[460px]">
+    <div ref={container} className="h-full w-full" aria-label="Google Maps — locais pet-friendly em Lisboa" />
     {(!key || error) && <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center"><MapPin className="h-9 w-9 text-accent-deep" /><p className="font-serif text-xl">Locais em Lisboa</p><p role="status" className="max-w-sm text-sm text-muted-foreground">{error ? "Não foi possível carregar o Google Maps. Os locais continuam disponíveis abaixo." : "Google Maps por configurar. Os locais estão disponíveis abaixo."}</p></div>}
   </div>;
 }
