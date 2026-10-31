@@ -43,6 +43,7 @@ export interface Animal {
   id: string;
   name: string;
   species: Species;
+  sex?: "macho" | "fêmea";
   breed: string;
   ageYears: number;
   size: Size;
@@ -107,7 +108,7 @@ const extraAnimals: Animal[] = [
   newAnimal({ id: "rosinha", name: "Rosinha", species: "gato", ageYears: 14, size: "pequeno", energy: "baixa", associationId: "porto", careComplexity: "média", photos: [media.p19.url, media.p22.url, media.p23.url], description: "A Rosinha conhece bem o valor de uma tarde tranquila. Precisa de locais de descanso fáceis de alcançar e de uma família atenta às mudanças da idade.", forgotten: { kind: "Sénior", needs: "Acompanhamento regular e rotina serena.", homeAdaptations: "Caixa de areia baixa e camas acessíveis.", monthlyCost: 50, resources: "Orientação sobre cuidados sénior.", idealFamily: "Um lar calmo, com companhia diária." } }),
 ];
 // Datas e histórias editoriais fictícias; fotografias ilustrativas.
-export const animals: Animal[] = [...originalAnimals.map((animal) => ({ ...animal, photos: [animal.photo, ...(animal.species === "cão" ? dogGallery.slice(0, 2) : catGallery.slice(0, 2))] })), ...extraAnimals].map((animal, i) => ({ ...animal, listedAt: new Date(Date.UTC(2026, 9, 4 + i)).toISOString().slice(0, 10) }));
+export const animals: Animal[] = [...originalAnimals.map((animal) => ({ ...animal, photos: [animal.photo, ...(animal.species === "cão" ? dogGallery.slice(0, 2) : catGallery.slice(0, 2))] })), ...extraAnimals].map((animal, i) => ({ ...animal, sex: ["luna", "nala", "mimi", "kika", "biscoito", "faisca", "vitoria", "nesga", "pipoca", "amalia", "pinta", "rosinha"].includes(animal.id) ? "fêmea" : "macho", listedAt: new Date(Date.UTC(2026, 9, 4 + i)).toISOString().slice(0, 10) }));
 
 export const getAnimal = (id: string) => animals.find((a) => a.id === id);
 export const getAssociation = (id: string) => associations.find((a) => a.id === id);
