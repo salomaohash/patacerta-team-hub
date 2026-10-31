@@ -62,9 +62,9 @@ function Catalog() {
         </nav>}
         <p role="status" className="text-sm text-muted-foreground">{count} {adoption ? count === 1 ? "animal" : "animais" : count === 1 ? "aviso" : "avisos"}</p>
       </div>
-      <div className="mt-6 flex flex-wrap items-center gap-3 border-y border-border py-6">
-        <SlidersHorizontal size={18} className="text-muted-foreground" aria-hidden />
-        {adoption && attributes.map((f) => <div key={f.key} role="group" aria-label={f.label} className="flex flex-wrap items-center gap-2"><span className="mr-2 text-sm text-muted-foreground">{f.label}</span>{["", ...f.options].map((o) => <Button key={o} size="sm" variant="outline" aria-pressed={(search[f.key] ?? "") === o} className={`rounded-full px-3 font-normal ${(search[f.key] ?? "") === o ? "border-foreground bg-foreground text-background hover:bg-foreground hover:text-background" : ""}`} onClick={() => update(f.key, o || undefined)}>{o === "" ? "Todos" : o === "cão" ? "Cão" : o === "gato" ? "Gato" : o.charAt(0).toUpperCase() + o.slice(1)}</Button>)}</div>)}
+      <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3 border-y border-border py-5 lg:flex-nowrap">
+        <SlidersHorizontal size={18} className="shrink-0 text-muted-foreground" aria-hidden />
+        {adoption && attributes.map((f) => <div key={f.key} role="group" aria-label={f.label} className="flex min-w-0 flex-wrap items-center gap-2 lg:flex-nowrap"><span className="mr-2 text-sm text-muted-foreground">{f.label}</span>{["", ...f.options].map((o) => <Button key={o} size="sm" variant="outline" aria-pressed={(search[f.key] ?? "") === o} className={`rounded-full px-3 font-normal ${(search[f.key] ?? "") === o ? "border-foreground bg-foreground text-background hover:bg-foreground hover:text-background" : ""}`} onClick={() => update(f.key, o || undefined)}>{o === "" ? "Todos" : o === "cão" ? "Cão" : o === "gato" ? "Gato" : o.charAt(0).toUpperCase() + o.slice(1)}</Button>)}</div>)}
         {!adoption && <div className="flex min-w-0 flex-1 flex-col gap-4">
           {([
             { key: "especie", label: "Espécie", all: "Todos", options: ["cão", "gato"] },
@@ -74,7 +74,7 @@ function Catalog() {
             {["", ...filter.options].map((value) => <Button key={value} size="sm" variant="outline" aria-pressed={(search[filter.key] ?? "") === value} className={`h-auto min-h-9 max-w-full whitespace-normal rounded-full px-4 py-2 font-normal transition-colors ${(search[filter.key] ?? "") === value ? "border-foreground bg-foreground text-background hover:bg-foreground hover:text-background" : ""}`} onClick={() => update(filter.key, value || undefined)}>{value ? value.charAt(0).toUpperCase() + value.slice(1) : filter.all}</Button>)}
           </div>)}
         </div>}
-        {adoption && count > 6 && <label className="flex items-center gap-2 text-sm md:ml-auto">Ordenar<select className={selectClass} value={order} onChange={(e) => update("ordem", e.target.value)}>{quiz && <option value="compatibilidade">Compatibilidade</option>}<option value="recentes">Mais recentes</option><option value="idade">Mais velhos</option></select></label>}
+        {adoption && count > 6 && <label className="flex shrink-0 items-center gap-2 text-sm lg:ml-auto">Ordenar<select className={selectClass} value={order} onChange={(e) => update("ordem", e.target.value)}>{quiz && <option value="compatibilidade">Compatibilidade</option>}<option value="recentes">Mais recentes</option><option value="idade">Mais velhos</option></select></label>}
       </div>
       {active.length > 0 && <div className="mt-4 flex flex-wrap items-center gap-2">{active.map((key) => <Button key={key} variant="secondary" size="sm" className="rounded-full font-normal" aria-label={`Remover filtro ${search[key as keyof CatalogFilters]}`} onClick={() => update(key as keyof CatalogFilters, undefined)}>{key === "situacao" ? "Os Inesquecíveis" : search[key as keyof CatalogFilters]}<X size={14} /></Button>)}<Button variant="link" className="ml-auto font-normal" onClick={clear}>Limpar filtros</Button></div>}
       <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

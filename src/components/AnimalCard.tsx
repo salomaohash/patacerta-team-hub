@@ -17,7 +17,7 @@ export function AnimalCard({ a }: { a: Animal }) {
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <img src={a.photo} alt={photoInfo(a.photo)?.alt ?? `${a.name}, ${a.breed}`} loading="lazy" width={816} height={816} className="h-full w-full object-cover transition-transform duration-[250ms] ease-out group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:transition-none" />
-        {quiz && <div className="absolute right-3 top-3 rounded-full bg-card p-2"><MatchRing value={computeMatch(quiz, a).score} size={48} label="Compatibilidade indicativa" /></div>}
+        {quiz && <div className="absolute right-3 top-3 rounded-full bg-card p-1.5 shadow-soft"><MatchRing value={computeMatch(quiz, a).score} size={40} label="Compatibilidade indicativa" /></div>}
         <FavoriteButton id={a.id} className="absolute bottom-3 right-3" />
       </div>
       <div className="p-6">
