@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AuthForm } from "@/components/AuthForm";
+import { RegisterForm } from "@/components/RegisterForm";
 
 export const Route = createFileRoute("/registar")({
   validateSearch: (search: Record<string, unknown>): { returnTo?: string | undefined } => ({
@@ -15,5 +15,5 @@ export const Route = createFileRoute("/registar")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
-  component: () => <AuthForm mode="register" />,
+  component: () => <RegisterForm />,
 });
