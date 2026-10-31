@@ -17,6 +17,7 @@ export function petFromRow(row: PublicPetRow): Animal | null {
     id: row.id,
     name: p["name"],
     photo: p["photo"],
+    photos: [p["photo"]],
     description: p["description"],
     species: p["species"] === "gato" ? "gato" : "cão",
     breed: typeof p["breed"] === "string" ? p["breed"] : "Por confirmar",
