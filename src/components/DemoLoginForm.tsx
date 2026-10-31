@@ -48,7 +48,7 @@ export function DemoLoginForm() {
             </div>
             <div className="space-y-1.5">
               <label htmlFor="demo-email" className="text-sm font-medium">Email</label>
-              <input id="demo-email" name="email" type="email" className={inputClass} value={email} onChange={(event) => setEmail(event.target.value)} />
+              <input id="demo-email" name="email" type="text" autoComplete="email" className={inputClass} value={email} onChange={(event) => setEmail(event.target.value)} />
             </div>
             <div className="space-y-1.5">
               <label htmlFor="demo-password" className="text-sm font-medium">Palavra-passe</label>
