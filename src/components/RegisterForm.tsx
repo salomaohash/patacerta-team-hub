@@ -70,9 +70,7 @@ export function RegisterForm() {
               )}
               {error && <p id="reg-error" role="alert" className="text-sm text-destructive">{error.message}</p>}
               <Button type="submit" variant="login" className="mt-2 h-13 w-full rounded-full text-base">Criar conta <ArrowRight /></Button>
-              <Button asChild variant="outline" className="h-12 w-full rounded-full text-sm">
-                <Link to="/entrar"><ArrowRight /> Já tens conta? Entrar</Link>
-              </Button>
+              <p className="text-center text-sm text-muted-foreground">Já tens conta? <Link to="/entrar" className="text-accent-deep underline underline-offset-4">Entrar</Link></p>
             </form>
             <Button asChild variant="link" className="h-auto justify-start self-start px-0 text-muted-foreground">
               <Link to="/"><ArrowLeft /> Voltar à página inicial</Link>

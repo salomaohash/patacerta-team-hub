@@ -5,12 +5,10 @@ import { Button } from "@/components/ui/button";
 import { DemoVideoCarousel } from "@/components/DemoVideoCarousel";
 import { signInDemo, type Papel } from "@/lib/demo-session";
 import { signIn, sessionDestination } from "@/lib/state/session";
-import { validateAuth } from "@/components/AuthForm";
 
 export function DemoLoginForm() {
   const navigate = useNavigate();
   const search = useSearch({ strict: false }) as { returnTo?: string };
-  const [error, setError] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,8 +16,6 @@ export function DemoLoginForm() {
 
   function enterDemo(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const invalid = validateAuth("login", name, email, password);
-    if (invalid) { setError(invalid.message); return; }
     signIn({ nome: name.trim() || email.split("@")[0] || email, email: email.trim().toLowerCase(), papel });
     signInDemo(name, papel);
     setEmail("");
@@ -61,7 +57,6 @@ export function DemoLoginForm() {
                   </Button>
                 ))}
               </div>
-            {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
             <Button type="submit" variant="login" className="mt-2 h-13 w-full rounded-full text-base">Entrar</Button>
             <Button type="button" variant="outline" className="h-12 w-full rounded-full text-sm">
               <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5" fill="currentColor"><path d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.38a4.6 4.6 0 0 1-2 3.02 6.1 6.1 0 0 1-9.36-5.08 6.1 6.1 0 0 1 9.76-4.85l2.89-2.89A10 10 0 1 0 12 22c5.77 0 9.6-4.06 9.6-9.77Z" /></svg>

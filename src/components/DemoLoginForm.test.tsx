@@ -7,6 +7,7 @@ import { renderHook } from "@testing-library/react";
 const navigate = vi.hoisted(() => vi.fn());
 vi.mock("@tanstack/react-router", () => ({
   useNavigate: () => navigate,
+  useSearch: () => ({ returnTo: undefined }),
   Link: ({ children }: { children: React.ReactNode }) => <a>{children}</a>,
 }));
 vi.mock("@/components/DemoVideoCarousel", () => ({ DemoVideoCarousel: () => null }));
