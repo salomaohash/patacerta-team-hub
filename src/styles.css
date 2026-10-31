@@ -128,7 +128,7 @@
 }
 
 @layer base {
-  h1, h2, h3, h4 { font-family: var(--font-serif); letter-spacing: -0.02em; font-weight: 400; }
+  h1, h2, h3, h4 { font-family: var(--font-sans); letter-spacing: 0; font-weight: 800; }
   body { font-family: var(--font-sans); font-size: 16.5px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
 }
 
@@ -178,7 +178,7 @@
 
 @keyframes partner-scroll { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 .partner-marquee { overflow: hidden; mask-image: var(--marquee-mask); }
-.partner-track { display: flex; width: max-content; padding: 12px 0 24px; animation: partner-scroll 32s linear infinite; }
+.partner-track { display: flex; width: max-content; padding: 12px 0 24px; animation: partner-scroll 52s linear infinite; }
 .partner-group { display: flex; align-items: center; gap: 1rem; padding: 0 1rem 0 0; flex-shrink: 0; }
 .partner-group li { white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) {

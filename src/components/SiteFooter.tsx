@@ -12,7 +12,7 @@ export function SiteFooter() {
             <Link to="/acerca" className="hover:text-accent-deep">Acerca</Link>
             <Link to="/acerca" hash="faq" className="hover:text-accent-deep">Perguntas frequentes</Link>
           </nav>
-          <p className="eyebrow">Projeto de demonstração</p>
+          <p className="eyebrow">Adoção consciente</p>
         </div>
       </div>
     </footer>

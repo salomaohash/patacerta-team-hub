@@ -65,7 +65,7 @@ function Index() {
         <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-6 py-10 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-14">
           <div className="space-y-6">
             <p className="eyebrow flex items-center gap-3 text-accent-deep"><span aria-hidden="true" className="h-px w-8 bg-accent-deep" />Adoção consciente</p>
-            <h1 className="max-w-[18ch] font-sans text-[38px] font-semibold leading-[1.14] tracking-normal md:text-[52px]">O animal que realmente <span className="text-accent-deep">combina contigo.</span></h1>
+            <h1 className="font-sans text-[38px] font-black leading-[1.08] tracking-normal md:text-[52px]"><span className="block">O Animal Que</span><span className="block">Realmente</span><span className="block text-accent-deep">Combina Contigo.</span></h1>
             <p className="max-w-[46ch] text-[18px] leading-relaxed text-muted-foreground">
               Responde a um questionário cuidadoso e vê, para cada animal, uma compatibilidade explicada — o que encaixa e o que poderá ser um desafio.
             </p>
@@ -132,7 +132,7 @@ function Index() {
 
       <section className="section-texture border-t border-border bg-muted">
         <Reveal className="mx-auto flex max-w-6xl flex-col justify-between gap-8 px-6 py-12 md:flex-row md:items-center md:py-16">
-          <div data-r className="max-w-2xl"><p className="eyebrow">Perdidos e Encontrados</p><h2 className="mt-5 text-[32px] leading-tight md:text-[40px]">Perdi o meu animal. Ajudamos a encontrá-lo.</h2><p className="mt-5 text-[16.5px] text-muted-foreground">Uma comunidade atenta começa com uma localização e um aviso partilhado. Consulta as zonas de busca e os animais encontrados.</p><p className="mt-4 text-sm text-accent-deep">{notices.filter((n) => n.tipo === "desaparecido").length} avisos ativos agora · demonstração</p></div>
+          <div data-r className="max-w-2xl"><p className="eyebrow">Perdidos e Encontrados</p><h2 className="mt-5 text-[32px] leading-tight md:text-[40px]">Perdi o meu animal. Ajudamos a encontrá-lo.</h2><p className="mt-5 text-[16.5px] text-muted-foreground">Uma comunidade atenta começa com uma localização e um aviso partilhado. Consulta as zonas de busca e os animais encontrados.</p><p className="mt-4 text-sm text-accent-deep">{notices.filter((n) => n.tipo === "desaparecido").length} avisos no catálogo</p></div>
           <div data-r className="flex shrink-0 flex-col gap-3"><Button asChild className="font-normal"><Link to="/animais" search={{ estado: "desaparecido" }}>Ver desaparecidos <ArrowRight /></Link></Button><Button asChild variant="outline" className="font-normal"><Link to="/animais" search={{ estado: "encontrado" }}>Ver encontrados <ArrowRight /></Link></Button></div>
         </Reveal>
       </section>

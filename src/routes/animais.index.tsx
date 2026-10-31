@@ -16,7 +16,7 @@ export const Route = createFileRoute("/animais/")({
   },
   head: () => ({ meta: [
     { title: "Animais e avisos da comunidade — PataCerta" },
-    { name: "description", content: "Encontra animais para adoção e consulta avisos demonstrativos de animais desaparecidos e encontrados em Portugal." },
+    { name: "description", content: "Encontra animais para adoção e consulta avisos de animais desaparecidos e encontrados em Portugal." },
     { property: "og:title", content: "Animais e avisos da comunidade — PataCerta" },
     { property: "og:description", content: "Adoção consciente e Perdidos e Encontrados: pesquisa por nome, zona ou raça." },
     { property: "og:type", content: "website" },

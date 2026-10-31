@@ -50,7 +50,7 @@ function Detail() {
         <div className="mt-8 grid gap-10 md:grid-cols-2">
           <AnimalGallery key={a.id} animal={a} />
           <div>
-            <p className="eyebrow">Demonstração{a.forgotten ? ` · Inesquecível: ${a.forgotten.kind}` : ""}</p>
+            <p className="eyebrow">{a.forgotten ? `Inesquecível: ${a.forgotten.kind}` : "Perfil do animal"}</p>
             <h1 className="mt-3 text-5xl">{a.name}</h1>
             <p className="mt-2 text-muted-foreground">{a.breed} · {a.ageYears < 1 ? `${Math.round(a.ageYears * 12)} meses` : `${a.ageYears} anos`} · porte {a.size} · energia {a.energy}</p>
             <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground"><MapPin size={16} strokeWidth={1.5} />{getAssociation(a.associationId)?.name}, {getAssociation(a.associationId)?.city}</p>

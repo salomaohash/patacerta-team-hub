@@ -72,10 +72,10 @@ interface Place {
 }
 
 const places: Place[] = [
-  { name: "Associação Patinhas Felizes", kind: "shelter", kindLabel: "Instituição de adoção", distance: "Lisboa", address: "Morada de demonstração — Lisboa", icon: Building2, position: { lat: 38.736, lng: -9.15 } },
-  { name: "Patas & Café", kind: "cafe", kindLabel: "Café pet-friendly", distance: "0,8 km", address: "Morada de demonstração — Chiado, Lisboa", icon: Coffee, position: { lat: 38.711, lng: -9.142 } },
-  { name: "Parque Canino de Monsanto", kind: "park", kindLabel: "Parque para cães", distance: "2,1 km", address: "Morada de demonstração — Monsanto, Lisboa", icon: Trees, position: { lat: 38.728, lng: -9.19 } },
-  { name: "Clínica Veterinária Alfama", kind: "vet", kindLabel: "Clínica veterinária", distance: "1,4 km", address: "Morada de demonstração — Alfama, Lisboa", icon: Stethoscope, position: { lat: 38.713, lng: -9.128 } },
+  { name: "Associação Patinhas Felizes", kind: "shelter", kindLabel: "Instituição de adoção", distance: "Lisboa", address: "Localização aproximada — Lisboa", icon: Building2, position: { lat: 38.736, lng: -9.15 } },
+  { name: "Patas & Café", kind: "cafe", kindLabel: "Café pet-friendly", distance: "0,8 km", address: "Localização aproximada — Chiado, Lisboa", icon: Coffee, position: { lat: 38.711, lng: -9.142 } },
+  { name: "Parque Canino de Monsanto", kind: "park", kindLabel: "Parque para cães", distance: "2,1 km", address: "Localização aproximada — Monsanto, Lisboa", icon: Trees, position: { lat: 38.728, lng: -9.19 } },
+  { name: "Clínica Veterinária Alfama", kind: "vet", kindLabel: "Clínica veterinária", distance: "1,4 km", address: "Localização aproximada — Alfama, Lisboa", icon: Stethoscope, position: { lat: 38.713, lng: -9.128 } },
 ];
 
 const filters: { id: PlaceKind | "all"; label: string }[] = [
@@ -182,7 +182,7 @@ export function Dashboard() {
 
   const filteredPlaces = filter === "all" ? places : places.filter((p) => p.kind === filter);
 
-  // O painel só é visível depois de entrar na demonstração.
+  // O painel só é visível depois de iniciar sessão.
   if (!demoUser) {
     return null;
   }
@@ -283,12 +283,12 @@ export function Dashboard() {
                   <div className="flex items-center justify-between gap-3"><h2 className="text-lg">Cuidados de hoje</h2><span className="text-xs text-muted-foreground" aria-live="polite">{completedCare.length} de {todayCare.length} concluídos</span></div>
                   <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-secondary"><div className="h-full bg-primary transition-all motion-reduce:transition-none" style={{ width: `${completedCare.length / todayCare.length * 100}%` }} /></div>
                   <ul className="mt-3 divide-y divide-border">{todayCare.map((item) => <li key={item.id}><label className="flex cursor-pointer items-center gap-3 py-3 text-sm"><Checkbox checked={completedCare.includes(item.id)} onCheckedChange={() => setCompletedCare((current) => toggleCare(current, item.id))} aria-label={item.label} /><span className={completedCare.includes(item.id) ? "text-muted-foreground line-through" : ""}>{item.label}</span><span className="ml-auto text-xs text-muted-foreground">{item.time}</span></label></li>)}</ul>
-                  <p className="mt-2 text-xs text-muted-foreground">Dados de demonstração</p>
+                  <p className="mt-2 text-xs text-muted-foreground">Registos de exemplo</p>
                 </div>
                 <div className="rounded-2xl bg-card p-5 shadow-soft">
                   <h2 className="text-lg">Próximos lembretes</h2>
                   <ul className="mt-4 divide-y divide-border text-sm">{["Consulta anual", "Reforço anual da vacinação", "Desparasitação"].map((label) => <li key={label} className="flex items-center gap-3 py-3"><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary text-accent-deep"><Clock size={17} /></span><div><p className="font-medium">{label}</p><p className="text-xs text-muted-foreground">15 de novembro de 2026</p></div></li>)}</ul>
-                  <p className="mt-3 text-xs text-muted-foreground">Dados de demonstração</p>
+                  <p className="mt-3 text-xs text-muted-foreground">Registos de exemplo</p>
                 </div>
               </div>
               <div>
@@ -367,7 +367,7 @@ export function Dashboard() {
               </div>
             </div>
             <section className="space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-4"><div><h2 className="text-xl sm:text-2xl">Boletim de saúde e história da Luna</h2><p className="mt-1 text-sm text-muted-foreground">Dados de demonstração</p></div><HealthBadge /></div>
+              <div className="flex flex-wrap items-center justify-between gap-4"><div><h2 className="text-xl sm:text-2xl">Boletim de saúde e história da Luna</h2><p className="mt-1 text-sm text-muted-foreground">Registos de exemplo</p></div><HealthBadge /></div>
               <HealthRecord />
               <Button onClick={() => setHealthOpen(true)} variant="secondary" className="rounded-full"><FileText /> Ver histórico completo</Button>
             </section>
@@ -388,7 +388,7 @@ export function Dashboard() {
                   <p className="mt-2 flex items-center gap-2 text-sm text-muted-foreground"><Mail className="h-4 w-4 text-accent-deep" /> contacto@example.com</p>
                 </div>
                 <p className="rounded-2xl border border-dashed border-primary/40 bg-secondary/60 p-4 text-xs text-muted-foreground">
-                  Estado de demonstração — não foi enviado nenhum pedido real.
+                  Não foi enviado nenhum pedido real.
                 </p>
               </div>
             </div>
@@ -409,7 +409,7 @@ export function Dashboard() {
                   </Button>
                 ))}
               </div>
-              <p className="text-xs text-muted-foreground">Dados de demonstração — posições aproximadas em Lisboa</p>
+              <p className="text-xs text-muted-foreground">Posições aproximadas em Lisboa</p>
               <GooglePlacesMap list={filteredPlaces} onSelect={setPlace} />
               <PlaceCards list={filteredPlaces} onSelect={setPlace} />
             </div>
@@ -424,7 +424,7 @@ export function Dashboard() {
                   </span>
                   <div>
                     <h2 className="text-xl">{demoUser.name}</h2>
-                    <p className="text-sm text-muted-foreground">Conta de demonstração</p>
+                    <p className="text-sm text-muted-foreground">Perfil pessoal</p>
                   </div>
                 </div>
                 <dl className="mt-6 divide-y divide-border">
@@ -465,11 +465,11 @@ export function Dashboard() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-2 text-sm">
-            <p className="text-xs font-medium text-accent-deep">Dados de demonstração</p>
+            <p className="text-xs font-medium text-accent-deep">Registos de exemplo</p>
             <p className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="h-4 w-4 text-accent-deep" /> {place?.address}
             </p>
-            <p className="text-xs text-muted-foreground">Horário de demonstração — por confirmar.</p>
+            <p className="text-xs text-muted-foreground">Horário por confirmar.</p>
           </div>
         </DialogContent>
       </Dialog>
