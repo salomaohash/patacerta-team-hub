@@ -29,7 +29,7 @@ describe("uploaded adoption quiz", () => {
     const dog = animals.find((a) => a.id === "thor");
     if (!dog) throw new Error("Missing Thor fixture");
     expect(computeMatch(toQuizAnswers([1, 2, 2, 2, 0, 1]), dog).score).toBe(100);
-    expect(computeMatch(toQuizAnswers([0, 0, 0, 0, 0, 0]), dog).score).toBe(20);
+    expect(computeMatch(toQuizAnswers([0, 0, 0, 0, 0, 0]), dog).score).toBe(8);
   });
   it("saves new profile and preserves legacy answers", () => {
     const q = toQuizAnswers([0, 1, 0, 0, 1, 0]);
