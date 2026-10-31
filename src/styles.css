@@ -158,3 +158,7 @@
 @keyframes quiz-in { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
 .quiz-step { animation: quiz-in 350ms ease-out; }
 @media (prefers-reduced-motion: reduce) { .quiz-step { animation: none; } }
+
+.reveal-group [data-r] { opacity: 0; transform: translateY(12px); transition: opacity 600ms ease, transform 600ms ease; transition-delay: calc(var(--i, 0) * 80ms); }
+.reveal-group[data-shown="true"] [data-r] { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal-group [data-r] { opacity: 1; transform: none; transition: none; } }
