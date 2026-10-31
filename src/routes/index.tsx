@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ClipboardList, HeartHandshake, PawPrint, ArrowRight } from "lucide-react";
 import { useEffect, useRef, type ReactNode } from "react";
+import { getAnimal, type Animal } from "@/lib/animals";
+import { AnimalCard } from "@/components/AnimalCard";
+
+const featured = ["luna", "zeca", "simba", "nala"].map((id) => getAnimal(id)).filter((a): a is Animal => !!a);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -135,6 +139,15 @@ function Index() {
               ))}
             </div>
           </Reveal>
+        </section>
+
+        <section className="border-t border-border py-24">
+          <div className="mx-auto max-w-6xl px-6">
+            <p className="eyebrow">Em destaque</p>
+            <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {featured.map((a) => <AnimalCard key={a.id} a={a} />)}
+            </div>
+          </div>
         </section>
       </main>
 
