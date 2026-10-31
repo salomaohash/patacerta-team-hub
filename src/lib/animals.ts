@@ -49,6 +49,7 @@ export interface Animal {
   size: Size;
   energy: Energy;
   associationId: string;
+  contact?: { kind: "owner" | "organization"; name: string; city?: string; email?: string; phone?: string };
   goodWithKids: boolean;
   goodWithPets: boolean;
   apartmentOk: boolean;
