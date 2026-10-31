@@ -41,11 +41,6 @@ function Catalog() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <Link to="/" className="font-serif text-xl">PataCerta</Link>
-        </div>
-      </header>
       <main className="mx-auto max-w-6xl px-6 py-16">
         <p className="eyebrow">Catálogo</p>
         <h1 className="mt-4 text-4xl">Animais à procura de casa</h1>
