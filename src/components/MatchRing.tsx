@@ -29,9 +29,9 @@ export function MatchRing({ value, size = 72, stroke = 3, label = "Compatibilida
         <circle cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={stroke} className="stroke-border" />
         <circle cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={stroke} strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c - (shown / 100) * c} className="stroke-accent-deep" />
       </svg>
-      <span className="absolute font-serif text-[19px] leading-none">
+      <span className="absolute flex items-baseline font-serif leading-none" style={{ fontSize: Math.max(10, Math.round(size * 0.28)) }}>
         {shown}
-        <span className="text-[11px] text-muted-foreground">%</span>
+        <span className="text-muted-foreground" style={{ fontSize: Math.max(7, Math.round(size * 0.15)) }}>%</span>
       </span>
     </div>
   );
