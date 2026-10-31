@@ -4,9 +4,11 @@ import { MapPin } from "lucide-react";
 type Position = { lat: number; lng: number };
 interface MapInstance { setCenter: (position: Position) => void }
 interface MarkerInstance { setMap: (map: MapInstance | null) => void; addListener: (event: string, handler: () => void) => { remove: () => void } }
+interface MarkerOptions { position: Position; map: MapInstance; title: string; label?: string; icon?: unknown; zIndex?: number }
 interface MapsApi {
   Map: new (element: HTMLElement, options: { center: Position; zoom: number; clickableIcons: boolean; mapTypeControl: boolean; streetViewControl: boolean }) => MapInstance;
-  Marker: new (options: { position: Position; map: MapInstance; title: string; label: string }) => MarkerInstance;
+  Marker: new (options: MarkerOptions) => MarkerInstance;
+  SymbolPath: { CIRCLE: number };
 }
 declare global { interface Window { google?: { maps?: MapsApi }; initPataCertaMap?: () => void; gm_authFailure?: () => void } }
 export interface MapPlace { name: string; position: Position }
@@ -34,7 +36,7 @@ function loadMaps(key: string): Promise<MapsApi> {
   return mapsPromise;
 }
 
-export function GooglePlacesMap<T extends MapPlace>({ list, onSelect }: { list: T[]; onSelect: (place: T) => void }) {
+export function GooglePlacesMap<T extends MapPlace>({ list, onSelect, userPosition }: { list: T[]; onSelect: (place: T) => void; userPosition?: Position | null }) {
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<MapInstance | null>(null);
   const select = useRef(onSelect);
