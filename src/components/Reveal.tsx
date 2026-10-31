@@ -11,7 +11,7 @@ export function Reveal({ children, className = "" }: { children: ReactNode; clas
         setShown(true);
         observer.disconnect();
       }
-    }, { rootMargin: "0px 0px -10% 0px" });
+    }, { rootMargin: "160px 0px", threshold: 0 });
     observer.observe(el);
     return () => observer.disconnect();
   }, []);

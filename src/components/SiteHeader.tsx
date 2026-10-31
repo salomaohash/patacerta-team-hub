@@ -3,6 +3,8 @@ import { signOut, useSession } from "@/lib/state/session";
 import { GlobalSearch } from "@/components/GlobalSearch";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/patacerta-logo.png";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 const linkCls = "text-sm hover:text-accent-deep";
 const activeCls = { className: "text-sm text-accent-deep" };
@@ -10,14 +12,16 @@ const activeCls = { className: "text-sm text-accent-deep" };
 export function SiteHeader() {
   const user = useSession();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <header className="border-b border-border bg-background">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-6">
+      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 md:px-6 lg:flex lg:gap-4 lg:py-4">
         <Link to="/" aria-label="PataCerta, página inicial" className="shrink-0">
           <img src={logo} alt="PataCerta" width={180} height={41} className="h-auto w-36 object-contain sm:w-[180px]" />
         </Link>
         <GlobalSearch />
-        <nav aria-label="Menu principal" className="flex flex-wrap items-center gap-4 sm:gap-6">
+        <Button variant="ghost" size="icon" aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen} aria-controls="main-navigation" className="col-start-2 row-start-1 shrink-0 lg:hidden" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X /> : <Menu />}</Button>
+        <nav id="main-navigation" aria-label="Menu principal" onClick={() => setMenuOpen(false)} className={`${menuOpen ? "grid" : "hidden"} col-span-2 min-w-0 grid-cols-2 items-center gap-3 border-t border-border pt-3 lg:flex lg:shrink-0 lg:gap-4 lg:border-0 lg:pt-0`}>
           <Link to="/acerca" className={linkCls} activeProps={activeCls}>
             Acerca
           </Link>

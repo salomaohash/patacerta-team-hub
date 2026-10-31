@@ -1,4 +1,5 @@
 # Tarefas
+- [ ] Retirar rótulo de adoção e marca do rodapé, compactar espaços e corrigir menu/pesquisa no telemóvel.
 - [x] Verificar CTA «Encontra o teu parceiro», fonte Nunito reposta e remoção do bloco final.
 - [x] Verificar revisão de escrita, espaçamentos, raios, sombras, hovers, estados vazios e navegação, preservando tipografia anterior.
 - [x] Reforçar título e tipografia, criar logo e favicon, ampliar e abrandar faixa, retirar wording de demonstração em todo o site.
