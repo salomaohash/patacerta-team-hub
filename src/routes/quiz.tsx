@@ -15,7 +15,7 @@ export const Route = createFileRoute("/quiz")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
-  validateSearch: (s: Record<string, unknown>): { refazer?: boolean } => (s.refazer ? { refazer: true } : {}),
+  validateSearch: (s: Record<string, unknown>): { refazer?: boolean } => (s["refazer"] ? { refazer: true } : {}),
   component: Quiz,
 });
 
