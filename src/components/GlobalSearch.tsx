@@ -42,7 +42,7 @@ export function GlobalSearch() {
       if (e.key === "Enter" && visible) { e.preventDefault(); choose(selected); }
       if (e.key === "Tab") setOpen(false);
     }} />
-    <SearchFilters filters={filters} onShow={() => setOpen(false)} onChange={(next) => { setFilters(next); setSelected(0); }} />
+    <SearchFilters filters={filters} onShow={(show) => setOpen(!show)} onChange={(next) => { setFilters(next); setSelected(0); }} />
     {visible && <div id={id} role="listbox" aria-label="Resultados da pesquisa" className="absolute left-0 top-14 z-50 max-h-96 w-full overflow-y-auto rounded-lg border border-border bg-popover p-2 text-popover-foreground shadow-soft">
       {items.length === 0 ? <p role="status" className="p-3 text-sm">{q ? `Sem resultados para ‘${q}’` : "Sem resultados para estes filtros."}</p> : items.map((item, i) => <div key={`${item.kind}-${item.id}`}>
         {(i === 0 || items[i - 1]?.group !== item.group) && <p className="eyebrow px-3 pb-2 pt-3">{item.group}</p>}
