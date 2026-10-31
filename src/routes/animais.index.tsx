@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PawPrint } from "lucide-react";
 import { animals } from "@/lib/animals";
+import { AnimalCard } from "@/components/AnimalCard";
 
 type Search = { especie?: string | undefined; porte?: string | undefined; energia?: string | undefined };
 
@@ -33,6 +33,7 @@ function Catalog() {
   const navigate = Route.useNavigate();
   const list = animals.filter(
     (a) =>
+      a.status === "active" &&
       (!search.especie || a.species === search.especie) &&
       (!search.porte || a.size === search.porte) &&
       (!search.energia || a.energy === search.energia),
@@ -68,28 +69,10 @@ function Catalog() {
         </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((a) => (
-            <Link
-              key={a.id}
-              to="/animais/$id"
-              params={{ id: a.id }}
-              className="group rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-soft"
-            >
-              <div className="flex aspect-[4/3] items-center justify-center rounded-xl bg-secondary text-accent-deep">
-                <PawPrint size={40} strokeWidth={1.2} />
-              </div>
-              <h2 className="mt-5 text-2xl">{a.name}</h2>
-              <p className="text-sm text-muted-foreground">
-                {a.breed} · {a.ageYears} {a.ageYears === 1 ? "ano" : "anos"} · {a.municipality}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2 text-xs">
-                <span className="rounded-full bg-secondary px-3 py-1">{a.size}</span>
-                <span className="rounded-full bg-secondary px-3 py-1">energia {a.energy}</span>
-                {a.apartmentOk && <span className="rounded-full bg-secondary px-3 py-1">apartamento</span>}
-              </div>
-            </Link>
-          ))}
-          {list.length === 0 && <p className="text-muted-foreground">Nenhum animal com estes filtros.</p>}
+          {list.map((a) => <AnimalCard key={a.id} a={a} />)}
+          {list.length === 0 && (
+            <p className="text-muted-foreground">Nenhum animal corresponde a estes filtros. Tenta alargar a pesquisa.</p>
+          )}
         </div>
       </main>
     </div>

@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Check, X, PawPrint } from "lucide-react";
-import { getAnimal } from "@/lib/animals";
+import { Check, X, MapPin } from "lucide-react";
+import { getAnimal, getAssociation } from "@/lib/animals";
 
 export const Route = createFileRoute("/animais/$id")({
   loader: async ({ params }) => {
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/animais/$id")({
   },
   head: ({ loaderData }) => {
     const t = loaderData ? `${loaderData.name} — PataCerta` : "Animal — PataCerta";
-    const d = loaderData?.story ?? "Perfil de animal para adoção.";
+    const d = loaderData?.description ?? "Perfil de animal para adoção.";
     return {
       meta: [
         { title: t },
@@ -43,14 +43,13 @@ function Detail() {
       <main className="mx-auto max-w-4xl px-6 py-16">
         <Link to="/animais" className="text-sm text-muted-foreground hover:text-foreground">← Catálogo</Link>
         <div className="mt-8 grid gap-10 md:grid-cols-2">
-          <div className="flex aspect-square items-center justify-center rounded-2xl bg-secondary text-accent-deep">
-            <PawPrint size={64} strokeWidth={1.2} />
-          </div>
+          <img src={a.photo} alt={a.name} width={816} height={816} className="aspect-square w-full self-start rounded-2xl object-cover" />
           <div>
-            <p className="eyebrow">{a.species} · {a.municipality}</p>
+            <p className="eyebrow">Demonstração{a.forgotten ? ` · Esquecido: ${a.forgotten.kind}` : ""}</p>
             <h1 className="mt-3 text-5xl">{a.name}</h1>
             <p className="mt-2 text-muted-foreground">{a.breed} · {a.ageYears} anos · porte {a.size} · energia {a.energy}</p>
-            <p className="mt-6">{a.story}</p>
+            <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground"><MapPin size={16} strokeWidth={1.5} />{getAssociation(a.associationId)?.name}, {getAssociation(a.associationId)?.city}</p>
+            <p className="mt-6">{a.description}</p>
             <ul className="mt-6 space-y-2 text-sm">
               {traits.map(([label, ok]) => (
                 <li key={label} className="flex items-center gap-2">
