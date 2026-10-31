@@ -24,7 +24,7 @@ export function HomeStats() {
     return () => { observer.disconnect(); cancelAnimationFrame(frame); };
   }, []);
   return <section ref={ref} aria-label="O catálogo em números" className="border-y border-border">
-    <dl className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-8 px-6 py-10 md:grid-cols-4 md:py-12">
+    <dl className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-6 px-6 py-12 md:grid-cols-4 md:py-12">
       {homeStats.map((stat) => <div key={stat.label} className="flex flex-col text-center">
         <dt className="order-2 mt-2 text-sm text-muted-foreground">{stat.label}</dt>
         <dd className="font-serif text-5xl tabular-nums"><span aria-hidden="true">{Math.round(stat.value * progress)}</span><span className="sr-only">{stat.value}</span></dd>

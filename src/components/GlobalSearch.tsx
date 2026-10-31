@@ -17,8 +17,8 @@ export function GlobalSearch() {
   const navigate = useNavigate();
   const results = globalSearch(q, filters);
   const items = [
-    ...results.adoption.map((a) => ({ id: a.id, name: a.name, photo: a.photo, meta: `${getAssociation(a.associationId)?.city} · ${a.ageYears < 1 ? `${Math.round(a.ageYears * 12)} meses` : `${a.ageYears} anos`}`, group: "Para adoção", kind: "animal" })),
-    ...results.community.map((n) => ({ id: n.id, name: noticeName(n), photo: n.foto, meta: `${n.zona} · ${n.tipo === "desaparecido" ? "Desaparecido" : "Encontrado"}`, group: "Perdidos & Encontrados", kind: "notice" })),
+    ...results.adoption.map((a) => ({ id: a.id, name: a.name, photo: a.photo, meta: `${getAssociation(a.associationId)?.city}, ${a.ageYears < 1 ? `${Math.round(a.ageYears * 12)} meses` : `${a.ageYears} anos`}`, group: "Para adoção", kind: "animal" })),
+    ...results.community.map((n) => ({ id: n.id, name: noticeName(n), photo: n.foto, meta: `${n.zona}, ${n.tipo === "desaparecido" ? "Desaparecido" : "Encontrado"}`, group: "Perdidos e encontrados", kind: "notice" })),
   ];
   const visible = open && (q.trim().length >= 2 || Object.values(filters).some(Boolean));
   useEffect(() => {
@@ -36,7 +36,7 @@ export function GlobalSearch() {
   }
   return <div ref={container} className="relative order-last w-full min-w-0 md:order-none md:flex-1 md:basis-80 md:max-w-xl">
     <Search size={18} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
-    <Input role="combobox" aria-label="Pesquisa global" aria-autocomplete="list" aria-expanded={visible} aria-controls={visible ? id : undefined} aria-activedescendant={visible && items[selected] ? `${id}-${selected}` : undefined} value={q} placeholder="Procurar por nome, raça ou localização…" className="h-12 rounded-full pl-11 pr-14" onFocus={() => setOpen(true)} onChange={(e) => { setQ(e.target.value); setSelected(0); setOpen(true); }} onKeyDown={(e) => {
+    <Input role="combobox" aria-label="Pesquisa global" aria-autocomplete="list" aria-expanded={visible} aria-controls={visible ? id : undefined} aria-activedescendant={visible && items[selected] ? `${id}-${selected}` : undefined} value={q} placeholder="Procurar por nome, raça ou localização…" className="h-12 rounded-full pl-11 pr-12" onFocus={() => setOpen(true)} onChange={(e) => { setQ(e.target.value); setSelected(0); setOpen(true); }} onKeyDown={(e) => {
       if (e.key === "Escape") { setOpen(false); e.preventDefault(); }
       if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); setOpen(true); setSelected((v) => items.length ? (v + (e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length : 0); }
       if (e.key === "Enter" && visible) { e.preventDefault(); choose(selected); }
