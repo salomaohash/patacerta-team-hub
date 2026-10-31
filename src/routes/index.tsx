@@ -64,7 +64,7 @@ function Index() {
         <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 py-12 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-12">
           <div className="space-y-6">
             <p className="eyebrow flex items-center gap-3 text-accent-deep"><span aria-hidden="true" className="h-px w-8 bg-accent-deep" />Adoção consciente</p>
-            <h1 className="font-serif text-[38px] font-medium leading-[1.08] tracking-normal md:text-[52px]"><span className="block">O animal que</span><span className="block">realmente</span><span className="block text-accent-deep">combina contigo.</span></h1>
+            <h1 className="font-sans text-[38px] font-black leading-[1.08] tracking-normal md:text-[52px]"><span className="block">O Animal Que</span><span className="block">Realmente</span><span className="block text-accent-deep">Combina Contigo.</span></h1>
             <p className="max-w-[46ch] text-[18px] leading-relaxed text-muted-foreground">
               Responde a um questionário sobre a tua rotina. Para cada animal, vê o que encaixa e os desafios a considerar.
             </p>

@@ -128,12 +128,12 @@
 }
 
 @layer base {
-  h1, h2, h3, h4 { font-family: var(--font-serif); letter-spacing: 0; font-weight: 500; }
+  h1, h2, h3, h4 { font-family: var(--font-sans); letter-spacing: 0; font-weight: 800; }
   body { font-family: var(--font-sans); font-size: 16.5px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
 }
 
 @utility eyebrow {
-  font-family: var(--font-serif); font-size: 14px; letter-spacing: 0; text-transform: none; font-weight: 500;
+  font-family: var(--font-sans); font-size: 14px; letter-spacing: 0; text-transform: none; font-weight: 500;
   color: var(--color-muted-foreground);
 }
 
