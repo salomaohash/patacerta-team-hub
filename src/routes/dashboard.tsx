@@ -5,7 +5,7 @@ import { Dashboard } from "@/components/dashboard/Dashboard";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({ meta: [
     { title: "Dashboard de cuidados — PataCerta" },
-    { name: "description", content: "Acompanha a saúde da Luna, cuidados diários e locais pet-friendly no dashboard demonstrativo." },
+    { name: "description", content: "Acompanha a saúde da Luna, cuidados diários e locais pet-friendly no teu dashboard." },
     { property: "og:title", content: "Dashboard de cuidados — PataCerta" },
     { property: "og:description", content: "O teu animal, perfil e etapas de adoção, guardados na experiência do navegador." },
     { property: "og:type", content: "website" },

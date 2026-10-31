@@ -12,7 +12,7 @@ export const Route = createFileRoute("/acerca")({
     { title: "Acerca de nós — PataCerta" },
     { name: "description", content: "A história da PataCerta: adoção informada, reabilitação e expectativas reais. Conhece os nossos valores e as perguntas frequentes." },
     { property: "og:title", content: "Acerca de nós — PataCerta" },
-    { property: "og:description", content: "Compaixão com expectativas reais. A nossa história, os animais reabilitados e respostas honestas sobre esta demonstração." },
+    { property: "og:description", content: "Compaixão com expectativas reais. A nossa história, os animais reabilitados e respostas às tuas perguntas." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
   ] }),
@@ -31,14 +31,14 @@ const stages = [
   { icon: House, title: "Pronto para adoção", text: "Um perfil completo: a vida que tem agora e o que precisa para recomeçar." },
 ];
 const faqs = [
-  { question: "É um site de adoção de animais?", answer: "Sim. A PataCerta foi pensada como um lugar onde podes encontrar animais de associações parceiras prontos para adoção — com contexto, não apenas com uma imagem. Neste momento, os animais apresentados são exemplos de demonstração, sem adoção real pelo site." },
+  { question: "É um site de adoção de animais?", answer: "Sim. A PataCerta foi pensada como um lugar onde podes encontrar animais de associações parceiras prontos para adoção — com contexto, não apenas com uma imagem. Neste momento, os animais apresentados são perfis ilustrativos; não é possível concluir uma adoção pelo site." },
   { question: "O que tem em comum com sites como Bianca, Petify, Adopta-me ou OLX?", answer: "Há cães e gatos com fotografia e descrição, como nesses sites. A proposta da PataCerta é acrescentar uma compatibilidade explicada a partir do teu questionário: o que encaixa na tua rotina e os desafios a considerar. Não substitui a informação de outras plataformas nem a conversa com a associação." },
   { question: "O que é a «Compatibilidade indicativa»?", answer: "Uma percentagem que estima o encaixe entre as necessidades do animal e a tua vida, calculada a partir do questionário: horas fora de casa, crianças, experiência, atividade física e outros aspetos da rotina. É sempre acompanhada das razões que a justificam. Uma estimativa baseada nas tuas respostas — não uma previsão científica." },
-  { question: "E os animais reabilitados — como sei que estão recuperados?", answer: "A proposta é que cada animal reabilitado tenha uma secção dedicada: o que lhe aconteceu, o tratamento que recebeu e o acompanhamento de que ainda precisa, incluindo consultas ou exercícios. Essa informação deve estar disponível antes da candidatura. Nesta demonstração, os perfis são exemplos, não registos clínicos verificados." },
-  { question: "E se me candidatar a um animal com necessidades especiais, dos Inesquecíveis?", answer: "O perfil apresenta o que os cuidados envolvem — medicação, adaptações em casa e frequência de consultas — e o apoio previsto da associação. Se for o teu primeiro animal com necessidades especiais, as razões de compatibilidade ajudam-te a fazer uma primeira avaliação informada. Nesta demonstração, as candidaturas e os apoios são exemplos." },
-  { question: "Isto é um serviço pago?", answer: "Não. Toda a PataCerta é gratuita para quem adota. A demonstração cobre apenas a experiência — em produção, os adotantes e as associações também não pagarão nada." },
-  { question: "Este site é uma demonstração. O que significa?", answer: "Os animais, as percentagens de compatibilidade e as candidaturas são dados demonstrativos realistas. Não podes adotar diretamente estes animais através do site. Nenhuma associação responde por animais neste protótipo; qualquer candidatura feita aqui serve apenas para demonstrar a experiência." },
-  { question: "Onde são guardados os meus dados?", answer: "Nesta demonstração, as tuas respostas ao questionário, candidaturas e favoritos são guardados localmente no teu navegador. Estes dados não são enviados para um servidor externo. Limpar os dados do navegador apaga o teu histórico." },
+  { question: "E os animais reabilitados — como sei que estão recuperados?", answer: "A proposta é que cada animal reabilitado tenha uma secção dedicada: o que lhe aconteceu, o tratamento que recebeu e o acompanhamento de que ainda precisa, incluindo consultas ou exercícios. Essa informação deve estar disponível antes da candidatura. Os perfis atuais são exemplos, não registos clínicos verificados." },
+  { question: "E se me candidatar a um animal com necessidades especiais, dos Inesquecíveis?", answer: "O perfil apresenta o que os cuidados envolvem — medicação, adaptações em casa e frequência de consultas — e o apoio previsto da associação. Se for o teu primeiro animal com necessidades especiais, as razões de compatibilidade ajudam-te a fazer uma primeira avaliação informada. As candidaturas e os apoios apresentados são exemplos." },
+  { question: "Isto é um serviço pago?", answer: "Não. Toda a PataCerta é gratuita para quem adota. Os adotantes e as associações não pagam nada." },
+  { question: "Posso adotar diretamente através do site?", answer: "Os perfis de animais e as candidaturas são exemplos ilustrativos. As percentagens são estimativas calculadas a partir das tuas respostas. Não podes adotar diretamente estes animais através do site. Nenhuma associação responde por animais neste protótipo; qualquer candidatura feita aqui fica apenas neste navegador e não é enviada." },
+  { question: "Onde são guardados os meus dados?", answer: "As tuas respostas ao questionário, candidaturas e favoritos são guardados localmente no teu navegador. Estes dados não são enviados para um servidor externo. Limpar os dados do navegador apaga o teu histórico." },
 ];
 
 function About() {
@@ -68,7 +68,7 @@ function About() {
             </div>
             <figure data-r>
               <img src={mimi} alt="Mimi, gata sénior de 13 anos" width={768} height={768} className="aspect-[4/5] w-full rounded-lg object-cover" />
-              <figcaption className="mt-4 text-[13px] text-muted-foreground">Mimi, 13 anos. Um ritmo tranquilo e a mesma vontade de pertencer. Fotografia de demonstração.</figcaption>
+              <figcaption className="mt-4 text-[13px] text-muted-foreground">Mimi, 13 anos. Um ritmo tranquilo e a mesma vontade de pertencer.</figcaption>
             </figure>
           </Reveal>
         </section>
@@ -99,7 +99,7 @@ function About() {
 
         <section className="bg-muted">
           <Reveal className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-2 md:gap-16 md:py-24">
-            <figure data-r><img src={zeca} alt="Zeca, cão sénior de 11 anos" width={768} height={768} loading="lazy" className="aspect-square w-full rounded-lg object-cover" /><figcaption className="mt-4 text-[13px] text-muted-foreground">Zeca, 11 anos. Passeios curtos, companhia sem pressa. Fotografia de demonstração.</figcaption></figure>
+            <figure data-r><img src={zeca} alt="Zeca, cão sénior de 11 anos" width={768} height={768} loading="lazy" className="aspect-square w-full rounded-lg object-cover" /><figcaption className="mt-4 text-[13px] text-muted-foreground">Zeca, 11 anos. Passeios curtos, companhia sem pressa.</figcaption></figure>
             <div data-r className="space-y-6">
               <p className="eyebrow text-accent-warm">Os Inesquecíveis</p>
               <h2 className="text-[34px] leading-tight md:text-[44px]">Há quem espere mais tempo. Não por merecer menos.</h2>
@@ -112,7 +112,7 @@ function About() {
         <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
           <aside className="flex gap-4 border-l-2 border-primary bg-secondary px-6 py-6" aria-labelledby="demo-title">
             <ShieldCheck size={24} strokeWidth={1.5} className="mt-1 shrink-0 text-accent-deep" />
-            <div><h2 id="demo-title" className="text-[24px]">Um projeto de demonstração</h2><p className="mt-3 max-w-3xl text-[15px] text-muted-foreground">A PataCerta é, neste momento, um trabalho de demonstração. O questionário, as percentagens e os dados de adoção são exemplos realistas criados para este produto. Nenhum animal do site está disponível para adoção diretamente através desta demonstração.</p><p className="mt-3 max-w-3xl text-[15px] text-muted-foreground">Os avisos de desaparecidos e encontrados também são fictícios: as fotografias são ilustrativas e os contactos example.com não recebem pedidos reais. As associações do catálogo são fictícias. As organizações apresentadas na faixa da página inicial são referências reais, sem qualquer parceria formal com a PataCerta.</p></div>
+            <div><h2 id="demo-title" className="text-[24px]">Informação sobre os perfis</h2><p className="mt-3 max-w-3xl text-[15px] text-muted-foreground">A PataCerta reúne perfis ilustrativos para explorar a adoção consciente. O questionário, as percentagens e os dados de adoção são exemplos realistas criados para este produto. Nenhum animal do site está disponível para adoção diretamente através do site.</p><p className="mt-3 max-w-3xl text-[15px] text-muted-foreground">Os avisos de desaparecidos e encontrados também são fictícios: as fotografias são ilustrativas e os contactos example.com não recebem pedidos reais. As associações do catálogo são fictícias. As organizações apresentadas na faixa da página inicial são referências reais, sem qualquer parceria formal com a PataCerta.</p></div>
           </aside>
         </section>
 

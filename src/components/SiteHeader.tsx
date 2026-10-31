@@ -2,6 +2,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { signOut, useSession } from "@/lib/state/session";
 import { GlobalSearch } from "@/components/GlobalSearch";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/patacerta-logo.png";
 
 const linkCls = "text-sm hover:text-accent-deep";
 const activeCls = { className: "text-sm text-accent-deep" };
@@ -12,8 +13,8 @@ export function SiteHeader() {
   return (
     <header className="border-b border-border bg-background">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-5">
-        <Link to="/" className="font-serif text-xl tracking-tight">
-          PataCerta
+        <Link to="/" aria-label="PataCerta — página inicial" className="shrink-0">
+          <img src={logo} alt="PataCerta" width={180} height={41} className="h-auto w-36 object-contain sm:w-[180px]" />
         </Link>
         <GlobalSearch />
         <nav aria-label="Menu principal" className="flex flex-wrap items-center gap-4 sm:gap-6">

@@ -29,7 +29,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
       <p className="eyebrow">{isReg ? "Criar conta" : "Bem-vindo de volta"}</p>
       <h1 className="mt-4 text-4xl">{isReg ? "Registar" : "Entrar"}</h1>
       <p className="mt-3 text-sm text-muted-foreground">
-        Modo de demonstração: os dados ficam apenas neste navegador.
+        Os dados ficam apenas neste navegador.
       </p>
       <form onSubmit={submit} className="mt-10 space-y-4">
         {isReg && (
@@ -57,7 +57,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
           {isReg ? "Criar conta" : "Entrar"}
         </Button>
       </form>
-      {!isReg && <Button variant="outline" className="mt-4 h-auto w-full rounded-full py-3" onClick={() => { signIn({ name: "Sofia Martins", email: "sofia@example.com", role: "adopter" }); navigate({ to: "/dashboard" }); }}>Entrar na demonstração</Button>}
+      {!isReg && <Button variant="outline" className="mt-4 h-auto w-full rounded-full py-3" onClick={() => { signIn({ name: "Sofia Martins", email: "sofia@example.com", role: "adopter" }); navigate({ to: "/dashboard" }); }}>Explorar com perfil de exemplo</Button>}
       <p className="mt-6 text-center text-sm text-muted-foreground">
         {isReg ? "Já tens conta? " : "Ainda não tens conta? "}
         <Link to={isReg ? "/entrar" : "/registar"} className="text-accent-deep underline">
