@@ -18,7 +18,7 @@ describe("Optional PataCerta entry", () => {
     fireEvent.click(screen.getByRole("button", { name: "Entrar" }));
     expect(navigate).toHaveBeenCalledWith({ to: "/dashboard" });
     const { result } = renderHook(() => useDemoUser());
-    expect(result.current).toEqual({ name: "", initials: "" });
+    expect(result.current).toEqual({ name: "", initials: "", papel: "adotante" });
   });
 
   it("does not validate email or password and keeps only the name", () => {
@@ -29,7 +29,7 @@ describe("Optional PataCerta entry", () => {
     fireEvent.click(screen.getByRole("button", { name: "Entrar" }));
     expect(navigate).toHaveBeenCalledWith({ to: "/dashboard" });
     const { result } = renderHook(() => useDemoUser());
-    expect(result.current).toEqual({ name: "António Cardoso", initials: "AC" });
+    expect(result.current).toEqual({ name: "António Cardoso", initials: "AC", papel: "adotante" });
   });
 
   it("does not start authentication or entry from the Google button", () => {
