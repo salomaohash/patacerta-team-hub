@@ -12,8 +12,8 @@ export function SiteHeader() {
   const navigate = useNavigate();
   return (
     <header className="border-b border-border bg-background">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-5">
-        <Link to="/" aria-label="PataCerta — página inicial" className="shrink-0">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-6">
+        <Link to="/" aria-label="PataCerta, página inicial" className="shrink-0">
           <img src={logo} alt="PataCerta" width={180} height={41} className="h-auto w-36 object-contain sm:w-[180px]" />
         </Link>
         <GlobalSearch />

@@ -80,9 +80,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PataCerta — Adoção consciente" },
+      { title: "PataCerta, Adoção consciente" },
       { name: "description", content: "Encontrar a família certa para cada animal." },
-      { property: "og:title", content: "PataCerta — Adoção consciente" },
+      { property: "og:title", content: "PataCerta, Adoção consciente" },
       { property: "og:description", content: "Encontrar a família certa para cada animal." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

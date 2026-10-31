@@ -12,7 +12,7 @@ export function QuizInline({ a }: { a: Animal }) {
   if (!q) return null;
   const m = computeMatch(q, a);
   return (
-    <div className="mt-8 flex items-center gap-4 rounded-2xl border border-border bg-card p-4">
+    <div className="mt-6 flex items-center gap-4 rounded-lg border border-border bg-card p-4">
       <MatchRing value={m.score} size={60} label="Compatibilidade indicativa" />
       <div className="text-sm">
         <p className="font-medium">Compatibilidade indicativa</p>

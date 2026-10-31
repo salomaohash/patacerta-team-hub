@@ -34,6 +34,6 @@ export function daysSince(date: string, now = new Date()) {
   return Math.max(0, Math.floor((Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) - Date.parse(`${date}T00:00:00Z`)) / 86400000));
 }
 export function noticeMailto(n: Notice) {
-  const subject = n.tipo === "desaparecido" ? `Informação sobre ${noticeName(n)} — ${n.zona}` : `Identificação de animal encontrado — ${n.zona}`;
+  const subject = n.tipo === "desaparecido" ? `Informação sobre ${noticeName(n)}, ${n.zona}` : `Identificação de animal encontrado, ${n.zona}`;
   return `mailto:${n.contactoEmail}?subject=${encodeURIComponent(subject)}`;
 }

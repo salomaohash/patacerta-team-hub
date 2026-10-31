@@ -7,9 +7,9 @@ import { loadQuiz, saveQuiz } from "@/lib/state/quiz";
 export const Route = createFileRoute("/quiz")({
   head: () => ({
     meta: [
-      { title: "Questionário de compatibilidade — PataCerta" },
+      { title: "Questionário de compatibilidade, PataCerta" },
       { name: "description", content: "Nove perguntas sobre a tua rotina para encontrar os animais mais compatíveis contigo." },
-      { property: "og:title", content: "Questionário de compatibilidade — PataCerta" },
+      { property: "og:title", content: "Questionário de compatibilidade, PataCerta" },
       { property: "og:description", content: "Descobre a tua compatibilidade em nove perguntas." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/quiz")({
 });
 
 const questions: { key: keyof QuizAnswers; q: string; options: string[] }[] = [
-  { key: "hoursAway", q: "Quantas horas por dia passas fora de casa?", options: ["Menos de 4h", "4–8h", "Mais de 8h"] },
+  { key: "hoursAway", q: "Quantas horas por dia passas fora de casa?", options: ["Menos de 4h", "4 a 8 horas", "Mais de 8h"] },
   { key: "housing", q: "Onde vives?", options: ["Apartamento pequeno", "Apartamento espaçoso", "Casa com espaço exterior"] },
   { key: "dailyTime", q: "Quanto tempo por dia consegues dedicar a um animal?", options: ["Menos de 30 min", "30 min a 1h", "Mais de 1h"] },
   { key: "activity", q: "Como descreves o teu nível de atividade?", options: ["Calmo, prefiro estar em casa", "Moderado, passeios regulares", "Ativo, exercício todos os dias"] },
@@ -55,24 +55,24 @@ function Quiz() {
   return (
     <main className="mx-auto flex min-h-[calc(100vh-80px)] max-w-2xl flex-col px-6 py-12">
       <div className="h-0.5 w-full overflow-hidden rounded-full bg-secondary">
-        <div className="h-full bg-accent-deep transition-all duration-500" style={{ width: `${((step + 1) / questions.length) * 100}%` }} />
+        <div className="h-full bg-accent-deep transition-all duration-[250ms] ease-out" style={{ width: `${((step + 1) / questions.length) * 100}%` }} />
       </div>
       <div className="mt-6 flex items-center justify-between">
         <p className="eyebrow">Passo {step + 1} de {questions.length}</p>
         {step > 0 && (
-          <button onClick={() => setStep(step - 1)} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+          <button onClick={() => setStep(step - 1)} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft size={14} /> Anterior
           </button>
         )}
       </div>
       <div key={step} className="quiz-step mt-12 flex-1">
         <h1 className="text-3xl leading-tight md:text-4xl">{cur.q}</h1>
-        <div className="mt-10 space-y-3">
+        <div className="mt-12 space-y-3">
           {cur.options.map((o, i) => (
             <button
               key={o}
               onClick={() => choose(i)}
-              className={`w-full rounded-2xl border px-6 py-4 text-left transition-colors hover:border-accent-deep hover:bg-secondary ${answers[cur.key] === i ? "border-accent-deep bg-secondary" : "border-border bg-card"}`}
+              className={`w-full rounded-lg border px-6 py-4 text-left transition-colors hover:border-accent-deep hover:bg-secondary ${answers[cur.key] === i ? "border-accent-deep bg-secondary" : "border-border bg-card"}`}
             >
               {o}
             </button>

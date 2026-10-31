@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, type CSSProperties } from "react";
-import { ArrowRight, ClipboardList, HeartHandshake, Mail, Stethoscope } from "lucide-react";
+import { ClipboardList, HeartHandshake, Mail, Stethoscope } from "lucide-react";
 import { getAnimal, getAssociation } from "@/lib/animals";
 import { computeMatch, type QuizAnswers } from "@/lib/matching";
 import { MatchRing } from "@/components/MatchRing";
@@ -16,9 +16,9 @@ import heroLoop from "@/assets/hero-dog-loop.mp4.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PataCerta — O animal que realmente combina contigo" },
+      { title: "PataCerta, O animal que realmente combina contigo" },
       { name: "description", content: "Adoção consciente em Portugal: compatibilidade explicada para cada animal." },
-      { property: "og:title", content: "PataCerta — O animal que realmente combina contigo" },
+      { property: "og:title", content: "PataCerta, O animal que realmente combina contigo" },
       { property: "og:description", content: "Adoção consciente em Portugal: compatibilidade explicada para cada animal." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
 
 const STEPS = [
   { icon: ClipboardList, title: "Questionário", text: "Nove perguntas calmas sobre a tua rotina, a tua casa e o tempo que tens para dar." },
-  { icon: HeartHandshake, title: "Compatibilidade explicada", text: "Cada animal recebe uma percentagem com razões claras — e os desafios, com honestidade." },
+  { icon: HeartHandshake, title: "Compatibilidade explicada", text: "Cada animal recebe uma percentagem com razões claras. Os desafios também são apresentados." },
   { icon: Mail, title: "Contacto", text: "Fala diretamente com a associação responsável e inicia o processo de adoção." },
 ];
 
@@ -46,7 +46,6 @@ const activeGoods = dims.filter((d) => d.score >= 0.75).slice(0, 2);
 const activeHard = [...dims].sort((a, b) => a.score - b.score).find((d) => d.score < 0.75);
 
 const d = (i: number) => ({ "--i": i }) as CSSProperties;
-const btn = "inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[15px] shadow-soft transition-colors";
 
 function Index() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -62,22 +61,22 @@ function Index() {
     <div className="bg-background text-foreground">
       {/* Hero */}
       <section className="home-opening grain relative overflow-hidden border-b border-border">
-        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-6 py-10 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-14">
+        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 py-12 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-12">
           <div className="space-y-6">
             <p className="eyebrow flex items-center gap-3 text-accent-deep"><span aria-hidden="true" className="h-px w-8 bg-accent-deep" />Adoção consciente</p>
-            <h1 className="font-sans text-[38px] font-black leading-[1.08] tracking-normal md:text-[52px]"><span className="block">O Animal Que</span><span className="block">Realmente</span><span className="block text-accent-deep">Combina Contigo.</span></h1>
+            <h1 className="font-serif text-[38px] font-medium leading-[1.08] tracking-normal md:text-[52px]"><span className="block">O animal que</span><span className="block">realmente</span><span className="block text-accent-deep">combina contigo.</span></h1>
             <p className="max-w-[46ch] text-[18px] leading-relaxed text-muted-foreground">
-              Responde a um questionário cuidadoso e vê, para cada animal, uma compatibilidade explicada — o que encaixa e o que poderá ser um desafio.
+              Responde a um questionário sobre a tua rotina. Para cada animal, vê o que encaixa e os desafios a considerar.
             </p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-3">
-              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-3.5 text-base font-semibold shadow-soft"><Link to="/quiz">
-                Descobrir a tua compatibilidade <ArrowRight size={18} className="shrink-0" />
+              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-4 text-base font-semibold shadow-soft"><Link to="/quiz">
+                Encontra o teu parceiro
               </Link></Button>
-              <Button asChild variant="link" className="h-auto px-0 text-base font-normal"><Link to="/animais">Explorar animais <ArrowRight size={16} /></Link></Button>
+              <Button asChild variant="link" className="h-auto px-0 text-base font-normal"><Link to="/animais">Explorar animais </Link></Button>
             </div>
           </div>
-          <div className="relative mx-auto mt-2 w-full max-w-[420px] pb-5 md:mt-0">
-            <div className="overflow-hidden rounded-[24px] shadow-soft">
+          <div className="relative mx-auto mt-2 w-full max-w-[420px] pb-6 md:mt-0">
+            <div className="overflow-hidden rounded-lg">
               <video
                 ref={videoRef}
                 className="aspect-[4/5] w-full object-cover motion-reduce:hidden"
@@ -92,12 +91,12 @@ function Index() {
               />
               <img src={heroPoster} alt="Cão a brincar no relvado" width={800} height={1008} className="hidden aspect-[4/5] w-full object-cover motion-reduce:block" />
             </div>
-            <div className="absolute bottom-0 left-3 flex items-center gap-4 rounded-2xl border border-border bg-card p-4 pr-6 shadow-soft md:-left-5">
+            <div className="absolute bottom-0 left-3 flex items-center gap-4 rounded-lg border border-border bg-card p-4 pr-6 shadow-soft md:-left-5">
               <MatchRing value={heroMatch.score} size={60} label="Compatibilidade indicativa" />
               <div>
                 <p className="font-serif text-[19px] leading-tight">{heroAnimal.name}</p>
                 <p className="text-[13px] text-muted-foreground">
-                  {heroAnimal.species} · {heroAnimal.ageYears} anos · {getAssociation(heroAnimal.associationId)?.city}
+                  {heroAnimal.species}, {heroAnimal.ageYears} anos, {getAssociation(heroAnimal.associationId)?.city}
                 </p>
               </div>
             </div>
@@ -107,10 +106,10 @@ function Index() {
 
       {/* Como funciona */}
       <section className="border-t border-border">
-        <Reveal className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+        <Reveal className="mx-auto max-w-6xl px-6 py-12 md:py-12">
           <div data-r className="space-y-6">
             <p className="eyebrow">Como funciona</p>
-            <h2 className="text-[34px] md:text-[44px]">Três passos, sem pressa.</h2>
+            <h2 className="text-[34px] md:text-[44px]">Como funciona a adoção?</h2>
           </div>
           <ol className="mt-12 grid gap-6 md:grid-cols-3">
             {STEPS.map((s, i) => (
@@ -131,20 +130,20 @@ function Index() {
       <PartnerMarquee />
 
       <section className="section-texture border-t border-border bg-muted">
-        <Reveal className="mx-auto flex max-w-6xl flex-col justify-between gap-8 px-6 py-12 md:flex-row md:items-center md:py-16">
-          <div data-r className="max-w-2xl"><p className="eyebrow">Perdidos e Encontrados</p><h2 className="mt-5 text-[32px] leading-tight md:text-[40px]">Perdi o meu animal. Ajudamos a encontrá-lo.</h2><p className="mt-5 text-[16.5px] text-muted-foreground">Uma comunidade atenta começa com uma localização e um aviso partilhado. Consulta as zonas de busca e os animais encontrados.</p><p className="mt-4 text-sm text-accent-deep">{notices.filter((n) => n.tipo === "desaparecido").length} avisos no catálogo</p></div>
-          <div data-r className="flex shrink-0 flex-col gap-3"><Button asChild className="font-normal"><Link to="/animais" search={{ estado: "desaparecido" }}>Ver desaparecidos <ArrowRight /></Link></Button><Button asChild variant="outline" className="font-normal"><Link to="/animais" search={{ estado: "encontrado" }}>Ver encontrados <ArrowRight /></Link></Button></div>
+        <Reveal className="mx-auto flex max-w-6xl flex-col justify-between gap-6 px-6 py-12 md:flex-row md:items-center md:py-12">
+          <div data-r className="max-w-2xl"><p className="eyebrow">Perdidos e encontrados</p><h2 className="mt-6 text-[32px] leading-tight md:text-[40px]">Perdeste o teu animal?</h2><p className="mt-6 text-[16.5px] text-muted-foreground">Uma comunidade atenta começa com uma localização e um aviso partilhado. Consulta as zonas de busca e os animais encontrados.</p><p className="mt-4 text-sm text-accent-deep">{notices.filter((n) => n.tipo === "desaparecido").length} avisos no catálogo</p></div>
+          <div data-r className="flex shrink-0 flex-col gap-3"><Button asChild className="font-normal"><Link to="/animais" search={{ estado: "desaparecido" }}>Ver desaparecidos </Link></Button><Button asChild variant="outline" className="font-normal"><Link to="/animais" search={{ estado: "encontrado" }}>Ver encontrados </Link></Button></div>
         </Reveal>
       </section>
 
       {/* Compatibilidade explicada */}
       <section className="home-ambient">
-        <Reveal className="mx-auto grid max-w-6xl items-center gap-16 px-6 py-16 md:grid-cols-2 md:py-24">
+        <Reveal className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-12 md:grid-cols-2 md:py-12">
           <div data-r className="space-y-6">
             <p className="eyebrow text-accent-deep">Compatibilidade</p>
-            <h2 className="text-[34px] md:text-[44px]">Uma percentagem que se explica.</h2>
+            <h2 className="text-[34px] md:text-[44px]">Como é calculada a compatibilidade?</h2>
             <p className="max-w-[52ch] text-muted-foreground">
-              Não mostramos apenas um número. Dizemos porque é que um animal encaixa na tua vida — e onde poderá haver fricção. Uma adoção feliz começa com expectativas honestas.
+              A percentagem compara a tua rotina com as necessidades do animal. Mostramos as razões de compatibilidade e os desafios a considerar.
             </p>
           </div>
           <div data-r style={d(1)} className="space-y-6">
@@ -153,39 +152,24 @@ function Index() {
               <div>
                 <p className="font-serif text-[24px]">{activeAnimal.name}</p>
                 <p className="text-sm text-muted-foreground">
-                  {activeAnimal.species} {activeAnimal.breed}, {activeAnimal.ageYears} anos · {getAssociation(activeAnimal.associationId)?.city}
+                  {activeAnimal.species} {activeAnimal.breed}, {activeAnimal.ageYears} anos, {getAssociation(activeAnimal.associationId)?.city}
                 </p>
               </div>
             </div>
             <ul className="space-y-4 pt-2 text-[16.5px]">
               {activeGoods.map((r) => (
                 <li key={r.reason} className="flex gap-3">
-                  <HeartHandshake size={18} strokeWidth={1.5} className="mt-1 shrink-0 text-accent-deep" />
+                  <HeartHandshake size={18} strokeWidth={1.5} className="mt-2 shrink-0 text-accent-deep" />
                   <span>{r.reason}</span>
                 </li>
               ))}
               {activeHard && (
                 <li className="flex gap-3 text-muted-foreground">
-                  <Stethoscope size={18} strokeWidth={1.5} className="mt-1 shrink-0 text-accent-warm" />
+                  <Stethoscope size={18} strokeWidth={1.5} className="mt-2 shrink-0 text-accent-warm" />
                   <span>{activeHard.reason}</span>
                 </li>
               )}
             </ul>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* CTA final */}
-      <section>
-        <Reveal className="mx-auto max-w-3xl px-6 py-24 text-center">
-          <h2 data-r className="text-[34px] md:text-[48px]">Começa pela pergunta certa.</h2>
-          <p data-r style={d(1)} className="mx-auto mt-6 max-w-[52ch] text-muted-foreground">
-            Três minutos de questionário. Uma lista de animais que combinam, de facto, contigo.
-          </p>
-          <div data-r style={d(2)} className="mt-10">
-            <Link to="/quiz" className={`${btn} bg-primary text-primary-foreground hover:bg-accent-deep`}>
-              Descobrir a tua compatibilidade <ArrowRight size={18} />
-            </Link>
           </div>
         </Reveal>
       </section>

@@ -13,7 +13,7 @@ export const Route = createFileRoute("/animais/$id")({
     return animal;
   },
   head: ({ loaderData }) => {
-    const t = loaderData ? `${loaderData.name} — PataCerta` : "Animal — PataCerta";
+    const t = loaderData ? `${loaderData.name}, PataCerta` : "Animal, PataCerta";
     const d = loaderData?.description ?? "Perfil de animal para adoção.";
     return {
       meta: [
@@ -27,9 +27,9 @@ export const Route = createFileRoute("/animais/$id")({
     };
   },
   component: Detail,
-  errorComponent: ({ error }) => <div role="alert" className="p-10">{error instanceof Error ? error.message : String(error)}</div>,
+  errorComponent: ({ error }) => <div role="alert" className="p-12">{error instanceof Error ? error.message : String(error)}</div>,
   notFoundComponent: () => (
-    <div className="p-10">
+    <div className="p-12">
       Animal não encontrado. <Link to="/animais" className="underline">Ver catálogo</Link>
     </div>
   ),
@@ -44,15 +44,15 @@ function Detail() {
   ] as const;
   return (
     <div className="min-h-screen bg-background">
-      <main className="mx-auto max-w-4xl px-6 py-16">
+      <main className="mx-auto max-w-4xl px-6 py-12">
         <Link to="/animais" className="text-sm text-muted-foreground hover:text-foreground">← Catálogo</Link>
-        {a.status === "adopted" && <p role="status" className="mt-6 border-l-2 border-primary bg-muted px-5 py-4 text-accent-deep">Adotado — esta história já tem final feliz</p>}
-        <div className="mt-8 grid gap-10 md:grid-cols-2">
+        {a.status === "adopted" && <p role="status" className="mt-6 border-l-2 border-primary bg-muted px-6 py-4 text-accent-deep">Adotado, esta história já tem final feliz</p>}
+        <div className="mt-6 grid gap-12 md:grid-cols-2">
           <AnimalGallery key={a.id} animal={a} />
           <div>
             <p className="eyebrow">{a.forgotten ? `Inesquecível: ${a.forgotten.kind}` : "Perfil do animal"}</p>
             <h1 className="mt-3 text-5xl">{a.name}</h1>
-            <p className="mt-2 text-muted-foreground">{a.breed} · {a.ageYears < 1 ? `${Math.round(a.ageYears * 12)} meses` : `${a.ageYears} anos`} · porte {a.size} · energia {a.energy}</p>
+            <p className="mt-2 text-muted-foreground">{a.breed}, {a.ageYears < 1 ? `${Math.round(a.ageYears * 12)} meses` : `${a.ageYears} anos`}, porte {a.size}, energia {a.energy}</p>
             <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground"><MapPin size={16} strokeWidth={1.5} />{getAssociation(a.associationId)?.name}, {getAssociation(a.associationId)?.city}</p>
             <p className="mt-6">{a.description}</p>
             <ul className="mt-6 space-y-2 text-sm">
@@ -64,8 +64,8 @@ function Detail() {
               ))}
             </ul>
             <QuizInline a={a} />
-            <div className="mt-8 flex items-center gap-3">
-              <Button disabled className="h-auto rounded-full px-7 py-3">
+            <div className="mt-6 flex items-center gap-3">
+              <Button disabled className="h-auto rounded-full px-6 py-3">
                 Candidatar-me (em breve)
               </Button>
               <FavoriteButton id={a.id} className="border border-border" />

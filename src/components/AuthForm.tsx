@@ -4,7 +4,7 @@ import { signIn, type Role } from "@/lib/state/session";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const input = "w-full rounded-xl border border-input bg-card px-4 py-3 text-sm outline-none focus:border-accent-deep";
+const input = "w-full rounded-full border border-input bg-card px-4 py-3 text-sm outline-none focus:border-accent-deep";
 
 export function AuthForm({ mode }: { mode: "login" | "register" }) {
   const navigate = useNavigate();
@@ -25,13 +25,13 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
   }
 
   return (
-    <main className="mx-auto max-w-md px-6 py-20">
+    <main className="mx-auto max-w-md px-6 py-12">
       <p className="eyebrow">{isReg ? "Criar conta" : "Bem-vindo de volta"}</p>
       <h1 className="mt-4 text-4xl">{isReg ? "Registar" : "Entrar"}</h1>
       <p className="mt-3 text-sm text-muted-foreground">
         Os dados ficam apenas neste navegador.
       </p>
-      <form onSubmit={submit} className="mt-10 space-y-4">
+      <form onSubmit={submit} className="mt-12 space-y-4">
         {isReg && (
           <Input aria-label="Nome" autoComplete="name" className={input} placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
         )}
@@ -45,7 +45,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
                 type="button"
                 onClick={() => setRole(v)}
                 aria-pressed={role === v}
-                className={`h-auto whitespace-normal rounded-xl border px-4 py-3 text-left text-sm transition-colors ${role === v ? "border-accent-deep bg-secondary" : "border-input bg-card"}`}
+                className={`h-auto whitespace-normal rounded-full border px-4 py-3 text-left text-sm transition-colors ${role === v ? "border-accent-deep bg-secondary" : "border-input bg-card"}`}
               >
                 {l}
               </Button>

@@ -19,3 +19,4 @@
 - Use a notice-specific photo description helper for list and detail alt text; keep source provenance in media attribution rather than notice alt text.
 - Keep the imported dashboard in shared dashboard components used by both /painel and /dashboard; reuse the existing browser session for login, demo entry and profile edits so favorites and sign-out stay consistent.
 - Use one shared header logo asset and derive the favicon from its symbol so site identity stays consistent.
+- Keep visual hierarchy and motion in global tokens and shared controls so page-specific styling cannot diverge.
