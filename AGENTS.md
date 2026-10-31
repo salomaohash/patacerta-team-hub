@@ -17,3 +17,4 @@
 - Keep reference organizations in their own marquee component and animation in global CSS; hide duplicate links from accessibility and use a static snap-scroll list under reduced motion.
 - Derive homepage statistics in a browser-safe module from existing demo sources; animate counts only after mount to preserve SSR.
 - Use a notice-specific photo description helper for list and detail alt text; keep source provenance in media attribution rather than notice alt text.
+- Keep the imported dashboard in shared dashboard components used by both /painel and /dashboard; reuse the existing browser session for login, demo entry and profile edits so favorites and sign-out stay consistent.
