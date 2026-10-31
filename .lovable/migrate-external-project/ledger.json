@@ -1,12 +1,54 @@
 {
   "scope": "Uploaded login and dashboard only; preserve existing homepage and catalog",
   "capabilities": [
-    {"capability":"dashboard code and health records","source":"ZIP","outcome":"adapt to existing demo session","status":"pending","next_action":"import and test"},
-    {"capability":"login and profiles","source":"two frontend demo sessions in ZIP","outcome":"unify with existing browser-persisted session","status":"pending","next_action":"connect login and demo entry to dashboard"},
-    {"capability":"schema, records, auth identities and authorization","source":"frontend demo only","outcome":"no backend migration; user confirmed browser-only profiles","status":"not applicable","next_action":null},
-    {"capability":"Google Maps","source":"optional browser key in ZIP map component","outcome":"preserve optional map and local places fallback","status":"pending configuration","next_action":"Google Maps browser key needed for live map"},
-    {"capability":"assets","source":"ZIP Luna photo","outcome":"use existing Luna catalog photo","status":"ready","next_action":null},
-    {"capability":"providers, public endpoints, callbacks, webhooks, schedules, secrets and cutover","source":"no additional production capabilities detected in requested pages","outcome":"keep existing app unchanged outside requested surfaces","status":"not applicable","next_action":null},
-    {"capability":"verification","source":"login-dashboard-profile-health-care-places-signout","outcome":"browser end-to-end checks","status":"pending","next_action":"run flow"}
+    {
+      "capability": "dashboard code and health records",
+      "source": "ZIP",
+      "outcome": "adapt to existing demo session",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "login and profiles",
+      "source": "two frontend demo sessions in ZIP",
+      "outcome": "unify with existing browser-persisted session",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "schema, records, auth identities and authorization",
+      "source": "frontend demo only",
+      "outcome": "no backend migration; user confirmed browser-only profiles",
+      "status": "not applicable",
+      "next_action": null
+    },
+    {
+      "capability": "Google Maps",
+      "source": "optional browser key in ZIP map component",
+      "outcome": "preserve optional map and local places fallback",
+      "status": "pending configuration",
+      "next_action": "Google Maps browser key needed for live map"
+    },
+    {
+      "capability": "assets",
+      "source": "ZIP Luna photo",
+      "outcome": "use existing Luna catalog photo",
+      "status": "ready",
+      "next_action": null
+    },
+    {
+      "capability": "providers, public endpoints, callbacks, webhooks, schedules, secrets and cutover",
+      "source": "no additional production capabilities detected in requested pages",
+      "outcome": "keep existing app unchanged outside requested surfaces",
+      "status": "not applicable",
+      "next_action": null
+    },
+    {
+      "capability": "verification",
+      "source": "login-dashboard-profile-health-care-places-signout",
+      "outcome": "browser end-to-end checks",
+      "status": "verified",
+      "next_action": null
+    }
   ]
 }
