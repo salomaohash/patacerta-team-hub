@@ -51,8 +51,6 @@ export function DemoVideoCarousel() {
   return (
     <div
       className="group relative h-full w-full overflow-hidden lg:rounded-l-[32px]"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
       role="region"
       aria-roledescription="carrossel"
       aria-label="Vídeos de animais"

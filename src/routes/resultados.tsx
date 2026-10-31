@@ -5,6 +5,7 @@ import { computeMatch, type QuizAnswers } from "@/lib/matching";
 import { loadQuiz } from "@/lib/state/quiz";
 import { useSession } from "@/lib/state/session";
 import { MatchCard } from "@/components/MatchCard";
+import { matchesAdoptionSpecies } from "@/lib/adoption-quiz";
 
 export const Route = createFileRoute("/resultados")({
   head: () => ({
@@ -34,7 +35,7 @@ function Resultados() {
   if (!answers) return null;
 
   const ranked = animals
-    .filter((a) => a.status === "active")
+    .filter((a) => a.status === "active" && matchesAdoptionSpecies(answers, a))
     .map((a) => ({ a, m: computeMatch(answers, a) }))
     .filter((x) => x.m.score >= 40)
     .sort((x, y) => y.m.score - x.m.score);
