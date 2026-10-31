@@ -69,7 +69,7 @@ function Index() {
               Seis perguntas ajudam a encontrar um animal compatível com a tua vida. E, se o teu animal desapareceu, publicamos o teu aviso local gratuitamente.
             </p>
             <div className="grid grid-cols-1 items-center gap-3 sm:flex sm:flex-wrap sm:gap-6">
-              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-4 text-base font-semibold shadow-soft"><Link to={ADOPTION_QUIZ_PATH}>
+              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-4 text-base font-semibold shadow-[0_10px_30px_-6px_rgba(35,55,40,0.4)] hover:shadow-[0_14px_38px_-6px_rgba(35,55,40,0.45)] transition-shadow"><Link to={ADOPTION_QUIZ_PATH}>
                 Quero adotar
               </Link></Button>
               <Button asChild className="h-auto max-w-full whitespace-normal rounded-full border border-border bg-transparent px-6 py-4 text-base font-semibold text-foreground shadow-none transition-colors hover:bg-secondary"><Link to="/animais" search={{ estado: "desaparecido" }}>
