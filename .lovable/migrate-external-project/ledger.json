@@ -2,6 +2,13 @@
   "scope": "Uploaded login and dashboard only; preserve existing homepage and catalog",
   "capabilities": [
     {
+      "capability": "Six-question adoption quiz from Ultimo.zip",
+      "source": "Ultimo.zip/src/routes/quiz.tsx",
+      "outcome": "Adapt questions, explicit continuation, back navigation and result view to existing browser-only catalog; replace fixed source percentages with calculated matches",
+      "status": "verified",
+      "next_action": null
+    },
+    {
       "capability": "dashboard code and health records",
       "source": "ZIP",
       "outcome": "adapt to existing demo session",

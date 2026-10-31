@@ -1,8 +1,10 @@
 // Motor de compatibilidade, função pura, sem estado nem efeitos.
 // Reutilizável pelos resultados, detalhe do animal e painel da associação.
 import type { Animal } from "@/lib/animals";
+import { computeAdoptionMatch, type AdoptionProfile } from "@/lib/adoption-quiz";
 
 export interface QuizAnswers {
+  adoptionProfile?: AdoptionProfile;
   hoursAway: 0 | 1 | 2; // 0 <4h, 1 4 a 8h, 2 >8h
   housing: 0 | 1 | 2; // 0 apto pequeno, 1 apto espaçoso, 2 casa com exterior
   dailyTime: 0 | 1 | 2; // 0 <30min, 1 30min a 1h, 2 >1h
@@ -51,6 +53,7 @@ function needs(a: Animal) {
 }
 
 export function computeMatch(q: QuizAnswers, a: Animal): MatchResult {
+  if (q.adoptionProfile) return computeAdoptionMatch(q.adoptionProfile, a);
   const n = needs(a);
   const special = !!a.forgotten || a.ageYears >= 8;
 

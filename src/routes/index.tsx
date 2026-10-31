@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { notices } from "@/lib/notices";
 import heroPoster from "@/assets/hero-dog-poster.jpg";
 import heroLoop from "@/assets/hero-dog-loop.mp4.asset.json";
+import { ADOPTION_QUIZ_PATH } from "@/lib/adoption-quiz";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,7 +29,7 @@ export const Route = createFileRoute("/")({
 });
 
 const STEPS = [
-  { icon: ClipboardList, title: "Questionário", text: "Nove perguntas calmas sobre a tua rotina, a tua casa e o tempo que tens para dar." },
+  { icon: ClipboardList, title: "Questionário", text: "Seis perguntas sobre a tua rotina, a tua casa e o tempo que tens para dar." },
   { icon: HeartHandshake, title: "Compatibilidade explicada", text: "Cada animal recebe uma percentagem com razões claras. Os desafios também são apresentados." },
   { icon: Mail, title: "Contacto", text: "Fala diretamente com a associação responsável e inicia o processo de adoção." },
 ];
@@ -65,10 +66,10 @@ function Index() {
           <div className="min-w-0 space-y-4 md:space-y-6">
             <h1 className="font-sans text-[34px] font-black leading-[1.08] tracking-normal sm:text-[38px] md:text-[52px]"><span className="block">Adota com confiança.</span><span className="block text-accent-deep">Encontra o que perdeu.</span></h1>
             <p className="max-w-[46ch] text-[18px] leading-relaxed text-muted-foreground">
-              Nove perguntas revelam o animal certo para a tua vida. E, se o teu animal desapareceu, publicamos o teu aviso local gratuitamente.
+              Seis perguntas ajudam a encontrar um animal compatível com a tua vida. E, se o teu animal desapareceu, publicamos o teu aviso local gratuitamente.
             </p>
             <div className="grid grid-cols-1 items-center gap-3 sm:flex sm:flex-wrap sm:gap-6">
-              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-4 text-base font-semibold shadow-soft"><Link to="/animais">
+              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-4 text-base font-semibold shadow-soft"><Link to={ADOPTION_QUIZ_PATH}>
                 Quero adotar
               </Link></Button>
               <Button asChild className="h-auto max-w-full whitespace-normal rounded-full border border-border bg-transparent px-6 py-4 text-base font-semibold text-foreground shadow-none transition-colors hover:bg-secondary"><Link to="/animais" search={{ estado: "desaparecido" }}>
