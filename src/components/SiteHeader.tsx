@@ -15,7 +15,7 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <header className="border-b border-border bg-background">
-      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 px-6 py-3 lg:py-4">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 px-6 py-3 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-6 lg:py-4">
         <Link to="/" aria-label="PataCerta, página inicial" className="shrink-0 lg:justify-self-start">
           <img src={logo} alt="PataCerta" width={180} height={41} className="h-auto w-36 object-contain sm:w-[180px]" />
         </Link>
