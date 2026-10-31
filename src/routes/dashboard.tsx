@@ -266,9 +266,9 @@ function Dashboard() {
             <div className="space-y-8">
               <div>
                 <h2 className="break-words text-xl sm:text-2xl">{demoUser.name ? `Bem-vindo de volta, ${demoUser.name}!` : "Olá!"}</h2>
-                <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+                <div className="mt-4 grid grid-cols-2 items-stretch gap-3 sm:gap-4 lg:grid-cols-4">
                   {summary.map((s) => (
-                    <div key={s.label} className="rounded-2xl bg-card p-4 shadow-soft transition-transform hover:-translate-y-0.5 sm:p-5">
+                    <div key={s.label} className="flex h-full flex-col rounded-2xl bg-card p-4 shadow-soft transition-transform hover:-translate-y-0.5 sm:p-5">
                       <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary text-accent-deep">
                         <s.icon className="h-4 w-4" />
                       </span>
@@ -279,15 +279,15 @@ function Dashboard() {
                 </div>
               </div>
 
-              <div className="grid items-stretch gap-4 md:grid-cols-2 2xl:grid-cols-3">
-                <div>
+              <div className="grid items-stretch gap-4 md:grid-cols-2 md:auto-rows-fr 2xl:grid-cols-3">
+                <div className="flex h-full flex-col">
                   <h2 className="mb-3 text-lg">O teu match</h2>
                   <LunaCard onOpen={() => setActive("pet")} />
                 </div>
                 <HealthSummary onOpen={() => setHealthOpen(true)} />
-                <div className="md:col-span-2 2xl:col-span-1">
+                <div className="flex h-full flex-col md:col-span-2 2xl:col-span-1">
                   <h2 className="mb-3 text-lg">Progresso da adoção</h2>
-                  <div className="rounded-2xl bg-card p-5 shadow-soft">
+                  <div className="flex-1 rounded-2xl bg-card p-5 shadow-soft">
                     <Timeline compact />
                     <Button variant="ghost"
                       onClick={() => setActive("application")}
