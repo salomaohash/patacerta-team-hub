@@ -15,6 +15,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DemonstracaoRouteImport } from './routes/demonstracao'
 import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as InstituicaoRouteImport } from './routes/instituicao'
 import { Route as PainelRouteImport } from './routes/painel'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as RegistarRouteImport } from './routes/registar'
@@ -51,6 +52,11 @@ const EntrarRoute = EntrarRouteImport.update({
 const FavoritosRoute = FavoritosRouteImport.update({
   id: '/favoritos',
   path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstituicaoRoute = InstituicaoRouteImport.update({
+  id: '/instituicao',
+  path: '/instituicao',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PainelRoute = PainelRouteImport.update({
@@ -96,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/demonstracao': typeof DemonstracaoRoute
   '/entrar': typeof EntrarRoute
   '/favoritos': typeof FavoritosRoute
+  '/instituicao': typeof InstituicaoRoute
   '/painel': typeof PainelRoute
   '/quiz': typeof QuizRoute
   '/registar': typeof RegistarRoute
@@ -111,6 +118,7 @@ export interface FileRoutesByTo {
   '/demonstracao': typeof DemonstracaoRoute
   '/entrar': typeof EntrarRoute
   '/favoritos': typeof FavoritosRoute
+  '/instituicao': typeof InstituicaoRoute
   '/painel': typeof PainelRoute
   '/quiz': typeof QuizRoute
   '/registar': typeof RegistarRoute
@@ -127,6 +135,7 @@ export interface FileRoutesById {
   '/demonstracao': typeof DemonstracaoRoute
   '/entrar': typeof EntrarRoute
   '/favoritos': typeof FavoritosRoute
+  '/instituicao': typeof InstituicaoRoute
   '/painel': typeof PainelRoute
   '/quiz': typeof QuizRoute
   '/registar': typeof RegistarRoute
@@ -144,6 +153,7 @@ export interface FileRouteTypes {
     | '/demonstracao'
     | '/entrar'
     | '/favoritos'
+    | '/instituicao'
     | '/painel'
     | '/quiz'
     | '/registar'
@@ -159,6 +169,7 @@ export interface FileRouteTypes {
     | '/demonstracao'
     | '/entrar'
     | '/favoritos'
+    | '/instituicao'
     | '/painel'
     | '/quiz'
     | '/registar'
@@ -174,6 +185,7 @@ export interface FileRouteTypes {
     | '/demonstracao'
     | '/entrar'
     | '/favoritos'
+    | '/instituicao'
     | '/painel'
     | '/quiz'
     | '/registar'
@@ -190,6 +202,7 @@ export interface RootRouteChildren {
   DemonstracaoRoute: typeof DemonstracaoRoute
   EntrarRoute: typeof EntrarRoute
   FavoritosRoute: typeof FavoritosRoute
+  InstituicaoRoute: typeof InstituicaoRoute
   PainelRoute: typeof PainelRoute
   QuizRoute: typeof QuizRoute
   RegistarRoute: typeof RegistarRoute
@@ -241,6 +254,13 @@ declare module '@tanstack/react-router' {
       path: '/favoritos'
       fullPath: '/favoritos'
       preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instituicao': {
+      id: '/instituicao'
+      path: '/instituicao'
+      fullPath: '/instituicao'
+      preLoaderRoute: typeof InstituicaoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painel': {
@@ -302,6 +322,7 @@ const rootRouteChildren: RootRouteChildren = {
   DemonstracaoRoute: DemonstracaoRoute,
   EntrarRoute: EntrarRoute,
   FavoritosRoute: FavoritosRoute,
+  InstituicaoRoute: InstituicaoRoute,
   PainelRoute: PainelRoute,
   QuizRoute: QuizRoute,
   RegistarRoute: RegistarRoute,

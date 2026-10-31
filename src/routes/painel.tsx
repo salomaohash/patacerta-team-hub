@@ -33,7 +33,7 @@ function Painel() {
     <main className="mx-auto max-w-4xl px-6 py-16">
       <p className="eyebrow">{isAssoc ? "Associação" : "Adotante"}</p>
       <h1 className="mt-4 text-4xl">Olá, {user.name}</h1>
-      {isAssoc && <Link to="/dashboard" className="mt-4 inline-block text-accent-deep underline">Área da instituição</Link>}
+      {isAssoc && <Link to="/instituicao" className="mt-4 inline-block text-accent-deep underline">Área da instituição</Link>}
       <div className="mt-10 grid gap-6 sm:grid-cols-2">
         <Link to="/favoritos" className="rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-soft">
           <p className="eyebrow">Favoritos</p>

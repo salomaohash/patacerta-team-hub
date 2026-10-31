@@ -38,9 +38,9 @@ export function signOut() {
   cache = null;
   listeners.forEach((listener) => listener());
 }
-export type SessionDestination = "/painel" | "/dashboard" | "/favoritos";
+export type SessionDestination = "/painel" | "/dashboard" | "/instituicao" | "/favoritos";
 export function sessionDestination(value: unknown): SessionDestination {
-  return value === "/dashboard" || value === "/favoritos" ? value : "/painel";
+  return value === "/dashboard" || value === "/instituicao" || value === "/favoritos" ? value : "/painel";
 }
 export function useSession(): DemoUser | null {
   return useSyncExternalStore((listener) => {
