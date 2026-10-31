@@ -19,7 +19,7 @@ export function PartnerMarquee() {
     </a>
   </li>);
   return <section aria-labelledby="partners-title" className="py-6 md:py-12">
-    <div className="mx-auto max-w-6xl px-6"><h2 id="partners-title" className="font-serif text-base text-muted-foreground">A trabalhar com várias organizações</h2></div>
+    <div className="mx-auto max-w-6xl px-6"><h2 id="partners-title" className="font-sans text-base text-muted-foreground">A trabalhar com várias organizações</h2></div>
     <div className="partner-marquee mt-4" aria-label="Organizações de referência">
       <div className="partner-track">
         <ul className="partner-group">{items(false)}</ul>

@@ -1,6 +1,6 @@
 # Tarefas
-- [ ] Verificar CTA «Encontra o teu parceiro», fonte Nunito reposta e remoção do bloco final.
-- [ ] Verificar revisão de escrita, espaçamentos, raios, sombras, hovers, estados vazios e navegação, preservando tipografia anterior.
+- [x] Verificar CTA «Encontra o teu parceiro», fonte Nunito reposta e remoção do bloco final.
+- [x] Verificar revisão de escrita, espaçamentos, raios, sombras, hovers, estados vazios e navegação, preservando tipografia anterior.
 - [x] Reforçar título e tipografia, criar logo e favicon, ampliar e abrandar faixa, retirar wording de demonstração em todo o site.
 - [x] Integrar login e dashboard do ZIP com sessão e perfil guardados no navegador; verificar saúde, cuidados, locais e saída. Mapa Google opcional sem configuração; lista e filtros de locais funcionam.
 - [x] Manter faixa de organizações sem pausa e apenas com imagens; retirar Destaque e Inesquecíveis da homepage.
