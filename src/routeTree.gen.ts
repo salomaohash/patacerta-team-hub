@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnimaisIndexRouteImport } from './routes/animais.index'
+import { Route as AnimaisIdRouteImport } from './routes/animais.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnimaisIndexRoute = AnimaisIndexRouteImport.update({
+  id: '/animais/',
+  path: '/animais/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimaisIdRoute = AnimaisIdRouteImport.update({
+  id: '/animais/$id',
+  path: '/animais/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/animais/$id': typeof AnimaisIdRoute
+  '/animais/': typeof AnimaisIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/animais/$id': typeof AnimaisIdRoute
+  '/animais': typeof AnimaisIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/animais/$id': typeof AnimaisIdRoute
+  '/animais/': typeof AnimaisIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/animais/$id' | '/animais/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/animais/$id' | '/animais'
+  id: '__root__' | '/' | '/animais/$id' | '/animais/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnimaisIdRoute: typeof AnimaisIdRoute
+  AnimaisIndexRoute: typeof AnimaisIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/animais/': {
+      id: '/animais/'
+      path: '/animais'
+      fullPath: '/animais/'
+      preLoaderRoute: typeof AnimaisIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/animais/$id': {
+      id: '/animais/$id'
+      path: '/animais/$id'
+      fullPath: '/animais/$id'
+      preLoaderRoute: typeof AnimaisIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnimaisIdRoute: AnimaisIdRoute,
+  AnimaisIndexRoute: AnimaisIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
