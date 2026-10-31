@@ -27,7 +27,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
     setError(invalid);
     if (invalid) return;
     signIn({ nome: isReg ? name.trim() : (email.trim().split("@")[0] ?? email.trim()), email: email.trim().toLowerCase(), papel });
-    navigate({ to: sessionDestination(search.returnTo) });
+    navigate({ to: sessionDestination(search.returnTo ?? (papel === "associacao" ? "/dashboard" : "/painel")) });
   }
   const accessibility = (field: Field) => ({ "aria-invalid": error?.field === field, "aria-describedby": error?.field === field ? "auth-error" : undefined });
   return (
