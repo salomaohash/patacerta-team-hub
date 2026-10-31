@@ -1,20 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import dogsPlaying from "@/assets/demo-login/dogs-playing.mp4.asset.json";
-import catRelaxing from "@/assets/demo-login/cat-relaxing.mp4.asset.json";
-import shelterAffection from "@/assets/demo-login/shelter-affection.mp4.asset.json";
-import dogWalking from "@/assets/demo-login/dog-walking.mp4.asset.json";
-import dogsPlayingPoster from "@/assets/demo-login/dogs-playing.jpg.asset.json";
-import catRelaxingPoster from "@/assets/demo-login/cat-relaxing.jpg.asset.json";
-import shelterAffectionPoster from "@/assets/demo-login/shelter-affection.jpg.asset.json";
-import dogWalkingPoster from "@/assets/demo-login/dog-walking.jpg.asset.json";
+import dogsPlayingPoster from "@/assets/pets/biscoito.jpg";
+import catRelaxingPoster from "@/assets/pets/simba.jpg";
+import shelterAffectionPoster from "@/assets/pets/mel.jpg";
+import dogWalkingPoster from "@/assets/pets/tobias.jpg";
 
 const SLIDES = [
-  { src: dogsPlaying.url, poster: dogsPlayingPoster.url, caption: "Cada animal tem uma história.", alt: "Dois cães a brincar num jardim" },
-  { src: catRelaxing.url, poster: catRelaxingPoster.url, caption: "A adoção muda duas vidas.", alt: "Gato a descansar junto a uma janela" },
-  { src: shelterAffection.url, poster: shelterAffectionPoster.url, caption: "Encontra um companheiro à tua medida.", alt: "Um cão de associação a receber carinho" },
-  { src: dogWalking.url, poster: dogWalkingPoster.url, caption: "Começa hoje a tua jornada.", alt: "Passeio com cão ao ar livre" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/5/54/Goldendoodle_and_Black_Lab_puppies_playing_in_slow_motion.webm", poster: dogsPlayingPoster, caption: "Cada animal tem uma história.", alt: "Cães a brincar em câmara lenta" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cat_drinking.webm", poster: catRelaxingPoster, caption: "A adoção muda duas vidas.", alt: "Gato a beber água" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/0/04/Goldendoodle_and_Black_Lab_puppies_play_fighting_in_slow_motion.webm", poster: shelterAffectionPoster, caption: "Encontra um companheiro à tua medida.", alt: "Cães a brincar juntos" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Pro_dog_walker_-_Tokyo_-_2024_Nov_1.webm", poster: dogWalkingPoster, caption: "Começa hoje a tua jornada.", alt: "Passeio com cão ao ar livre" },
 ];
 
 const INTERVAL_MS = 6000;
@@ -22,6 +18,7 @@ const INTERVAL_MS = 6000;
 export function DemoVideoCarousel() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [failed, setFailed] = useState<boolean[]>([false, false, false, false]);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   // React não renderiza o atributo `muted` no SSR; força-o para o autoplay funcionar.
@@ -66,6 +63,7 @@ export function DemoVideoCarousel() {
           }}
           src={s.src}
           poster={s.poster}
+          onError={() => setFailed((f) => f.map((v, j) => (j === i ? true : v)))}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none ${i === index ? "opacity-100" : "opacity-0"}`}
           muted
           loop
@@ -73,6 +71,16 @@ export function DemoVideoCarousel() {
           preload={i === 0 ? "auto" : "metadata"}
           aria-hidden={i !== index}
           aria-label={s.alt}
+        />
+      ))}
+      {SLIDES.map((s, i) => (
+        <img
+          key={s.poster}
+          src={s.poster}
+          alt=""
+          loading="lazy"
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${failed[i] && i === index ? "opacity-100" : "opacity-0"}`}
         />
       ))}
 
