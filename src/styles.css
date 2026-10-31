@@ -150,3 +150,7 @@
   .glow-breathe { animation: none; }
   .reveal { transform: none; transition: opacity 400ms ease; }
 }
+
+@keyframes heart-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+.heart-pulse { animation: heart-pulse 300ms ease-out; }
+@media (prefers-reduced-motion: reduce) { .heart-pulse { animation: none; } }

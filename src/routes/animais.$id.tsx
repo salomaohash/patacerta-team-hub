@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Check, X, MapPin } from "lucide-react";
+import { FavoriteButton } from "@/components/FavoriteButton";
 import { getAnimal, getAssociation } from "@/lib/animals";
 
 export const Route = createFileRoute("/animais/$id")({
@@ -58,9 +59,12 @@ function Detail() {
                 </li>
               ))}
             </ul>
-            <button disabled className="mt-8 rounded-full bg-primary px-7 py-3 text-primary-foreground opacity-60">
-              Candidatar-me (em breve)
-            </button>
+            <div className="mt-8 flex items-center gap-3">
+              <button disabled className="rounded-full bg-primary px-7 py-3 text-primary-foreground opacity-60">
+                Candidatar-me (em breve)
+              </button>
+              <FavoriteButton id={a.id} className="border border-border" />
+            </div>
           </div>
         </div>
       </main>

@@ -75,20 +75,6 @@ const steps = [
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="border-b border-border">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <a href="/" className="font-serif text-xl tracking-tight">
-            PataCerta
-          </a>
-          <div className="flex items-center gap-4">
-            <a href="/animais" className="text-sm hover:text-accent-deep">Animais</a>
-            <button className="rounded-full border border-border px-5 py-2 text-sm transition-colors hover:bg-secondary">
-              Entrar
-            </button>
-          </div>
-        </div>
-      </header>
-
       <main>
         <section className="grain relative overflow-hidden">
           <div

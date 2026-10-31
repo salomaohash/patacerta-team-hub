@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { FavoriteButton } from "@/components/FavoriteButton";
 import { getAssociation, type Animal } from "@/lib/animals";
 
 export function AnimalCard({ a }: { a: Animal }) {
@@ -15,6 +16,7 @@ export function AnimalCard({ a }: { a: Animal }) {
         {a.forgotten && (
           <span className="eyebrow absolute right-3 top-3 rounded-full bg-accent-warm px-3 py-1 text-primary-foreground">Esquecido</span>
         )}
+        <FavoriteButton id={a.id} className="absolute bottom-3 right-3" />
       </div>
       <div className="p-5">
         <h3 className="text-2xl">{a.name}</h3>
