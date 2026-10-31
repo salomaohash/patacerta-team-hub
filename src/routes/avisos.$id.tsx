@@ -5,6 +5,7 @@ import { getNotice, noticeName, noticeMailto } from "@/lib/notices";
 import { NoticeStatus } from "@/components/NoticeCard";
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
+import { photoInfo } from "@/lib/pet-media";
 
 export const Route = createFileRoute("/avisos/$id")({
   loader: ({ params }) => {
@@ -22,6 +23,7 @@ export const Route = createFileRoute("/avisos/$id")({
 });
 function NoticeDetail() {
   const notice = Route.useLoaderData();
+  const info = photoInfo(notice.foto);
   const share = async () => {
     const url = window.location.href;
     try {
@@ -34,7 +36,8 @@ function NoticeDetail() {
   };
   return <><main className="mx-auto max-w-5xl px-6 py-12 md:py-16">
     <Button asChild variant="link" className="px-0 font-normal"><Link to="/animais" search={{ estado: notice.tipo }}><ArrowLeft />Perdidos e Encontrados</Link></Button>
-    <img src={notice.foto} alt={noticeName(notice)} width={768} height={768} className="mt-6 aspect-[16/9] w-full rounded-lg object-cover" />
+    <img src={notice.foto} alt={info?.alt ?? noticeName(notice)} width={768} height={768} className="mt-6 aspect-[16/9] w-full rounded-lg object-cover" />
+    {info && <p className="mt-2 text-xs text-muted-foreground"><a href={info.source} target="_blank" rel="noreferrer" className="underline">Fotografia: {info.artist}</a> · <a href={info.licenseUrl} target="_blank" rel="noreferrer" className="underline">{info.license}</a> · Imagem ilustrativa</p>}
     <div className="mt-8 flex flex-wrap items-start justify-between gap-5"><div><NoticeStatus notice={notice} /><h1 className="mt-4 text-[38px] leading-tight md:text-[48px]">{noticeName(notice)}</h1><p className="mt-3 flex flex-wrap items-center gap-2 text-sm text-muted-foreground"><MapPin size={16} />{notice.zona} · {new Date(`${notice.dataDocumento}T12:00:00Z`).toLocaleDateString("pt-PT", { timeZone: "UTC" })} · {notice.especie}</p></div><Button variant="outline" onClick={share}><Share2 />Partilhar aviso</Button></div>
     <p className="mt-8 max-w-[60ch] font-serif text-[23px] leading-relaxed">{notice.descricaoCurta}</p>
     <div className="mt-10 grid gap-10 border-t border-border pt-8 md:grid-cols-2">

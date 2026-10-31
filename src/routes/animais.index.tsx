@@ -44,11 +44,11 @@ function Catalog() {
   const adoption = state === "adocao";
   const order = search.ordem ?? (quiz ? "compatibilidade" : "recentes");
   const animals = sortAnimals(filterAnimals(search), order, quiz);
-  const posts = filterNotices(state ?? "adocao", search.q, search.zona);
+  const posts = filterNotices(state ?? "adocao", search.q, search.zona, search.especie);
   const count = adoption ? animals.length : posts.length;
   const update = (key: keyof CatalogFilters, value: string | undefined) => navigate({ search: (prev) => ({ ...prev, [key]: value }), replace: true, resetScroll: false });
   const clear = () => navigate({ search: { estado: search.estado }, replace: true, resetScroll: false });
-  const active = (adoption ? ["q", "especie", "porte", "energia", "situacao"] : ["q", "zona"]).filter((key) => search[key as keyof CatalogFilters]);
+  const active = (adoption ? ["q", "especie", "porte", "energia", "situacao"] : ["q", "especie", "zona"]).filter((key) => search[key as keyof CatalogFilters]);
   return <>
     <main className="mx-auto min-h-screen max-w-6xl px-6 py-12 md:py-16">
       <p className="eyebrow">{adoption ? "Catálogo" : "Perdidos e Encontrados"}</p>
@@ -64,7 +64,8 @@ function Catalog() {
       </div>
       <div className="mt-6 flex flex-wrap items-center gap-3 border-y border-border py-5">
         <SlidersHorizontal size={18} className="text-muted-foreground" aria-hidden />
-        {adoption ? attributes.map((f) => <label key={f.key} className="flex items-center gap-2 text-sm"><span>{f.label}</span><select className={selectClass} value={search[f.key] ?? ""} onChange={(e) => update(f.key, e.target.value || undefined)}><option value="">Todos</option>{f.options.map((o) => <option key={o}>{o}</option>)}</select></label>) : <label className="flex items-center gap-2 text-sm">Zona<select className={selectClass} value={search.zona ?? ""} onChange={(e) => update("zona", e.target.value || undefined)}><option value="">Todas</option>{[...new Set(notices.map((n) => n.zona))].sort().map((zone) => <option key={zone}>{zone}</option>)}</select></label>}
+        {(adoption ? attributes : attributes.slice(0, 1)).map((f) => <div key={f.key} role="group" aria-label={f.label} className="flex flex-wrap items-center gap-1.5"><span className="mr-1 text-sm text-muted-foreground">{f.label}</span>{["", ...f.options].map((o) => <Button key={o} size="sm" variant="outline" aria-pressed={(search[f.key] ?? "") === o} className={`rounded-full px-3 font-normal ${(search[f.key] ?? "") === o ? "border-foreground bg-foreground text-background hover:bg-foreground hover:text-background" : ""}`} onClick={() => update(f.key, o || undefined)}>{o === "" ? "Todos" : o === "cão" ? "Cão" : o === "gato" ? "Gato" : o.charAt(0).toUpperCase() + o.slice(1)}</Button>)}</div>)}
+        {!adoption && <label className="flex items-center gap-2 text-sm">Zona<select className={selectClass} value={search.zona ?? ""} onChange={(e) => update("zona", e.target.value || undefined)}><option value="">Todas</option>{[...new Set(notices.map((n) => n.zona))].sort().map((zone) => <option key={zone}>{zone}</option>)}</select></label>}
         {adoption && count > 6 && <label className="flex items-center gap-2 text-sm md:ml-auto">Ordenar<select className={selectClass} value={order} onChange={(e) => update("ordem", e.target.value)}>{quiz && <option value="compatibilidade">Compatibilidade</option>}<option value="recentes">Mais recentes</option><option value="idade">Mais velhos</option></select></label>}
       </div>
       {active.length > 0 && <div className="mt-4 flex flex-wrap items-center gap-2">{active.map((key) => <Button key={key} variant="secondary" size="sm" className="rounded-full font-normal" aria-label={`Remover filtro ${search[key as keyof CatalogFilters]}`} onClick={() => update(key as keyof CatalogFilters, undefined)}>{key === "situacao" ? "Os Inesquecíveis" : search[key as keyof CatalogFilters]}<X size={14} /></Button>)}<Button variant="link" className="ml-auto font-normal" onClick={clear}>Limpar filtros</Button></div>}

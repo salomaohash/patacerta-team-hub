@@ -12,3 +12,5 @@
 - Keep scroll-reveal behavior and the home/about footer in shared components so both pages maintain identical motion and navigation.
 - Keep catalog selection rules in a browser-safe pure module so URL filters and their tests use the same logic without backend access.
 - Keep lost/found demo notices in a browser-safe data module and hydrate saved questionnaire answers only after mount; notice contacts must remain non-deliverable example addresses.
+- Keep global search in a browser-safe pure module and the shared header search control; adoption and notice results must use the same demo sources as the catalog.
+- Use the shared Embla carousel for animal galleries and a media registry for photo descriptions and attribution; preserve the primary photo field for cards.

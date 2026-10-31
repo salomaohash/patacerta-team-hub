@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { signOut, useSession } from "@/lib/state/session";
+import { GlobalSearch } from "@/components/GlobalSearch";
+import { Button } from "@/components/ui/button";
 
 const linkCls = "text-sm hover:text-accent-deep";
 const activeCls = { className: "text-sm text-accent-deep" };
@@ -13,10 +15,8 @@ export function SiteHeader() {
         <Link to="/" className="font-serif text-xl tracking-tight">
           PataCerta
         </Link>
+        <GlobalSearch />
         <nav aria-label="Menu principal" className="flex flex-wrap items-center gap-4 sm:gap-6">
-          <Link to="/animais" className={linkCls} activeProps={activeCls}>
-            Animais
-          </Link>
           <Link to="/acerca" className={linkCls} activeProps={activeCls}>
             Acerca
           </Link>
@@ -34,7 +34,7 @@ export function SiteHeader() {
             </>
           )}
           {user ? (
-            <button
+            <Button variant="outline"
               onClick={() => {
                 signOut();
                 navigate({ to: "/" });
@@ -42,7 +42,7 @@ export function SiteHeader() {
               className="rounded-full border border-border px-4 py-2 text-sm transition-colors hover:bg-secondary"
             >
               Sair
-            </button>
+            </Button>
           ) : (
             <Link
               to="/entrar"
