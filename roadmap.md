@@ -1,6 +1,6 @@
 # Tarefas
-- [ ] Manter faixa de organizações sem pausa e apenas com imagens; retirar Destaque e Inesquecíveis da homepage.
-- [ ] Aplicar auditoria homepage: Nunito, ambiente, sombras, números demo animados e referências reais em marquee acessível.
+- [x] Manter faixa de organizações sem pausa e apenas com imagens; retirar Destaque e Inesquecíveis da homepage.
+- [x] Aplicar auditoria homepage: Nunito, ambiente, sombras, números demo animados e referências reais em marquee acessível; secções animais retiradas pelo novo pedido.
 - [x] Simplificar Perdidos e Encontrados: retirar separadores e pesquisa local, tornar os filtros fluidos e remover a ação de reivindicar o animal.
 - [x] Corrigir fotografia e texto da Lola, descrições alternativas e nota da listagem.
 - [x] Acrescentar faixa animada de parceiros fictícios e transparência no Acerca.
