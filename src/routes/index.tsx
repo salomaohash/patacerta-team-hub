@@ -72,7 +72,7 @@ function Index() {
               <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-4 text-base font-semibold shadow-[0_10px_30px_-6px_rgba(35,55,40,0.4)] hover:shadow-[0_14px_38px_-6px_rgba(35,55,40,0.45)] transition-shadow"><Link to={ADOPTION_QUIZ_PATH}>
                 Quero adotar
               </Link></Button>
-              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full border border-border bg-transparent px-6 py-4 text-base font-semibold text-foreground shadow-none transition-colors hover:bg-secondary"><Link to="/animais" search={{ estado: "desaparecido" }}>
+              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full border border-border bg-transparent px-6 py-4 text-base font-semibold text-foreground shadow-[0_10px_30px_-6px_rgba(35,55,40,0.4)] transition-shadow hover:bg-secondary hover:shadow-[0_14px_38px_-6px_rgba(35,55,40,0.45)]"><Link to="/animais" search={{ estado: "desaparecido" }}>
                 Perdi o meu animal
               </Link></Button>
             </div>
