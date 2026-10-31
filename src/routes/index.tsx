@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { Accessibility, ArrowRight, ClipboardList, HeartHandshake, Leaf, Mail, Stethoscope } from "lucide-react";
 import { getAnimal, getAssociation, type Animal } from "@/lib/animals";
 import { computeMatch, type QuizAnswers } from "@/lib/matching";
 import { AnimalCard } from "@/components/AnimalCard";
 import { MatchRing } from "@/components/MatchRing";
+import { Reveal } from "@/components/Reveal";
+import { SiteFooter } from "@/components/SiteFooter";
 import heroPoster from "@/assets/hero-dog-poster.jpg";
 import heroLoop from "@/assets/hero-dog-loop.mp4.asset.json";
 
@@ -44,28 +46,6 @@ const activeGoods = dims.filter((d) => d.score >= 0.75).slice(0, 2);
 const activeHard = [...dims].sort((a, b) => a.score - b.score).find((d) => d.score < 0.75);
 
 const senior = getAnimal("mimi")!;
-
-function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(([e]) => {
-      if (e?.isIntersecting) {
-        setShown(true);
-        io.disconnect();
-      }
-    }, { rootMargin: "0px 0px -10% 0px" });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return (
-    <div ref={ref} data-shown={shown} className={`reveal-group ${className}`}>
-      {children}
-    </div>
-  );
-}
 
 const d = (i: number) => ({ "--i": i }) as CSSProperties;
 const btn = "inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[15px] shadow-soft transition-colors";
@@ -259,12 +239,7 @@ function Index() {
         </Reveal>
       </section>
 
-      <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-10 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <span className="font-serif text-base text-foreground">PataCerta</span>
-          <span className="eyebrow">Projeto de demonstração</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

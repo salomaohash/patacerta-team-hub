@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { animals } from "@/lib/animals";
+import { filterAnimals, type CatalogFilters } from "@/lib/catalog";
 import { AnimalCard } from "@/components/AnimalCard";
 
-type Search = { especie?: string | undefined; porte?: string | undefined; energia?: string | undefined };
+type Search = CatalogFilters;
 
 export const Route = createFileRoute("/animais/")({
   validateSearch: (s: Record<string, unknown>): Search => {
     const pick = (k: string) => (typeof s[k] === "string" ? (s[k] as string) : undefined);
-    return { especie: pick("especie"), porte: pick("porte"), energia: pick("energia") };
+    return { especie: pick("especie"), porte: pick("porte"), energia: pick("energia"), situacao: pick("situacao") === "esquecidos" ? "esquecidos" : undefined };
   },
   head: () => ({
     meta: [
@@ -26,18 +26,13 @@ const filters = [
   { key: "especie", label: "Espécie", options: ["cão", "gato"] },
   { key: "porte", label: "Porte", options: ["pequeno", "médio", "grande"] },
   { key: "energia", label: "Energia", options: ["baixa", "média", "alta"] },
+  { key: "situacao", label: "Situação", options: ["esquecidos"] },
 ] as const;
 
 function Catalog() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
-  const list = animals.filter(
-    (a) =>
-      a.status === "active" &&
-      (!search.especie || a.species === search.especie) &&
-      (!search.porte || a.size === search.porte) &&
-      (!search.energia || a.energy === search.energia),
-  );
+  const list = filterAnimals(search);
 
   return (
     <div className="min-h-screen bg-background">
@@ -57,7 +52,7 @@ function Catalog() {
                 }
               >
                 <option value="">Todos</option>
-                {f.options.map((o) => <option key={o} value={o}>{o}</option>)}
+                {f.options.map((o) => <option key={o} value={o}>{o === "esquecidos" ? "Os Inesquecíveis" : o}</option>)}
               </select>
             </label>
           ))}
