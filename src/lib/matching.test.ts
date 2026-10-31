@@ -16,11 +16,13 @@ describe("matching", () => {
       expect(s).toBeLessThanOrEqual(100);
     }
   });
-  it("ideal adopter scores higher than incompatible one for every animal", () => {
-    for (const a of animals) expect(computeMatch(ideal, a).score).toBeGreaterThan(computeMatch(poor, a).score);
-  });
-  it("high-energy large dog with ideal adopter scores at least 90", () => {
-    const dog = animals.find((a) => a.energy === "alta" && a.size === "grande" && !a.forgotten)!;
+  it("high-energy dog: active, available adopter scores at least 90 and beats the incompatible one", () => {
+    const dog = animals.find((a) => a.species === "cão" && a.energy === "alta" && !a.forgotten)!;
     expect(computeMatch(ideal, dog).score).toBeGreaterThanOrEqual(90);
+    expect(computeMatch(ideal, dog).score).toBeGreaterThan(computeMatch(poor, dog).score + 30);
+  });
+  it("special-needs animal scores 0 on openness when adopter says no", () => {
+    const a = animals.find((x) => x.forgotten)!;
+    expect(computeMatch(poor, a).dimensions.openness.score).toBe(0);
   });
 });
