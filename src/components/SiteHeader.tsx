@@ -28,7 +28,7 @@ export function SiteHeader() {
               <Link to="/favoritos" className={linkCls} activeProps={activeCls}>
                 Favoritos
               </Link>
-              <Link to="/painel" className={`${linkCls} hidden sm:inline`} activeProps={activeCls}>
+              <Link to="/painel" className={linkCls} activeProps={activeCls}>
                 Painel
               </Link>
             </>

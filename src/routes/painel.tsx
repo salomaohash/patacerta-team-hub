@@ -1,44 +1,22 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { RequireSession } from "@/components/RequireSession";
-import { useSession } from "@/lib/state/session";
-import { useFavorites } from "@/lib/state/favorites";
+import { Dashboard } from "@/components/dashboard/Dashboard";
 
 export const Route = createFileRoute("/painel")({
   head: () => ({
     meta: [
       { title: "Painel — PataCerta" },
-      { name: "description", content: "O teu painel PataCerta." },
+      { name: "description", content: "O teu animal, boletim de saúde, cuidados e pedido de adoção no painel demonstrativo PataCerta." },
       { property: "og:title", content: "Painel — PataCerta" },
-      { property: "og:description", content: "O teu painel PataCerta." },
+      { property: "og:description", content: "Saúde, cuidados, perfil e acompanhamento da adoção numa experiência demonstrativa." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
   }),
   component: () => (
     <RequireSession>
-      <Painel />
+      <Dashboard />
     </RequireSession>
   ),
 });
 
-function Painel() {
-  const user = useSession()!;
-  const favs = useFavorites();
-  const isAssoc = user.role === "association";
-  return (
-    <main className="mx-auto max-w-4xl px-6 py-16">
-      <p className="eyebrow">{isAssoc ? "Associação" : "Adotante"}</p>
-      <h1 className="mt-4 text-4xl">Olá, {user.name}</h1>
-      <div className="mt-10 grid gap-6 sm:grid-cols-2">
-        <Link to="/favoritos" className="rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-soft">
-          <p className="eyebrow">Favoritos</p>
-          <p className="mt-3 font-serif text-4xl">{favs.length}</p>
-        </Link>
-        <div className="rounded-2xl border border-border bg-card p-6">
-          <p className="eyebrow">{isAssoc ? "Candidaturas recebidas" : "Candidaturas"}</p>
-          <p className="mt-3 text-sm text-muted-foreground">Disponível num passo seguinte.</p>
-        </div>
-      </div>
-    </main>
-  );
-}

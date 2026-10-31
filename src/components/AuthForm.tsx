@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { signIn, type Role } from "@/lib/state/session";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const input = "w-full rounded-xl border border-input bg-card px-4 py-3 text-sm outline-none focus:border-accent-deep";
 
@@ -31,29 +33,31 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
       </p>
       <form onSubmit={submit} className="mt-10 space-y-4">
         {isReg && (
-          <input className={input} placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
+          <Input aria-label="Nome" autoComplete="name" className={input} placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
         )}
-        <input className={input} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input className={input} type="password" placeholder="Palavra-passe" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Input aria-label="Email" autoComplete="email" className={input} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Input aria-label="Palavra-passe" autoComplete={isReg ? "new-password" : "current-password"} className={input} type="password" placeholder="Palavra-passe" value={password} onChange={(e) => setPassword(e.target.value)} />
         {isReg && (
           <fieldset className="grid grid-cols-2 gap-3">
             {([["adopter", "Quero adotar"], ["association", "Represento uma associação"]] as const).map(([v, l]) => (
-              <button
+              <Button variant="outline"
                 key={v}
                 type="button"
                 onClick={() => setRole(v)}
-                className={`rounded-xl border px-4 py-3 text-left text-sm transition-colors ${role === v ? "border-accent-deep bg-secondary" : "border-input bg-card"}`}
+                aria-pressed={role === v}
+                className={`h-auto whitespace-normal rounded-xl border px-4 py-3 text-left text-sm transition-colors ${role === v ? "border-accent-deep bg-secondary" : "border-input bg-card"}`}
               >
                 {l}
-              </button>
+              </Button>
             ))}
           </fieldset>
         )}
         {error && <p className="text-sm text-destructive">{error}</p>}
-        <button className="w-full rounded-full bg-primary py-3 text-primary-foreground transition-colors hover:bg-accent-deep">
+        <Button type="submit" className="h-auto w-full rounded-full py-3">
           {isReg ? "Criar conta" : "Entrar"}
-        </button>
+        </Button>
       </form>
+      {!isReg && <Button variant="outline" className="mt-4 h-auto w-full rounded-full py-3" onClick={() => { signIn({ name: "Sofia Martins", email: "sofia@example.com", role: "adopter" }); navigate({ to: "/dashboard" }); }}>Entrar na demonstração</Button>}
       <p className="mt-6 text-center text-sm text-muted-foreground">
         {isReg ? "Já tens conta? " : "Ainda não tens conta? "}
         <Link to={isReg ? "/entrar" : "/registar"} className="text-accent-deep underline">
