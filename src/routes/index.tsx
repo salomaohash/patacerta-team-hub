@@ -32,7 +32,7 @@ const pick = (ids: string[]) => ids.map(getAnimal).filter((a): a is Animal => !!
 const FEATURED = pick(["luna", "zeca", "simba", "nala"]);
 
 // Exemplos reais do motor de compatibilidade, sem números inventados.
-const HERO_CASE: QuizAnswers = { hoursAway: 0, housing: 1, dailyTime: 2, activity: 1, kids: 1, pets: 0, experience: 2, routine: 0, openness: 0 };
+const HERO_CASE: QuizAnswers = { hoursAway: 0, housing: 1, dailyTime: 2, activity: 1, kids: 1, pets: 0, experience: 2, routine: 0, openness: 1 };
 const heroAnimal = getAnimal("tobias")!;
 const heroMatch = computeMatch(HERO_CASE, heroAnimal);
 
