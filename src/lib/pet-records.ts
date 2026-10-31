@@ -9,6 +9,10 @@ export function petFromRow(row: PublicPetRow): Animal | null {
     typeof p["description"] !== "string"
   )
     return null;
+  const raw = row.institutions as unknown;
+  const institution = (Array.isArray(raw) ? raw[0] : raw) as
+    | Record<string, string | undefined>
+    | undefined;
   return {
     id: row.id,
     name: p["name"],
@@ -28,15 +32,15 @@ export function petFromRow(row: PublicPetRow): Animal | null {
         : "média",
     associationId: row.institution_id,
     institutionId: row.institution_id,
-    associationName: row.institutions?.name,
-    ...(row.institutions
+    associationName: institution?.["name"],
+    ...(institution
       ? {
           institutionContact: {
-            contact: row.institutions.contact ?? "",
-            email: row.institutions.email ?? "",
-            phone: row.institutions.phone ?? "",
-            website: row.institutions.website ?? "",
-            social: row.institutions.social ?? "",
+            contact: institution["contact"] ?? "",
+            email: institution["email"] ?? "",
+            phone: institution["phone"] ?? "",
+            website: institution["website"] ?? "",
+            social: institution["social"] ?? "",
           },
         }
       : {}),

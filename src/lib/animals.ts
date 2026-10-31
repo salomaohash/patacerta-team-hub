@@ -73,6 +73,8 @@ export interface Animal {
   litterId?: string;
   status: "active" | "adopted";
   isDemo: boolean;
+  dataSource?: string;
+  careNotes?: string;
   listedAt?: string;
   forgotten?: ForgottenInfo;
 }
