@@ -496,13 +496,13 @@ function Dashboard() {
                   </div>
                 )}
                 {profileTab === "Preferências" && (
-                  <div className="flex flex-col gap-3 max-w-md">
+                  <div className="divide-y divide-border">
                     {["Avisar-me por email quando o meu pedido for atualizado", "Mostrar-me novos animais compatíveis semanalmente", "Notificar-me de animais desaparecidos na minha zona"].map((label) => (
-                      <label key={label} className="flex items-center gap-3 rounded-xl bg-card px-4 py-3 text-sm shadow-soft"><Checkbox defaultChecked className="h-4 w-4" /> {label}</label>
+                      <label key={label} className="flex items-center gap-3 py-4 text-sm"><Checkbox defaultChecked className="h-4 w-4" /> {label}</label>
                     ))}
                   </div>
                 )}
-              <div className={profileTab === "Dados da conta" ? "rounded-2xl bg-card p-6 shadow-soft" : "hidden"}>
+              <div className={profileTab === "Dados da conta" ? "" : "hidden"}>
                 {demoUser.name && <div className="flex items-center gap-4">
                   <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-xl font-semibold text-primary-foreground">
                     {demoUser.initials}
