@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AcercaRouteImport } from './routes/acerca'
 import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
 import { Route as PainelRouteImport } from './routes/painel'
@@ -22,6 +23,11 @@ import { Route as AnimaisIdRouteImport } from './routes/animais.$id'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcercaRoute = AcercaRouteImport.update({
+  id: '/acerca',
+  path: '/acerca',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EntrarRoute = EntrarRouteImport.update({
@@ -67,6 +73,7 @@ const AnimaisIdRoute = AnimaisIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/acerca': typeof AcercaRoute
   '/entrar': typeof EntrarRoute
   '/favoritos': typeof FavoritosRoute
   '/painel': typeof PainelRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/acerca': typeof AcercaRoute
   '/entrar': typeof EntrarRoute
   '/favoritos': typeof FavoritosRoute
   '/painel': typeof PainelRoute
@@ -90,6 +98,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/acerca': typeof AcercaRoute
   '/entrar': typeof EntrarRoute
   '/favoritos': typeof FavoritosRoute
   '/painel': typeof PainelRoute
@@ -103,6 +112,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/acerca'
     | '/entrar'
     | '/favoritos'
     | '/painel'
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/acerca'
     | '/entrar'
     | '/favoritos'
     | '/painel'
@@ -125,6 +136,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/acerca'
     | '/entrar'
     | '/favoritos'
     | '/painel'
@@ -137,6 +149,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AcercaRoute: typeof AcercaRoute
   EntrarRoute: typeof EntrarRoute
   FavoritosRoute: typeof FavoritosRoute
   PainelRoute: typeof PainelRoute
@@ -154,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acerca': {
+      id: '/acerca'
+      path: '/acerca'
+      fullPath: '/acerca'
+      preLoaderRoute: typeof AcercaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/entrar': {
@@ -217,6 +237,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AcercaRoute: AcercaRoute,
   EntrarRoute: EntrarRoute,
   FavoritosRoute: FavoritosRoute,
   PainelRoute: PainelRoute,
