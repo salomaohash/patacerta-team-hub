@@ -7,6 +7,8 @@ export function SiteFooter() {
         <Link to="/" className="font-serif text-base text-foreground">PataCerta</Link>
         <div className="space-y-3 md:text-right">
           <nav aria-label="Rodapé" className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link to="/animais" className="hover:text-accent-deep">Animais</Link>
+            <Link to="/animais" search={{ estado: "desaparecido" }} className="hover:text-accent-deep">Perdidos e Encontrados</Link>
             <Link to="/acerca" className="hover:text-accent-deep">Acerca</Link>
             <Link to="/acerca" hash="faq" className="hover:text-accent-deep">Perguntas frequentes</Link>
           </nav>

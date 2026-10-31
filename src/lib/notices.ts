@@ -23,8 +23,8 @@ export const notices: Notice[] = [
 ];
 export const getNotice = (id: string) => notices.find((notice) => notice.id === id);
 export const noticeName = (notice: Notice) => notice.nomeAnimal ?? (notice.especie === "cão" ? "Cão encontrado" : "Gato encontrado");
-export function filterNotices(type: string, q = "", zone = "") {
-  return notices.filter((n) => n.tipo === type && (!zone || n.zona === zone) && normalize(`${n.nomeAnimal ?? ""} ${n.especie} ${n.zona} ${n.descricaoCurta}`).includes(normalize(q))).sort((a, b) => b.dataDocumento.localeCompare(a.dataDocumento));
+export function filterNotices(type: string, q = "", zone = "", species = "") {
+  return notices.filter((n) => n.tipo === type && (!zone || n.zona === zone) && (!species || n.especie === species) && normalize(`${n.nomeAnimal ?? ""} ${n.especie} ${n.zona} ${n.descricaoCurta}`).includes(normalize(q))).sort((a, b) => b.dataDocumento.localeCompare(a.dataDocumento));
 }
 export function daysSince(date: string, now = new Date()) {
   return Math.max(0, Math.floor((Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) - Date.parse(`${date}T00:00:00Z`)) / 86400000));
