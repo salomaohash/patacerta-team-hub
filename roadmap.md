@@ -1,6 +1,6 @@
 # Tarefas
-- [ ] Adaptar o painel da instituição do novo ZIP à sessão local, preservando a experiência do adotante.
-- [ ] Ampliar «Candidatar-me» com identificação do responsável, contacto e mensagem em cada animal, sem inventar contactos reais.
+- [x] Adaptar o painel da instituição do novo ZIP à sessão local, preservando a experiência do adotante; sem envio, IA ou registos de candidaturas inventados.
+- [x] Ampliar «Candidatar-me» com identificação do responsável, contacto e mensagem local em cada animal; emails de exemplo não recebem mensagens.
 - [x] Fazer «Quero adotar» abrir o quiz de seis perguntas do Ultimo.zip, adaptar resultados aos animais existentes e verificar o percurso completo.
 - [x] Aplicar instruções do login, painel e dashboard locais; verificar validação, retorno, contagens e menu de sessão sem alterar o restante site.
 - [x] Alargar pesquisa a toda a largura disponível e verificar pesquisa no computador e telemóvel.

@@ -23,9 +23,9 @@ export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
       { title: "Painel e instituição, PataCerta" },
-      { name: "description", content: "O teu match, o pedido de adoção e locais pet-friendly num só lugar." },
+      { name: "description", content: "Painel pessoal e gestão local de animais, candidaturas, eventos e perfil da instituição na PataCerta." },
       { property: "og:title", content: "Painel e instituição, PataCerta" },
-      { property: "og:description", content: "O teu match, o pedido de adoção e locais pet-friendly num só lugar." },
+      { property: "og:description", content: "Painel pessoal e gestão local de animais, candidaturas, eventos e perfil da instituição na PataCerta." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

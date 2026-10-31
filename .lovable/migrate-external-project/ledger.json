@@ -5,8 +5,8 @@
       "capability": "Institution dashboard from October ZIP",
       "source": "src/routes/instituicao.tsx and src/components/org",
       "outcome": "Adapt institution navigation, metrics, animals, applications, calendar, follow-up, insights, profile and settings to browser-only storage; do not import invented ownership, applicants or source backend",
-      "status": "in progress",
-      "next_action": "Verify local institution flows and adopter preservation"
+      "status": "verified within frontend-only scope",
+      "next_action": "Live delivery, shared applications, AI insights and backend migration excluded by existing frontend-only requirement"
     },
     {
       "capability": "Six-question adoption quiz from Ultimo.zip",
