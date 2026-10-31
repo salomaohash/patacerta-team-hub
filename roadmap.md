@@ -1,4 +1,5 @@
 # Tarefas
+- [x] Aplicar instruções do login, painel e dashboard locais; verificar validação, retorno, contagens e menu de sessão sem alterar o restante site.
 - [x] Alargar pesquisa a toda a largura disponível e verificar pesquisa no computador e telemóvel.
 - [x] Retirar rótulo de adoção e marca do rodapé, compactar espaços e corrigir menu/pesquisa no telemóvel.
 - [x] Verificar CTA «Encontra o teu parceiro», fonte Nunito reposta e remoção do bloco final.

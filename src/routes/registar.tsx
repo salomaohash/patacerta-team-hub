@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AuthForm } from "@/components/AuthForm";
 
 export const Route = createFileRoute("/registar")({
+  validateSearch: (search: Record<string, unknown>): { returnTo?: string | undefined } => ({
+    returnTo: typeof search["returnTo"] === "string" && ["/painel", "/dashboard", "/favoritos"].includes(search["returnTo"]) ? search["returnTo"] : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Criar conta · PataCerta" },
