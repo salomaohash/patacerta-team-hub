@@ -21,7 +21,7 @@ export function institutionStats(data: InstitutionWorkspace) {
 export interface AnimalContact { kind: "owner" | "organization"; name: string; city?: string; email?: string; phone?: string }
 export function animalContact(animal: Animal, organization?: { name: string; city: string }): AnimalContact {
   if (animal.contact) return animal.contact;
-  return { kind: "organization", name: organization?.name ?? "Organização responsável", city: organization?.city, email: `${animal.associationId}@example.invalid` };
+  return { kind: "organization", name: organization?.name ?? "Organização responsável", ...(organization ? { city: organization.city } : {}), email: `${animal.associationId}@example.invalid` };
 }
 export function isExampleEmail(email?: string) { return !email || /@(example\.(invalid|com|org|net)|[^@]+\.invalid)$/i.test(email); }
 export interface ContactDraft { animalId: string; sender: string; message: string; intent: "application" | "message"; savedAt: string }
