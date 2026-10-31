@@ -4,7 +4,7 @@ import { QuizInline } from "@/components/QuizInline";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { getAnimal, getAssociation } from "@/lib/animals";
 import { AnimalGallery } from "@/components/AnimalGallery";
-import { Button } from "@/components/ui/button";
+import { AnimalContact } from "@/components/AnimalContact";
 
 export const Route = createFileRoute("/animais/$id")({
   loader: async ({ params }) => {
@@ -65,11 +65,9 @@ function Detail() {
             </ul>
             <QuizInline a={a} />
             <div className="mt-6 flex items-center gap-3">
-              <Button disabled className="h-auto rounded-full px-6 py-3">
-                Candidatar-me (em breve)
-              </Button>
               <FavoriteButton id={a.id} className="border border-border" />
             </div>
+            <AnimalContact key={a.id} animal={a} />
           </div>
         </div>
       </main>
