@@ -3,6 +3,8 @@ import { Check, X, MapPin } from "lucide-react";
 import { QuizInline } from "@/components/QuizInline";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { getAnimal, getAssociation } from "@/lib/animals";
+import { AnimalGallery } from "@/components/AnimalGallery";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/animais/$id")({
   loader: async ({ params }) => {
@@ -46,11 +48,11 @@ function Detail() {
         <Link to="/animais" className="text-sm text-muted-foreground hover:text-foreground">← Catálogo</Link>
         {a.status === "adopted" && <p role="status" className="mt-6 border-l-2 border-primary bg-muted px-5 py-4 text-accent-deep">Adotado — esta história já tem final feliz</p>}
         <div className="mt-8 grid gap-10 md:grid-cols-2">
-          <img src={a.photo} alt={a.name} width={816} height={816} className="aspect-square w-full self-start rounded-2xl object-cover" />
+          <AnimalGallery key={a.id} animal={a} />
           <div>
             <p className="eyebrow">Demonstração{a.forgotten ? ` · Inesquecível: ${a.forgotten.kind}` : ""}</p>
             <h1 className="mt-3 text-5xl">{a.name}</h1>
-            <p className="mt-2 text-muted-foreground">{a.breed} · {a.ageYears} anos · porte {a.size} · energia {a.energy}</p>
+            <p className="mt-2 text-muted-foreground">{a.breed} · {a.ageYears < 1 ? `${Math.round(a.ageYears * 12)} meses` : `${a.ageYears} anos`} · porte {a.size} · energia {a.energy}</p>
             <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground"><MapPin size={16} strokeWidth={1.5} />{getAssociation(a.associationId)?.name}, {getAssociation(a.associationId)?.city}</p>
             <p className="mt-6">{a.description}</p>
             <ul className="mt-6 space-y-2 text-sm">
@@ -63,9 +65,9 @@ function Detail() {
             </ul>
             <QuizInline a={a} />
             <div className="mt-8 flex items-center gap-3">
-              <button disabled className="rounded-full bg-primary px-7 py-3 text-primary-foreground opacity-60">
+              <Button disabled className="h-auto rounded-full px-7 py-3">
                 Candidatar-me (em breve)
-              </button>
+              </Button>
               <FavoriteButton id={a.id} className="border border-border" />
             </div>
           </div>
