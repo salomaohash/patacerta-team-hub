@@ -21,13 +21,18 @@ export function HealthSummary({ onOpen, heading = true }: { onOpen: () => void; 
 }
 
 export function HealthRecord({ expanded = false }: { expanded?: boolean }) {
-  return <div className={expanded ? "space-y-3" : "grid gap-4 lg:grid-cols-2"}>
-    {lunaRecord.map((section, index) => <details key={section.title} open={expanded || index === 0} className="group rounded-2xl bg-card shadow-soft open:pb-5">
-      <summary className="cursor-pointer p-5 font-medium text-sm marker:text-accent-deep">{section.title}</summary>
-      <dl className="divide-y divide-border px-5 text-sm">
-        {section.entries.map(([label, value]) => <div key={label} className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] sm:gap-4"><dt className="text-muted-foreground">{label}</dt><dd className="break-words">{value}</dd></div>)}
-      </dl>
-    </details>)}
+  return <div className={expanded ? "space-y-3" : "grid items-stretch gap-4 lg:grid-cols-2 lg:auto-rows-fr"}>
+    {lunaRecord.map((section) => (
+      <div key={section.title} className="flex flex-col rounded-2xl bg-card shadow-soft p-5 h-full">
+        <h3 className="text-sm font-medium text-accent-deep">{section.title}</h3>
+        <dl className="mt-3 divide-y divide-border text-sm">
+          {section.entries.map(([label, value]) => <div key={label} className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] sm:gap-4">
+            <dt className="text-muted-foreground">{label}</dt>
+            <dd className="break-words">{value}</dd>
+          </div>)}
+        </dl>
+      </div>
+    ))}
   </div>;
 }
 

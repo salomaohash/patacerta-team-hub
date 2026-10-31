@@ -41,12 +41,13 @@ function DashboardEntry() {
   return <RequireSession>{user?.papel === "associacao" ? <InstitutionDashboard /> : <Dashboard />}</RequireSession>;
 }
 
-type SectionId = "overview" | "pet" | "application" | "places" | "profile";
+type SectionId = "overview" | "pet" | "application" | "requests" | "places" | "profile";
 
 const nav: { id: SectionId; label: string; icon: typeof LayoutDashboard }[] = [
   { id: "overview", label: "Painel", icon: LayoutDashboard },
   { id: "pet", label: "O meu animal", icon: PawPrint },
   { id: "application", label: "Pedido de adoção", icon: FileText },
+  { id: "requests", label: "Pedidos de adoção", icon: ClipboardCheck },
   { id: "places", label: "Locais pet-friendly", icon: MapPin },
   { id: "profile", label: "Perfil", icon: User },
 ];
@@ -55,14 +56,15 @@ const sectionTitles: Record<SectionId, string> = {
   overview: "Painel",
   pet: "O meu animal",
   application: "Pedido de adoção",
+  requests: "Pedidos de adoção",
   places: "Locais pet-friendly",
   profile: "Perfil",
 };
 
 const summary = [
   { label: "O teu match", value: "Luna", icon: Heart },
-  { label: "Pedido de adoção", value: "Em análise", icon: ClipboardCheck },
-  { label: "Progresso", value: "3 de 5 etapas", icon: Footprints },
+  { label: "Pedido de adoção", value: "Completo", icon: ClipboardCheck },
+  { label: "Progresso", value: "5 de 5 etapas", icon: Footprints },
   { label: "Locais guardados", value: "3", icon: Bookmark },
 ];
 
@@ -73,7 +75,7 @@ const steps = [
   "Encontro com o animal",
   "Adoção confirmada",
 ];
-const CURRENT = 2;
+const CURRENT = 6; // >= steps.length: adoção completa
 
 const careChecklist = [
   "Dois passeios calmos por dia, de 20 a 30 minutos",
@@ -201,6 +203,7 @@ function Dashboard() {
   const [filter, setFilter] = useState<PlaceKind | "all">("all");
   const [editNote, setEditNote] = useState(false);
   const [healthOpen, setHealthOpen] = useState(false);
+  const [profileTab, setProfileTab] = useState<"Dados da conta" | "Pedidos de adoção" | "Preferências">("Dados da conta");
   const [completedCare, setCompletedCare] = useState<string[]>([]);
   const [userPosition, setUserPosition] = useState<GeoPosition | null>(null);
 
@@ -447,8 +450,42 @@ function Dashboard() {
           )}
 
           {active === "profile" && (
-            <div className="max-w-2xl">
-              <div className="rounded-2xl bg-card p-6 shadow-soft">
+            <div className="grid gap-6 md:grid-cols-[220px_minmax(0,1fr)]">
+              <aside className="hidden md:block">
+                <nav aria-label="Secções do perfil" className="space-y-1">
+                  {(["Dados da conta", "Pedidos de adoção", "Preferências"] as const).map((label) => (
+                    <Button key={label} variant="ghost" onClick={() => setProfileTab(label)} className={`h-auto w-full justify-start gap-3 whitespace-normal rounded-xl px-3 py-2.5 text-left text-sm ${profileTab === label ? "bg-secondary text-foreground" : "text-muted-foreground"}`}>
+                      {label}
+                    </Button>
+                  ))}
+                </nav>
+              </aside>
+              <div className="min-w-0 space-y-6">
+                {profileTab === "Pedidos de adoção" && (
+                  <div className="space-y-3">
+                    {[
+                      { animal: "Luna", estado: "Aprovado", data: "12 de outubro de 2026" },
+                      { animal: "Tobias", estado: "Em análise", data: "28 de outubro de 2026" },
+                      { animal: "Mimi", estado: "Em análise", data: "30 de outubro de 2026" },
+                    ].map((r) => (
+                      <div key={r.animal} className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-card p-5 shadow-soft">
+                        <div>
+                          <p className="font-semibold">{r.animal}</p>
+                          <p className="text-sm text-muted-foreground">Enviado a {r.data}</p>
+                        </div>
+                        <span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">{r.estado}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {profileTab === "Preferências" && (
+                  <div className="flex flex-col gap-3 max-w-md">
+                    {["Avisar-me por email quando o meu pedido for atualizado", "Mostrar-me novos animais compatíveis semanalmente", "Notificar-me de animais desaparecidos na minha zona"].map((label) => (
+                      <label key={label} className="flex items-center gap-3 rounded-xl bg-card px-4 py-3 text-sm shadow-soft"><Checkbox defaultChecked className="h-4 w-4" /> {label}</label>
+                    ))}
+                  </div>
+                )}
+              <div className={profileTab === "Dados da conta" ? "rounded-2xl bg-card p-6 shadow-soft" : "hidden"}>
                 {demoUser.name && <div className="flex items-center gap-4">
                   <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-xl font-semibold text-primary-foreground">
                     {demoUser.initials}
@@ -480,7 +517,8 @@ function Dashboard() {
                   </p>
                 )}
               </div>
-            </div>
+              </div>
+              </div>
           )}
         </main>
       </div>
