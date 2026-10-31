@@ -64,7 +64,7 @@ function Index() {
       <section className="home-opening grain relative overflow-hidden border-b border-border">
         <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-6 px-4 py-6 md:grid-cols-[1.15fr_1fr] md:gap-12 md:px-6 md:py-12">
           <div className="min-w-0 space-y-4 md:space-y-6">
-            <h1 className="font-sans text-[34px] font-black leading-[1.08] tracking-normal sm:text-[38px] md:text-[52px]"><span className="block">Adota com confiança.</span><span className="block text-accent-deep">Encontra o que perdeu.</span></h1>
+            <h1 className="font-sans text-[34px] font-black leading-[1.08] tracking-normal sm:text-[38px] md:text-[52px]"><span className="block">Adota com confiança.</span><span className="block text-accent-deep">Encontra o teu parceiro.</span></h1>
             <p className="max-w-[46ch] text-[18px] leading-relaxed text-muted-foreground">
               Seis perguntas ajudam a encontrar um animal compatível com a tua vida. E, se o teu animal desapareceu, publicamos o teu aviso local gratuitamente.
             </p>
