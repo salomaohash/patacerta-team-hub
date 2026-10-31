@@ -7,9 +7,15 @@ describe("community catalog", () => {
     expect(notices.filter((n) => n.tipo === "desaparecido")).toHaveLength(7);
     expect(notices.filter((n) => n.tipo === "encontrado")).toHaveLength(3);
   });
+  it("uses different photographs for Lola and Patusco", () => {
+    const lola = getNotice("lola-serralves");
+    const patusco = getNotice("patusco-porto");
+    expect(lola).toBeDefined(); expect(patusco).toBeDefined();
+    expect(lola?.foto).not.toBe(patusco?.foto);
+  });
   it("searches missing posts by name, description and zone ignoring accents", () => {
     expect(filterNotices("desaparecido", "lola").map((n) => n.id)).toEqual(["lola-serralves"]);
-    expect(filterNotices("desaparecido", "coleira azul").map((n) => n.id)).toEqual(["nico-lisboa", "lola-serralves"]);
+    expect(filterNotices("desaparecido", "coleira azul").map((n) => n.id)).toEqual(["nico-lisboa"]);
     expect(filterNotices("desaparecido", "", "Lisboa", "gato").map((n) => n.id)).toEqual(["mia-lisboa"]);
   });
   it("orders notices newest first", () => {
