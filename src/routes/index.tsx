@@ -30,7 +30,7 @@ function Reveal({ children, className = "" }: { children: ReactNode; className?:
     if (!el) return;
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
+        if (e?.isIntersecting) {
           el.querySelectorAll<HTMLElement>(".reveal").forEach((c, i) => {
             c.style.transitionDelay = `${i * 80}ms`;
             c.classList.add("is-visible");
