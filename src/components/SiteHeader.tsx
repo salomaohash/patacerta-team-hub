@@ -2,6 +2,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { signOut, useSession } from "@/lib/state/session";
 import { GlobalSearch } from "@/components/GlobalSearch";
 import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/patacerta-logo.png";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -42,15 +43,19 @@ export function SiteHeader() {
             </>
           )}
           {user ? (
-            <Button variant="outline"
-              onClick={() => {
-                signOut();
-                navigate({ to: "/" });
-              }}
-              className="rounded-full border border-border px-4 py-2 text-sm transition-colors hover:bg-secondary"
-            >
-              Sair
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon" aria-label="Menu da conta" className="rounded-full border border-border hover:bg-secondary">{user.nome.trim().slice(0, 1).toUpperCase()}</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="max-w-[calc(100vw-24px)] rounded-lg border-border">
+                <DropdownMenuLabel className="max-w-64 break-words">{user.nome}<span className="mt-2 block text-sm font-normal text-muted-foreground">{user.email}</span></DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild><Link to="/painel">Painel</Link></DropdownMenuItem>
+                {user.papel === "associacao" && <DropdownMenuItem asChild><Link to="/dashboard">Dashboard</Link></DropdownMenuItem>}
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onSelect={() => { signOut(); navigate({ to: "/" }); }}>Terminar sessão</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
             <Link
               to="/entrar"
