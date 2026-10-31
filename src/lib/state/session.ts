@@ -13,10 +13,10 @@ let cache: DemoUser | null | undefined;
 function normalize(value: unknown): DemoUser | null {
   if (!value || typeof value !== "object") return null;
   const data = value as Record<string, unknown>;
-  const nome = typeof data.nome === "string" ? data.nome : data.name;
-  const papel = data.papel ?? (data.role === "association" ? "associacao" : data.role === "adopter" ? "adotante" : null);
-  if (typeof nome !== "string" || !nome.trim() || typeof data.email !== "string" || (papel !== "adotante" && papel !== "associacao")) return null;
-  return { nome, name: nome, email: data.email, papel, role: papel === "associacao" ? "association" : "adopter" };
+  const nome = typeof data["nome"] === "string" ? data["nome"] : data["name"];
+  const papel = data["papel"] ?? (data["role"] === "association" ? "associacao" : data["role"] === "adopter" ? "adotante" : null);
+  if (typeof nome !== "string" || !nome.trim() || typeof data["email"] !== "string" || (papel !== "adotante" && papel !== "associacao")) return null;
+  return { nome, name: nome, email: data["email"], papel, role: papel === "associacao" ? "association" : "adopter" };
 }
 function read(): DemoUser | null {
   if (typeof window === "undefined") return null;
