@@ -108,7 +108,7 @@
   --sidebar-border: oklch(0.255 0.014 150 / 10%);
   --sidebar-ring: oklch(0.6 0.045 135);
   --shadow-soft: 0 12px 24px -12px oklch(0.255 0.014 150 / 10%);
-  --home-opening-surface: oklch(0.955 0.017 135);
+  --home-opening-surface: var(--background);
   --shadow-raised: 0 16px 24px -12px oklch(0.255 0.014 150 / 12%);
   --ambient-cool: radial-gradient(ellipse at 80% 30%, color-mix(in oklab, var(--accent-deep) 10%, transparent), transparent 70%);
   --ambient-warm: radial-gradient(ellipse at 70% 60%, color-mix(in oklab, var(--accent-warm) 14%, transparent), transparent 75%);
