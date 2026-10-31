@@ -61,21 +61,20 @@ function Index() {
     <div className="bg-background text-foreground">
       {/* Hero */}
       <section className="home-opening grain relative overflow-hidden border-b border-border">
-        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 py-12 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-12">
-          <div className="space-y-6">
-            <p className="eyebrow flex items-center gap-3 text-accent-deep"><span aria-hidden="true" className="h-px w-8 bg-accent-deep" />Adoção consciente</p>
-            <h1 className="font-sans text-[38px] font-black leading-[1.08] tracking-normal md:text-[52px]"><span className="block">O Animal Que</span><span className="block">Realmente</span><span className="block text-accent-deep">Combina Contigo.</span></h1>
+        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-6 px-4 py-6 md:grid-cols-[1.15fr_1fr] md:gap-12 md:px-6 md:py-12">
+          <div className="min-w-0 space-y-4 md:space-y-6">
+            <h1 className="font-sans text-[34px] font-black leading-[1.08] tracking-normal sm:text-[38px] md:text-[52px]"><span className="block">O Animal Que</span><span className="block">Realmente</span><span className="block text-accent-deep">Combina Contigo.</span></h1>
             <p className="max-w-[46ch] text-[18px] leading-relaxed text-muted-foreground">
               Responde a um questionário sobre a tua rotina. Para cada animal, vê o que encaixa e os desafios a considerar.
             </p>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-3">
+            <div className="grid grid-cols-1 items-center gap-3 sm:flex sm:flex-wrap sm:gap-6">
               <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-4 text-base font-semibold shadow-soft"><Link to="/quiz">
                 Encontra o teu parceiro
               </Link></Button>
               <Button asChild variant="link" className="h-auto px-0 text-base font-normal"><Link to="/animais">Explorar animais </Link></Button>
             </div>
           </div>
-          <div className="relative mx-auto mt-2 w-full max-w-[420px] pb-6 md:mt-0">
+          <div className="relative mx-auto w-full min-w-0 max-w-[420px] pb-6">
             <div className="overflow-hidden rounded-lg">
               <video
                 ref={videoRef}
