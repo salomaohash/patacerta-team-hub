@@ -1,5 +1,5 @@
 import { createFileRoute, Navigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   LayoutDashboard, PawPrint, FileText, MapPin, User, Heart, ClipboardCheck,
   Footprints, Bookmark, Check, Building2, Mail, Coffee, Trees, Stethoscope,
@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { HealthSummary, HealthBadge, HealthRecord, HealthModal } from "@/components/dashboard/LunaHealth";
 import { GooglePlacesMap } from "@/components/dashboard/GooglePlacesMap";
 import { todayCare, toggleCare } from "@/lib/luna-record";
+import { formatDistance, haversineKm, type GeoPosition } from "@/lib/geo";
 import lunaPhoto from "@/assets/pets/luna.jpg";
 import { useDemoUser } from "@/lib/demo-session";
 import { useSession } from "@/lib/state/session";
@@ -201,8 +202,20 @@ function Dashboard() {
   const [editNote, setEditNote] = useState(false);
   const [healthOpen, setHealthOpen] = useState(false);
   const [completedCare, setCompletedCare] = useState<string[]>([]);
+  const [userPosition, setUserPosition] = useState<GeoPosition | null>(null);
 
-  const filteredPlaces = filter === "all" ? places : places.filter((p) => p.kind === filter);
+  useEffect(() => {
+    if (!("geolocation" in navigator)) return;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => setUserPosition({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+      () => {},
+      { timeout: 10000 },
+    );
+  }, []);
+
+  const filteredPlaces = (filter === "all" ? places : places.filter((p) => p.kind === filter))
+    .map((p) => userPosition ? { ...p, distance: formatDistance(haversineKm(userPosition, p.position)) } : p)
+    .sort((a, b) => userPosition ? haversineKm(userPosition, a.position) - haversineKm(userPosition, b.position) : 0);
 
   // O painel só é visível depois de entrar na demonstração.
   if (!demoUser) {
@@ -425,7 +438,7 @@ function Dashboard() {
                   </Button>
                 ))}
               </div>
-              <GooglePlacesMap list={filteredPlaces} onSelect={setPlace} />
+              <GooglePlacesMap list={filteredPlaces} onSelect={setPlace} userPosition={userPosition} />
               <PlaceCards list={filteredPlaces} onSelect={setPlace} />
             </div>
           )}
@@ -475,7 +488,7 @@ function Dashboard() {
           <DialogHeader>
             <DialogTitle>{place?.name}</DialogTitle>
             <DialogDescription>
-              {place?.kindLabel} · {place?.distance}
+              {place?.kindLabel}, {place?.distance}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-2 text-sm">
