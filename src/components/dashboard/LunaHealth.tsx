@@ -7,9 +7,10 @@ export function HealthBadge() {
   return <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-accent-deep"><ShieldCheck size={14} /> Saúde em dia</span>;
 }
 
-export function HealthSummary({ onOpen }: { onOpen: () => void }) {
-  return <div className="flex h-full flex-col rounded-2xl bg-card p-5 shadow-soft">
-    <div className="flex flex-wrap items-center justify-between gap-2"><h2 className="flex items-center gap-2 text-lg"><Stethoscope size={18} className="text-accent-deep" /> Saúde da Luna</h2><HealthBadge /></div>
+export function HealthSummary({ onOpen, heading = true }: { onOpen: () => void; heading?: boolean }) {
+  return <div className="flex flex-1 h-full flex-col rounded-2xl bg-card p-5 shadow-soft">
+    {heading && <div className="flex flex-wrap items-center justify-between gap-2"><h2 className="flex items-center gap-2 text-lg"><Stethoscope size={18} className="text-accent-deep" /> Saúde da Luna</h2><HealthBadge /></div>}
+    {!heading && <div className="flex justify-end"><HealthBadge /></div>}
     <p className="mt-3 text-2xl font-serif">Em dia</p>
     <dl className="mt-4 space-y-3 text-sm">
       <div><dt className="text-muted-foreground">Próxima consulta</dt><dd className="flex items-center gap-2"><CalendarDays size={14} className="text-accent-deep" />15 de novembro de 2026</dd></div>

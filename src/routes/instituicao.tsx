@@ -34,6 +34,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { signOut, useSession } from "@/lib/state/session";
+import { useDemoUser } from "@/lib/demo-session";
 import { OrgOverview } from "@/components/org/OrgOverview";
 import { OrgLiveActivity } from "@/components/org/OrgLiveActivity";
 import { OrgAnimals } from "@/components/org/OrgAnimals";
@@ -96,7 +97,9 @@ const nav: { id: Section; label: string; icon: LucideIcon }[] = [
 ];
 
 function Dashboard() {
-  const user = useSession();
+  const sessionUser = useSession();
+  const demoUserOnly = useDemoUser();
+  const user = sessionUser ?? (demoUserOnly ? { nome: demoUserOnly.name, name: demoUserOnly.name, email: "", papel: demoUserOnly.papel, role: demoUserOnly.papel === "associacao" ? "association" : "adopter" } : null);
   const isDemo = showsInstitutionDemo(user);
   const [demoData] = useState(() => institutionDemo());
   const { secao, candidatura, novo } = Route.useSearch();

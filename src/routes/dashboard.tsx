@@ -297,7 +297,10 @@ function Dashboard() {
                   <h2 className="mb-3 text-lg">O teu match</h2>
                   <LunaCard onOpen={() => setActive("pet")} />
                 </div>
-                <HealthSummary onOpen={() => setHealthOpen(true)} />
+                <div className="flex h-full flex-col">
+                  <h2 className="mb-3 flex items-center gap-2 text-lg"><Stethoscope size={18} className="text-accent-deep" /> Saúde da Luna</h2>
+                  <HealthSummary heading={false} onOpen={() => setHealthOpen(true)} />
+                </div>
                 <div className="flex h-full flex-col md:col-span-2 2xl:col-span-1">
                   <h2 className="mb-3 text-lg">Progresso da adoção</h2>
                   <div className="flex-1 rounded-2xl bg-card p-5 shadow-soft">
