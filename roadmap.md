@@ -1,6 +1,6 @@
 # Tarefas
-- [ ] Alterar CTA para «Encontra o teu parceiro», uniformizar fonte da homepage e retirar bloco final do questionário.
-- [ ] Aplicar regras globais de escrita, títulos Fraunces, espaçamentos, raios, sombras e hovers; verificar estados vazios e navegação.
+- [ ] Verificar CTA «Encontra o teu parceiro», fonte Nunito reposta e remoção do bloco final.
+- [ ] Verificar revisão de escrita, espaçamentos, raios, sombras, hovers, estados vazios e navegação, preservando tipografia anterior.
 - [x] Reforçar título e tipografia, criar logo e favicon, ampliar e abrandar faixa, retirar wording de demonstração em todo o site.
 - [x] Integrar login e dashboard do ZIP com sessão e perfil guardados no navegador; verificar saúde, cuidados, locais e saída. Mapa Google opcional sem configuração; lista e filtros de locais funcionam.
 - [x] Manter faixa de organizações sem pausa e apenas com imagens; retirar Destaque e Inesquecíveis da homepage.
