@@ -15,6 +15,7 @@ import { Route as FavoritosRouteImport } from './routes/favoritos'
 import { Route as PainelRouteImport } from './routes/painel'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as RegistarRouteImport } from './routes/registar'
+import { Route as ResultadosRouteImport } from './routes/resultados'
 import { Route as AnimaisIndexRouteImport } from './routes/animais.index'
 import { Route as AnimaisIdRouteImport } from './routes/animais.$id'
 
@@ -48,6 +49,11 @@ const RegistarRoute = RegistarRouteImport.update({
   path: '/registar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResultadosRoute = ResultadosRouteImport.update({
+  id: '/resultados',
+  path: '/resultados',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnimaisIndexRoute = AnimaisIndexRouteImport.update({
   id: '/animais/',
   path: '/animais/',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/painel': typeof PainelRoute
   '/quiz': typeof QuizRoute
   '/registar': typeof RegistarRoute
+  '/resultados': typeof ResultadosRoute
   '/animais/$id': typeof AnimaisIdRoute
   '/animais/': typeof AnimaisIndexRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/painel': typeof PainelRoute
   '/quiz': typeof QuizRoute
   '/registar': typeof RegistarRoute
+  '/resultados': typeof ResultadosRoute
   '/animais/$id': typeof AnimaisIdRoute
   '/animais': typeof AnimaisIndexRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/painel': typeof PainelRoute
   '/quiz': typeof QuizRoute
   '/registar': typeof RegistarRoute
+  '/resultados': typeof ResultadosRoute
   '/animais/$id': typeof AnimaisIdRoute
   '/animais/': typeof AnimaisIndexRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/painel'
     | '/quiz'
     | '/registar'
+    | '/resultados'
     | '/animais/$id'
     | '/animais/'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/painel'
     | '/quiz'
     | '/registar'
+    | '/resultados'
     | '/animais/$id'
     | '/animais'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/painel'
     | '/quiz'
     | '/registar'
+    | '/resultados'
     | '/animais/$id'
     | '/animais/'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   PainelRoute: typeof PainelRoute
   QuizRoute: typeof QuizRoute
   RegistarRoute: typeof RegistarRoute
+  ResultadosRoute: typeof ResultadosRoute
   AnimaisIdRoute: typeof AnimaisIdRoute
   AnimaisIndexRoute: typeof AnimaisIndexRoute
 }
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegistarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resultados': {
+      id: '/resultados'
+      path: '/resultados'
+      fullPath: '/resultados'
+      preLoaderRoute: typeof ResultadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/animais/': {
       id: '/animais/'
       path: '/animais'
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   PainelRoute: PainelRoute,
   QuizRoute: QuizRoute,
   RegistarRoute: RegistarRoute,
+  ResultadosRoute: ResultadosRoute,
   AnimaisIdRoute: AnimaisIdRoute,
   AnimaisIndexRoute: AnimaisIndexRoute,
 }

@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Check, X, MapPin } from "lucide-react";
+import { QuizInline } from "@/components/QuizInline";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { getAnimal, getAssociation } from "@/lib/animals";
 
@@ -59,6 +60,7 @@ function Detail() {
                 </li>
               ))}
             </ul>
+            <QuizInline a={a} />
             <div className="mt-8 flex items-center gap-3">
               <button disabled className="rounded-full bg-primary px-7 py-3 text-primary-foreground opacity-60">
                 Candidatar-me (em breve)
