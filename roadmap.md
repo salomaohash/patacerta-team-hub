@@ -1,4 +1,8 @@
 # Tarefas
+- [ ] Expandir para 28 animais e 10 avisos com fotografias reais e galerias.
+- [ ] Substituir Animais no menu por pesquisa global acessível e ligar catálogo no rodapé.
+- [ ] Trocar filtros por chips e filtrar avisos por espécie e zona.
+- [ ] Verificar pesquisa, galerias, filtros e dados demonstrativos.
 - [x] Renovar catálogo com pesquisa, estados, contagens, filtros removíveis e ordenação.
 - [x] Criar seis avisos demonstrativos, cartões, detalhe e partilha.
 - [x] Limpar rótulos, mostrar compatibilidade e indicar animais adotados.
