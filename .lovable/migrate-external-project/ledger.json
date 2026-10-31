@@ -2,6 +2,13 @@
   "scope": "Uploaded login and dashboard only; preserve existing homepage and catalog",
   "capabilities": [
     {
+      "capability": "Institution dashboard from October ZIP",
+      "source": "src/routes/instituicao.tsx and src/components/org",
+      "outcome": "Adapt institution navigation, metrics, animals, applications, calendar, follow-up, insights, profile and settings to browser-only storage; do not import invented ownership, applicants or source backend",
+      "status": "in progress",
+      "next_action": "Verify local institution flows and adopter preservation"
+    },
+    {
       "capability": "Six-question adoption quiz from Ultimo.zip",
       "source": "Ultimo.zip/src/routes/quiz.tsx",
       "outcome": "Adapt questions, explicit continuation, back navigation and result view to existing browser-only catalog; replace fixed source percentages with calculated matches",
