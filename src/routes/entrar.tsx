@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AuthForm } from "@/components/AuthForm";
 
 export const Route = createFileRoute("/entrar")({
+  validateSearch: (search: Record<string, unknown>): { returnTo?: string } => ({
+    returnTo: typeof search.returnTo === "string" && ["/painel", "/dashboard", "/favoritos"].includes(search.returnTo) ? search.returnTo : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Entrar · PataCerta" },
