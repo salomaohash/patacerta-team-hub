@@ -5,8 +5,8 @@
       "capability": "Six-question adoption quiz from Ultimo.zip",
       "source": "Ultimo.zip/src/routes/quiz.tsx",
       "outcome": "Adapt questions, explicit continuation, back navigation and result view to existing browser-only catalog; replace fixed source percentages with calculated matches",
-      "status": "implementing",
-      "next_action": "Verify complete quiz, saved answers and animal detail navigation"
+      "status": "verified",
+      "next_action": null
     },
     {
       "capability": "dashboard code and health records",
