@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { RequireSession } from "@/components/RequireSession";
 import { useSession } from "@/lib/state/session";
 import { useFavorites } from "@/lib/state/favorites";
+import { useDemoUser } from "@/lib/demo-session";
 
 export const Route = createFileRoute("/painel")({
   head: () => ({
@@ -22,8 +23,10 @@ export const Route = createFileRoute("/painel")({
 });
 
 function Painel() {
-  const user = useSession();
+  const sessionUser = useSession();
+  const demoUser = useDemoUser();
   const favs = useFavorites();
+  const user = sessionUser ?? (demoUser ? { name: demoUser.name || "Utilizador", role: demoUser.papel === "associacao" ? "association" as const : "adopter" as const } : null);
   if (!user) return null;
   const isAssoc = user.role === "association";
   return (
