@@ -21,7 +21,7 @@ export function HealthSummary({ onOpen, heading = true }: { onOpen: () => void; 
 }
 
 export function HealthRecord({ expanded = false }: { expanded?: boolean }) {
-  return <div className={expanded ? "space-y-3" : "grid items-stretch gap-4 lg:grid-cols-2 lg:auto-rows-fr"}>
+  return <div className={expanded ? "space-y-3" : "grid items-stretch gap-4 lg:grid-cols-2"}>
     {lunaRecord.map((section) => (
       <div key={section.title} className="flex flex-col rounded-2xl bg-card shadow-soft p-5 h-full">
         <h3 className="text-sm font-medium text-accent-deep">{section.title}</h3>
