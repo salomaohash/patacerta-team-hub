@@ -7,6 +7,7 @@ import { AnimalCard } from "@/components/AnimalCard";
 import { MatchRing } from "@/components/MatchRing";
 import { Reveal } from "@/components/Reveal";
 import { SiteFooter } from "@/components/SiteFooter";
+import { HomeStats } from "@/components/HomeStats";
 import { PartnerMarquee } from "@/components/PartnerMarquee";
 import { Button } from "@/components/ui/button";
 import { notices } from "@/lib/notices";
@@ -118,32 +119,33 @@ function Index() {
             <p className="eyebrow">Como funciona</p>
             <h2 className="text-[34px] md:text-[44px]">Três passos, sem pressa.</h2>
           </div>
-          <ol className="mt-12 grid md:grid-cols-3">
+          <ol className="mt-12 grid gap-6 md:grid-cols-3">
             {STEPS.map((s, i) => (
-              <li key={s.title} data-r style={d(i + 1)} className="border-t border-border py-8 md:border-l md:border-t-0 md:px-10 md:py-2 md:first:border-l-0 md:first:pl-0">
+              <li key={s.title} data-r style={d(i + 1)} className="home-step rounded-lg border border-border bg-card p-6">
                 <div className="flex items-center gap-3">
                   <span className="font-serif text-sm text-muted-foreground">0{i + 1}</span>
                   <s.icon size={20} strokeWidth={1.5} className="text-accent-deep" />
                 </div>
                 <h3 className="mt-6 text-[24px]">{s.title}</h3>
-                <p className="mt-3 text-[15px] text-muted-foreground">{s.text}</p>
+                <p className="mt-3 text-[16.5px] text-muted-foreground">{s.text}</p>
               </li>
             ))}
           </ol>
         </Reveal>
       </section>
 
+      <HomeStats />
       <PartnerMarquee />
 
-      <section className="border-t border-border bg-muted">
+      <section className="section-texture border-t border-border bg-muted">
         <Reveal className="mx-auto flex max-w-6xl flex-col justify-between gap-8 px-6 py-12 md:flex-row md:items-center md:py-16">
-          <div data-r className="max-w-2xl"><p className="eyebrow">Perdidos e Encontrados</p><h2 className="mt-5 text-[32px] leading-tight md:text-[40px]">Perdi o meu animal. Ajudamos a encontrá-lo.</h2><p className="mt-5 text-[15px] text-muted-foreground">Uma comunidade atenta começa com uma localização e um aviso partilhado. Consulta as zonas de busca e os animais encontrados.</p><p className="mt-4 text-sm text-accent-deep">{notices.filter((n) => n.tipo === "desaparecido").length} avisos ativos agora · demonstração</p></div>
+          <div data-r className="max-w-2xl"><p className="eyebrow">Perdidos e Encontrados</p><h2 className="mt-5 text-[32px] leading-tight md:text-[40px]">Perdi o meu animal. Ajudamos a encontrá-lo.</h2><p className="mt-5 text-[16.5px] text-muted-foreground">Uma comunidade atenta começa com uma localização e um aviso partilhado. Consulta as zonas de busca e os animais encontrados.</p><p className="mt-4 text-sm text-accent-deep">{notices.filter((n) => n.tipo === "desaparecido").length} avisos ativos agora · demonstração</p></div>
           <div data-r className="flex shrink-0 flex-col gap-3"><Button asChild className="font-normal"><Link to="/animais" search={{ estado: "desaparecido" }}>Ver desaparecidos <ArrowRight /></Link></Button><Button asChild variant="outline" className="font-normal"><Link to="/animais" search={{ estado: "encontrado" }}>Ver encontrados <ArrowRight /></Link></Button></div>
         </Reveal>
       </section>
 
       {/* Em destaque */}
-      <section className="bg-secondary">
+      <section className="home-featured section-texture bg-secondary">
         <Reveal className="mx-auto max-w-7xl px-6 py-16 md:py-24">
           <div data-r className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div className="space-y-6">
@@ -163,7 +165,7 @@ function Index() {
       </section>
 
       {/* Compatibilidade explicada */}
-      <section>
+      <section className="home-ambient">
         <Reveal className="mx-auto grid max-w-6xl items-center gap-16 px-6 py-16 md:grid-cols-2 md:py-24">
           <div data-r className="space-y-6">
             <p className="eyebrow text-accent-deep">Compatibilidade</p>
@@ -182,7 +184,7 @@ function Index() {
                 </p>
               </div>
             </div>
-            <ul className="space-y-4 pt-2 text-[15px]">
+            <ul className="space-y-4 pt-2 text-[16.5px]">
               {activeGoods.map((r) => (
                 <li key={r.reason} className="flex gap-3">
                   <HeartHandshake size={18} strokeWidth={1.5} className="mt-1 shrink-0 text-accent-deep" />
@@ -201,7 +203,7 @@ function Index() {
       </section>
 
       {/* Os Esquecidos */}
-      <section className="bg-muted">
+      <section className="home-ambient home-ambient-warm section-texture bg-muted">
         <Reveal className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-[1fr_1.1fr] md:items-center md:py-24">
           <div data-r className="space-y-3">
             <img src={senior.photo} alt={`${senior.name}, gata sénior`} loading="lazy" width={800} height={1008} className="aspect-[4/5] w-full rounded-[28px] object-cover md:aspect-[5/6]" />

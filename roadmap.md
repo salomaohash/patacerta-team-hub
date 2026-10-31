@@ -1,4 +1,5 @@
 # Tarefas
+- [ ] Aplicar auditoria homepage: Nunito, ambiente, sombras, números demo animados e referências reais em marquee acessível.
 - [x] Simplificar Perdidos e Encontrados: retirar separadores e pesquisa local, tornar os filtros fluidos e remover a ação de reivindicar o animal.
 - [x] Corrigir fotografia e texto da Lola, descrições alternativas e nota da listagem.
 - [x] Acrescentar faixa animada de parceiros fictícios e transparência no Acerca.
