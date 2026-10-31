@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, type CSSProperties } from "react";
-import { ClipboardList, HeartHandshake, Mail, Stethoscope } from "lucide-react";
+import { ClipboardList, HeartHandshake, Mail, ShieldCheck, Stethoscope } from "lucide-react";
 import { getAnimal, getAssociation } from "@/lib/animals";
 import { computeMatch, type QuizAnswers } from "@/lib/matching";
 import { MatchRing } from "@/components/MatchRing";
@@ -63,15 +63,17 @@ function Index() {
       <section className="home-opening grain relative overflow-hidden border-b border-border">
         <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-6 px-4 py-6 md:grid-cols-[1.15fr_1fr] md:gap-12 md:px-6 md:py-12">
           <div className="min-w-0 space-y-4 md:space-y-6">
-            <h1 className="font-sans text-[34px] font-black leading-[1.08] tracking-normal sm:text-[38px] md:text-[52px]"><span className="block">O Animal Que</span><span className="block">Realmente</span><span className="block text-accent-deep">Combina Contigo.</span></h1>
+            <h1 className="font-sans text-[34px] font-black leading-[1.08] tracking-normal sm:text-[38px] md:text-[52px]"><span className="block">Adota com confiança.</span><span className="block text-accent-deep">Encontra o que perdeu.</span></h1>
             <p className="max-w-[46ch] text-[18px] leading-relaxed text-muted-foreground">
-              Responde a um questionário sobre a tua rotina. Para cada animal, vê o que encaixa e os desafios a considerar.
+              Nove perguntas revelam o animal certo para a tua vida. E, se o teu animal desapareceu, publicamos o teu aviso local gratuitamente.
             </p>
             <div className="grid grid-cols-1 items-center gap-3 sm:flex sm:flex-wrap sm:gap-6">
-              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-4 text-base font-semibold shadow-soft"><Link to="/quiz">
-                Encontra o teu parceiro
+              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full px-6 py-4 text-base font-semibold shadow-soft"><Link to="/animais">
+                Quero adotar
               </Link></Button>
-              <Button asChild variant="link" className="h-auto px-0 text-base font-normal"><Link to="/animais">Explorar animais </Link></Button>
+              <Button asChild className="h-auto max-w-full whitespace-normal rounded-full border border-border bg-transparent px-6 py-4 text-base font-semibold text-foreground shadow-none transition-colors hover:bg-secondary"><Link to="/animais" search={{ estado: "desaparecido" }}>
+                Perdi o meu animal
+              </Link></Button>
             </div>
           </div>
           <div className="relative mx-auto w-full min-w-0 max-w-[420px] pb-6">
@@ -125,12 +127,38 @@ function Index() {
         </Reveal>
       </section>
 
+      {/* Porquê a PataCerta */}
+      <section className="border-t border-border bg-secondary">
+        <Reveal className="mx-auto max-w-6xl px-6 py-12 md:py-16">
+          <div data-r className="space-y-6">
+            <p className="eyebrow">Diferenciação</p>
+            <h2 className="text-[34px] md:text-[44px]">Existem muitos sites com animais. Fizemos o que faltava.</h2>
+          </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            {[
+              { icon: HeartHandshake, title: "Compatibilidade explicada", text: "Não é uma percentagem solta. Vês, para cada animal, o que encaixa e o que será mais difícil antes de te candidatares." },
+              { icon: Stethoscope, title: "Desafios sem maquilhagem", text: "Saúde, comportamento e custos escritos à frente, nunca escondidos atrás das fotografias." },
+              { icon: Mail, title: "Avisos de desaparecidos gratuitos", text: "Publicas, a comunidade da tua zona partilha e quem vir o animal contacta-te diretamente. Sem pagamentos." },
+              { icon: ShieldCheck, title: "Associações responsáveis", text: "Cada animal vem de uma associação com nome, contactos e histórico de cuidados, da reabilitação à adoção." },
+            ].map((c, i) => (
+              <div key={c.title} data-r style={d(i + 1)} className="home-step rounded-lg border border-border bg-card p-6">
+                <div className="flex items-center gap-3">
+                  <c.icon size={20} strokeWidth={1.5} className="text-accent-deep" />
+                  <h3 className="text-[19px] font-semibold">{c.title}</h3>
+                </div>
+                <p className="mt-3 text-[16.5px] text-muted-foreground">{c.text}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
       <HomeStats />
       <PartnerMarquee />
 
       <section className="section-texture border-t border-border bg-muted">
         <Reveal className="mx-auto flex max-w-6xl flex-col justify-between gap-6 px-6 py-12 md:flex-row md:items-center md:py-12">
-          <div data-r className="max-w-2xl"><p className="eyebrow">Perdidos e encontrados</p><h2 className="mt-6 text-[32px] leading-tight md:text-[40px]">Perdeste o teu animal?</h2><p className="mt-6 text-[16.5px] text-muted-foreground">Uma comunidade atenta começa com uma localização e um aviso partilhado. Consulta as zonas de busca e os animais encontrados.</p><p className="mt-4 text-sm text-accent-deep">{notices.filter((n) => n.tipo === "desaparecido").length} avisos no catálogo</p></div>
+          <div data-r className="max-w-2xl"><p className="eyebrow">Perdidos e encontrados</p><h2 className="mt-6 text-[32px] leading-tight md:text-[40px]">Perdeste o teu animal? Publicamos o teu aviso.</h2><p className="mt-6 text-[16.5px] text-muted-foreground">Publicação gratuita, visível a quem está perto de ti, com contactos diretos no aviso. Consulta também os animais já encontrados pela comunidade.</p><p className="mt-4 text-sm text-accent-deep">{notices.filter((n) => n.tipo === "desaparecido").length} avisos ativos agora</p></div>
           <div data-r className="flex shrink-0 flex-col gap-3"><Button asChild className="font-normal"><Link to="/animais" search={{ estado: "desaparecido" }}>Ver desaparecidos </Link></Button><Button asChild variant="outline" className="font-normal"><Link to="/animais" search={{ estado: "encontrado" }}>Ver encontrados </Link></Button></div>
         </Reveal>
       </section>
