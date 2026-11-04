@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/dashboard")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "Painel e instituição, PataCerta" },

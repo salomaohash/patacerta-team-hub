@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { MatchRing } from "@/components/MatchRing";
 
 export const Route = createFileRoute("/quiz")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Questionário de adoção, PataCerta" },

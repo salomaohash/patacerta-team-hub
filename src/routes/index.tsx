@@ -15,6 +15,7 @@ import heroLoop from "@/assets/hero-dog-loop.mp4.asset.json";
 import { ADOPTION_QUIZ_PATH } from "@/lib/adoption-quiz";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "PataCerta · Adota cães e gatos e encontra animais perdidos em Portugal" },

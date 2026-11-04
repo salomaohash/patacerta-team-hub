@@ -8,6 +8,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { photoInfo } from "@/lib/pet-media";
 
 export const Route = createFileRoute("/avisos/$id")({
+  staticData: { sitemap: false },
   loader: ({ params }) => {
     const notice = getNotice(params.id);
     if (!notice) throw notFound();

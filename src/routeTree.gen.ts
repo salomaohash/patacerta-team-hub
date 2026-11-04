@@ -20,6 +20,7 @@ import { Route as PainelRouteImport } from './routes/painel'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as RegistarRouteImport } from './routes/registar'
 import { Route as ResultadosRouteImport } from './routes/resultados'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AnimaisIndexRouteImport } from './routes/animais.index'
 import { Route as AnimaisIdRouteImport } from './routes/animais.$id'
 import { Route as AvisosIdRouteImport } from './routes/avisos.$id'
@@ -79,6 +80,11 @@ const ResultadosRoute = ResultadosRouteImport.update({
   path: '/resultados',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnimaisIndexRoute = AnimaisIndexRouteImport.update({
   id: '/animais/',
   path: '/animais/',
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/quiz': typeof QuizRoute
   '/registar': typeof RegistarRoute
   '/resultados': typeof ResultadosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/animais/$id': typeof AnimaisIdRoute
   '/avisos/$id': typeof AvisosIdRoute
   '/animais/': typeof AnimaisIndexRoute
@@ -123,6 +130,7 @@ export interface FileRoutesByTo {
   '/quiz': typeof QuizRoute
   '/registar': typeof RegistarRoute
   '/resultados': typeof ResultadosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/animais/$id': typeof AnimaisIdRoute
   '/avisos/$id': typeof AvisosIdRoute
   '/animais': typeof AnimaisIndexRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/quiz': typeof QuizRoute
   '/registar': typeof RegistarRoute
   '/resultados': typeof ResultadosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/animais/$id': typeof AnimaisIdRoute
   '/avisos/$id': typeof AvisosIdRoute
   '/animais/': typeof AnimaisIndexRoute
@@ -158,6 +167,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/registar'
     | '/resultados'
+    | '/sitemap.xml'
     | '/animais/$id'
     | '/avisos/$id'
     | '/animais/'
@@ -174,6 +184,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/registar'
     | '/resultados'
+    | '/sitemap.xml'
     | '/animais/$id'
     | '/avisos/$id'
     | '/animais'
@@ -190,6 +201,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/registar'
     | '/resultados'
+    | '/sitemap.xml'
     | '/animais/$id'
     | '/avisos/$id'
     | '/animais/'
@@ -207,6 +219,7 @@ export interface RootRouteChildren {
   QuizRoute: typeof QuizRoute
   RegistarRoute: typeof RegistarRoute
   ResultadosRoute: typeof ResultadosRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AnimaisIdRoute: typeof AnimaisIdRoute
   AvisosIdRoute: typeof AvisosIdRoute
   AnimaisIndexRoute: typeof AnimaisIndexRoute
@@ -291,6 +304,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResultadosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/animais/': {
       id: '/animais/'
       path: '/animais'
@@ -327,6 +347,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuizRoute: QuizRoute,
   RegistarRoute: RegistarRoute,
   ResultadosRoute: ResultadosRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   AnimaisIdRoute: AnimaisIdRoute,
   AvisosIdRoute: AvisosIdRoute,
   AnimaisIndexRoute: AnimaisIndexRoute,
