@@ -22,3 +22,4 @@
 - Use one shared header logo asset and derive the favicon from its symbol so site identity stays consistent.
 - Keep visual hierarchy and motion in global tokens and shared controls so page-specific styling cannot diverge.
 - Keep the six-question adoption profile, validation, species preference and scoring in a browser-safe pure module; preserve legacy quiz answers while excluding unasked dimensions from new scores so all result surfaces agree without invented household facts.
+- Derive sitemap URLs from required route-level staticData.sitemap decisions; exclude account flows and illustrative record pages so discovery stays automatic without advertising private or fictional records.
