@@ -7,6 +7,7 @@ import { AnimalGallery } from "@/components/AnimalGallery";
 import { AnimalContact } from "@/components/AnimalContact";
 
 export const Route = createFileRoute("/animais/$id")({
+  staticData: { sitemap: false },
   loader: async ({ params }) => {
     const animal = getAnimal(params.id);
     if (!animal) throw notFound();

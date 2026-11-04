@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { RegisterForm } from "@/components/RegisterForm";
 
 export const Route = createFileRoute("/registar")({
+  staticData: { sitemap: false },
   validateSearch: (search: Record<string, unknown>): { returnTo?: string | undefined } => ({
     returnTo: typeof search["returnTo"] === "string" && ["/painel", "/dashboard", "/instituicao", "/favoritos"].includes(search["returnTo"]) ? search["returnTo"] : undefined,
   }),

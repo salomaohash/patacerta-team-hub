@@ -5,6 +5,7 @@ import { useFavorites } from "@/lib/state/favorites";
 import { getAnimal, type Animal } from "@/lib/animals";
 
 export const Route = createFileRoute("/favoritos")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "Favoritos · PataCerta" },

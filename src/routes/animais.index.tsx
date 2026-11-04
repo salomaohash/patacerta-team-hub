@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { useQuiz } from "@/hooks/use-quiz";
 
 export const Route = createFileRoute("/animais/")({
+  staticData: { sitemap: true },
   validateSearch: (s: Record<string, unknown>): CatalogFilters => {
     const pick = (key: string) => typeof s[key] === "string" ? s[key] as string : undefined;
     return { especie: pick("especie"), porte: pick("porte"), energia: pick("energia"), situacao: pick("situacao"), estado: pick("estado"), q: pick("q"), zona: pick("zona"), ordem: pick("ordem") };

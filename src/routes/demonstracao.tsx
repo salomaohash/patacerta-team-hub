@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { DemoLoginForm } from "@/components/DemoLoginForm";
 
 export const Route = createFileRoute("/demonstracao")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "A tua jornada de adoção — PataCerta" },

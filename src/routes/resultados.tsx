@@ -8,6 +8,7 @@ import { MatchCard } from "@/components/MatchCard";
 import { matchesAdoptionSpecies } from "@/lib/adoption-quiz";
 
 export const Route = createFileRoute("/resultados")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "Animais compatíveis contigo · PataCerta" },
